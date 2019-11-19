@@ -21,6 +21,57 @@
     		color:red;
     		font-weight: normal;
     	}
+.tabs-left {
+  border-bottom: none;
+  border-right: 1px solid #ddd;
+}
+
+.tabs-left>li {
+  float: none;
+ margin:0px;
+  
+}
+
+.tabs-left>li.active>a,
+.tabs-left>li.active>a:hover,
+.tabs-left>li.active>a:focus {
+  border-bottom-color: #ddd;
+  border-right-color: transparent;
+  /*background:#f90;*/
+  background:#3c8cbc;
+  border:none;
+  border-radius:0px;
+  margin:0px;
+}
+.nav-tabs>li>a:hover {
+    /* margin-right: 2px; */
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    /* border-radius: 4px 4px 0 0; */
+}
+.tabs-left>li.active>a::after{content: "";
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  
+  border-left: 10px solid #3c8cbc;
+    display: block;
+    width: 0;}
+
+.prpty_append {
+        position: absolute;
+    left: 90%;
+    top: 24px;
+    background: #929291;
+    line-height: 35px;
+    padding-left: 7px;
+    box-sizing: border-box;
+    border-left: 1px solid #e0e0e0;
+    font-weight: 300;
+    width: 50px;
+}
     </style>
     <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript">

@@ -91,6 +91,7 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 
 //propertys
 $route['post-residential-rent-property'] = "Property/addNew";
+$route['ResidentialRentAddProperty'] = "Property/addNewProperty";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
