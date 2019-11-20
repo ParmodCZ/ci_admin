@@ -36,6 +36,11 @@ class Property extends BaseController
      */
    //  function userListing()
    //  {
+
+
+
+
+    .//SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid
    //      if($this->isAdmin() == TRUE)
    //      {
    //          $this->loadThis();
@@ -109,7 +114,7 @@ class Property extends BaseController
         else
         {       $data =$this->input->post();
                 $this->load->model('property_model');
-                $result = $this->property_model->addNewResidentialRentProperty($data);
+                $result = $this->property_model->addNewResidentialRentProperty($data,$this->vendorId);
                 
                 if($result > 0)
                 {

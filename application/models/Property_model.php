@@ -99,7 +99,23 @@ class Property_model extends CI_Model
      * This function is used to add new user to system
      * @return number $insert_id : This is last inserted id
      */
-    function addNewProperty($addNewProperty){   
+    function addNewResidentialRentProperty($addNewProperty,$authuser){
+        $propertyid =uniqid('RR'); 
+        //give userID
+        $addNewProperty['Property']['userID'] =$authuser;
+        $addNewProperty['Locality']['userID'] =$authuser;
+        $addNewProperty['Rental']['userID'] =$authuser;
+        $addNewProperty['Gallery']['userID'] =$authuser;
+        $addNewProperty['Amenities']['userID'] =$authuser;
+        $addNewProperty['Schedule']['userID'] =$authuser;
+        //give propertyid 
+        $addNewProperty['Property']['propertyid'] =$propertyid; 
+        $addNewProperty['Locality']['propertyid'] =$propertyid;  
+        $addNewProperty['Rental']['propertyid'] =$propertyid;  
+        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Amenities']['propertyid'] =$propertyid;  
+        $addNewProperty['Schedule']['propertyid'] =$propertyid; 
+
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $rentalinfo =$addNewProperty['Rental'];
