@@ -26,7 +26,7 @@ class Property extends BaseController
      */
     // public function index()
     // {
-    //     $this->global['pageTitle'] = 'Admin : Dashboard';
+     //     $this->global['pageTitle'] = 'Admin : Dashboard';
         
     //     $this->loadViews("dashboard", $this->global, NULL , NULL);
     // }
@@ -62,7 +62,7 @@ class Property extends BaseController
     /**
      * This function is used to load the add new form
      */
-    function addNew()
+    function addNewResidentialRent()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -75,7 +75,7 @@ class Property extends BaseController
             
             $this->global['pageTitle'] = 'Admin : Add New Property';
 
-            $this->loadViews("property", $this->global, $data, NULL);
+            $this->loadViews("addNewResidentialRent", $this->global, $data, NULL);
         }
     }
 
@@ -100,7 +100,7 @@ class Property extends BaseController
     /**
      * This function is used to add new user to the system
      */
-    function addNewProperty()
+    function addNewResidentialRentProperty()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -109,7 +109,7 @@ class Property extends BaseController
         else
         {       $data =$this->input->post();
                 $this->load->model('property_model');
-                $result = $this->property_model->addNewProperty($data);
+                $result = $this->property_model->addNewResidentialRentProperty($data);
                 
                 if($result > 0)
                 {
@@ -129,23 +129,23 @@ class Property extends BaseController
      * This function is used load user edit information
      * @param number $userId : Optional : This is user id
      */
-    function editOld($userId = NULL)
+    function editNewResidentialRent($propertyid = NULL)
     {
-        if($this->isAdmin() == TRUE || $userId == 1)
+        if($this->isAdmin() == TRUE || $propertyid == 1)
         {
             $this->loadThis();
         }
         else
         {
-            if($userId == null)
+            if($propertyid == null)
             {
-                redirect('userListing');
+                redirect('propertyListing');
             }
             
             $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($userId);
+            $data['userInfo'] = $this->user_model->getUserInfo($propertyid);
             
-            $this->global['pageTitle'] = 'Admin : Edit User';
+            $this->global['editNewResidentialRent'] = 'Admin : Edit Property';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -155,7 +155,7 @@ class Property extends BaseController
     /**
      * This function is used to edit the user information
      */
-    function editUser()
+    function editNewResidentialRentProperty()
     {
         if($this->isAdmin() == TRUE)
         {

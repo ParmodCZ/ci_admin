@@ -90,8 +90,10 @@ $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUs
 $route['createPasswordUser'] = "login/createPasswordUser";
 
 //propertys
-$route['post-residential-rent-property'] = "Property/addNew";
-$route['ResidentialRentAddProperty'] = "Property/addNewProperty";
+$route['post-residential-rent-property'] = "Property/addNewResidentialRent";
+$route['ResidentialRentAddProperty'] = "Property/addNewResidentialRentProperty";
+$route['edit-residential-rent-property/(:num)'] = "Property/editNewResidentialRent";
+$route['EditResidentialRentAddProperty'] = "Property/editNewResidentialRentProperty";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
