@@ -169,58 +169,61 @@ class Property_model extends CI_Model
      */
     function editNewResidentialRentProperty($data,$PropertyId){   
         //echo"<pre>"; print_r($data); die;
-        $data['Property'];
-        $data['Locality'];
-        $data['Rental'];
-        $data['Gallery'];
-        $data['Amenities'];
-        $data['Schedule'];
+        $Property = $data['Property'];
+        $Locality = $data['Locality'];
+        $Rental   = $data['Rental'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Schedule = $data['Schedule'];
         // $this->db->where('propertyid', $PropertyId);
         // $this->db->update('users', $userInfo);
 
-        $this->db->set('Property.apartment_type', 'Pekka');
-        $this->db->set('Property.apartment_name', 'Pekka');
-        $this->db->set('Property.bhk_type', 'Pekka');
-        $this->db->set('Property.floor', 'Pekka');
-        $this->db->set('Property.top_floor', 'Pekka');
-        $this->db->set('Property.property_age', 'Pekka');
-        $this->db->set('Property.facing', 'Pekka');
-        $this->db->set('Property.property_size', 'Pekka');
+        $this->db->set('Property.apartment_type', $Property['apartment_type']);
+        $this->db->set('Property.apartment_name', $Property['apartment_name']);
+        $this->db->set('Property.bhk_type', $Property['bhk_type']);
+        $this->db->set('Property.floor', $Property['floor']);
+        $this->db->set('Property.top_floor', $Property['top_floor']);
+        $this->db->set('Property.property_age', $Property['property_age']);
+        $this->db->set('Property.facing', $Property['facing']);
+        $this->db->set('Property.property_size', $Property['property_size']);
 
-        $this->db->set('Locality.city', 'Pekka');
-        $this->db->set('Locality.locality', 'Pekka');
-        $this->db->set('Locality.street_addres', 'Pekka');
+        $this->db->set('Locality.city', $Locality['city']);
+        $this->db->set('Locality.locality', $Locality['locality']);
+        $this->db->set('Locality.street_addres', $Locality['street_addres']);
 
-        $this->db->set('Rental.is_available_for_lease', 'Pekka');
-        $this->db->set('Rental.expected_lease_amount', 'Pekka');
-        $this->db->set('Rental.expected_depost', 'Pekka');
-        $this->db->set('Rental.maintenance', 'Pekka');
-        $this->db->set('Rental.availablle_from', 'Pekka');
-        $this->db->set('Rental.preferred_tenants', 'Pekka');
-        $this->db->set('Rental.furnishing', 'Pekka');
-        $this->db->set('Rental.parking', 'Pekka');
-        $this->db->set('Rental.description', 'Pekka');
-        $this->db->set('Rental.is_negotiable', 'Pekka');
+        $this->db->set('Rental.is_available_for_lease', $Rental['is_available_for_lease']);
+        $this->db->set('Rental.expected_lease_amount', $Rental['expected_lease_amount']);
+        $this->db->set('Rental.expected_depost', $Rental['expected_depost']);
+        $this->db->set('Rental.maintenance', $Rental['maintenance']);
+        $this->db->set('Rental.availablle_from', $Rental['availablle_from']);
+        $this->db->set('Rental.preferred_tenants', $Rental['preferred_tenants']);
+        $this->db->set('Rental.furnishing', $Rental['furnishing']);
+        $this->db->set('Rental.parking', $Rental['parking']);
+        $this->db->set('Rental.description', $Rental['description']);
+        $this->db->set('Rental.is_negotiable', $Rental['is_negotiable']);
 
-        $this->db->set('Gallery.upload_images', 'Pekka');
+        $this->db->set('Gallery.upload_images', $Gallery['upload_images']);
 
-        $this->db->set('Amenities.bathrooms', 'Pekka');
-        $this->db->set('Amenities.water_supply', 'Pekka');
-        $this->db->set('Amenities.gym', 'Pekka');
-        $this->db->set('Amenities.non_veg_allowed', 'Pekka');
-        $this->db->set('Amenities.gated_security', 'Pekka');
-        $this->db->set('Amenities.who_will_show_the_house', 'Pekka');
-        $this->db->set('Amenities.secondary_number', 'Pekka');
-        $this->db->set('Amenities.select_the_amenities_available', 'Pekka');
+        $this->db->set('Amenities.bathrooms', $Amenities['bathrooms']);
+        $this->db->set('Amenities.water_supply', $Amenities['water_supply']);
+        $this->db->set('Amenities.gym', $Amenities['gym']);
+        $this->db->set('Amenities.non_veg_allowed', $Amenities['non_veg_allowed']);
+        $this->db->set('Amenities.gated_security', $Amenities['gated_security']);
+        $this->db->set('Amenities.who_will_show_the_house', $Amenities['who_will_show_the_house']);
+        $this->db->set('Amenities.secondary_number', $Amenities['secondary_number']);
+        $this->db->set('Amenities.select_the_amenities_available', $Amenities['select_the_amenities_available']);
 
-        $this->db->set('Schedule.availability', 'Pekka');
-        $this->db->set('Schedule.start_time', 'Pekka');
-        $this->db->set('Schedule.end_time', 'Pekka');
-        $this->db->set('Schedule.available_all_day', 'Pekka');
+        $this->db->set('Schedule.availability', $Schedule['availability']);
+        $this->db->set('Schedule.start_time', $Schedule['start_time']);
+        $this->db->set('SchedulProperty.propertyide.end_propertyidtime', $Schedule['end_time']);
+        $this->db->set('Schedule.available_all_day', $Schedule['available_all_day']);
 
-        $this->db->where('a.id', 1);
-        $this->db->where('a.id = b.id');
-        $this->db->update('table as a, table2 as b');
+        $this->db->where('Property.propertyid', $PropertyId);
+        // $this->db->where('Property.propertyid = Locality.propertyid');
+        // $this->db->where('Property.propertyid = Rental.propertyid');
+        // $this->db->where('Property.propertyid = Amenities.propertyid');
+        // $this->db->where('Property.propertyid = Schedule.propertyid');
+        $this->db->update('resident_rent_property_details as Property, resident_rent_amenities_details as Amenities, resident_rent_locality_details as Locality, resident_rent_rental_details as Rental, resident_rent_gallery_details as Gallery,resident_rent_schedule_details as Schedule' );
         return TRUE;
     }
     
