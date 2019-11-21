@@ -34,35 +34,29 @@ class Property extends BaseController
     /**
      * This function is used to load the user list
      */
-   //  function userListing()
-   //  {
-
-
-
-
-    .//SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid
-   //      if($this->isAdmin() == TRUE)
-   //      {
-   //          $this->loadThis();
-   //      }
-   //      else
-   //      {        
-   //          $searchText = $this->security->xss_clean($this->input->post('searchText'));
-   //          $data['searchText'] = $searchText;
+    function ResidentialRentList(){
+    //  SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid
+//echo"ffffffff";die;
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
             
-   //          $this->load->library('pagination');
+            $this->load->library('pagination');
             
-   //          $count = $this->user_model->userListingCount($searchText);
+            $count = $this->property_model->ResidentialRentListCount($searchText);
 
-			// $returns = $this->paginationCompress ( "userListing/", $count, 10 );
+			$returns = $this->paginationCompress ( "ResidentialRentList/", $count, 10 );
             
-   //          $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
+            $data['ResidentialRentRecords'] = $this->property_model->ResidentialRentList($searchText, $returns["page"], $returns["segment"]);
             
-   //          $this->global['pageTitle'] = 'Admin : User Listing';
-            
-   //          $this->loadViews("users", $this->global, $data, NULL);
-   //      }
-   //  }
+            $this->global['pageTitle'] = 'Admin : User Listing';
+            //echo"<pre>";print_r($data);die;
+            $this->loadViews("ResidentialRentList", $this->global, $data, NULL);
+        }
+    }
 
     /**
      * This function is used to load the add new form
@@ -134,26 +128,18 @@ class Property extends BaseController
      * This function is used load user edit information
      * @param number $userId : Optional : This is user id
      */
-    function editNewResidentialRent($propertyid = NULL)
-    {
-        if($this->isAdmin() == TRUE || $propertyid == 1)
-        {
-            $this->loadThis();
-        }
-        else
-        {
-            if($propertyid == null)
-            {
+    function editResidentialRentProperty($propertyid = NULL){
+            if($propertyid == null){
                 redirect('propertyListing');
-            }
-            
-            $data['roles'] = $this->user_model->getUserRoles();
-            $data['userInfo'] = $this->user_model->getUserInfo($propertyid);
-            
-            $this->global['editNewResidentialRent'] = 'Admin : Edit Property';
-            
-            $this->loadViews("editOld", $this->global, $data, NULL);
-        }
+            } 
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['ResidentialRentPropertyInfo'] = $this->property_model->ResidentialRentPropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['editResidentialRentProperty'] = 'Admin : Edit Property';
+            $dd =$data['ResidentialRentPropertyInfo'];
+            //echo "<pre>";print_r($dd->apartment_type);die;
+            $this->loadViews("editResidentialRentProperty", $this->global, $data, NULL);
     }
     
     
@@ -168,63 +154,23 @@ class Property extends BaseController
         }
         else
         { 
-            $this->load->library('form_validation');
-            
-            $userId = $this->input->post('userId');
-            
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
-            $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
-            $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
-            $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
-            
-            if($this->form_validation->run() == FALSE)
-            {
-                $this->editOld($userId);
-            }
-            else
-            {
-                $name = ucwords(strtolower($this->security->xss_clean($this->input->post('fname'))));
-                $email = strtolower($this->security->xss_clean($this->input->post('email')));
-                $password = $this->input->post('password');
-                $roleId = $this->input->post('role');
-                $mobile = $this->security->xss_clean($this->input->post('mobile'));
-
-                $address =$this->security->xss_clean($this->input->post('address'));
-                $dob = $this->input->post('dob');
-                $country =$this->input->post('country');
-                $state = $this->input->post('state');
-                $city = $this->input->post('city');
-                $getwhatsappupdates =$this->input->post('get_whats_app_updates');
+         
+            $PropertyId = $this->input->post('PropertyId');          
                 
-                $userInfo = array();
-                
-                if(empty($password))
-                {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'),'address'=>$address,'dob'=>$dob,'country'=>$country,'state'=>$state,'city'=>$city,'get_whats_app_updates'=>$getwhatsappupdates);
-                }
-                else
-                {
-                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'),'address'=>$address,'dob'=>$dob,'country'=>$country,'state'=>$state,'city'=>$city,'get_whats_app_updates'=>$getwhatsappupdates);
-                }
-                
-                $result = $this->user_model->editUser($userInfo, $userId);
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->editNewResidentialRentProperty($data,$PropertyId);
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'User updated successfully');
+                    $this->session->set_flashdata('success', 'Property updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'User updation failed');
+                    $this->session->set_flashdata('error', 'Property updation failed');
                 }
                 
                 redirect('userListing');
-            }
         }
     }
 
@@ -233,7 +179,7 @@ class Property extends BaseController
      * This function is used to delete the user using userId
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteUser()
+    function deleteResidentialRentProperty()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -241,10 +187,10 @@ class Property extends BaseController
         }
         else
         {
-            $userId = $this->input->post('userId');
+            $propertyid = $this->input->post('propertyid');
             $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             
-            $result = $this->user_model->deleteUser($userId, $userInfo);
+            $result = $this->property_model->deleteResidentialRentProperty($propertyid);
             
             if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
             else { echo(json_encode(array('status'=>FALSE))); }

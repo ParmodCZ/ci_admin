@@ -92,8 +92,10 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 //propertys
 $route['post-residential-rent-property'] = "Property/addNewResidentialRent";
 $route['ResidentialRentAddProperty'] = "Property/addNewResidentialRentProperty";
-$route['edit-residential-rent-property/(:num)'] = "Property/editNewResidentialRent";
-$route['EditResidentialRentAddProperty'] = "Property/editNewResidentialRentProperty";
 
+$route['ResidentialRentList'] = 'Property/ResidentialRentList';
+$route['editresidentialrentproperty/(:num)'] = "Property/editResidentialRentProperty/$1";
+$route['EditResidentialRentAddProperty'] = "Property/editNewResidentialRentProperty";
+$route['deleteResidentialRentProperty'] = "Property/deleteResidentialRentProperty";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

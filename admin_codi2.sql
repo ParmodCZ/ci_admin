@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 15, 2019 at 09:40 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost
+-- Generation Time: Nov 21, 2019 at 04:00 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.2.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
   `session_id` varchar(40) NOT NULL DEFAULT '0',
   `ip_address` varchar(45) NOT NULL DEFAULT '0',
   `user_agent` varchar(120) NOT NULL,
-  `last_activity` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `last_activity` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `user_data` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -248,7 +248,7 @@ CREATE TABLE `last_login` (
   `userAgent` varchar(128) NOT NULL,
   `agentString` varchar(1024) NOT NULL,
   `platform` varchar(128) NOT NULL,
-  `createdDtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createdDtm` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -264,7 +264,12 @@ INSERT INTO `last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userAgent
 (6, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 7', '2019-11-16 00:54:55'),
 (7, 10, '{\"role\":\"3\",\"roleText\":\"Employee\",\"name\":\"Devesh Choudhry\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 7', '2019-11-16 00:55:37'),
 (8, 11, '{\"role\":\"2\",\"roleText\":\"Manager\",\"name\":\"Sunil Kumar\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 7', '2019-11-16 00:56:41'),
-(9, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 7', '2019-11-16 01:58:36');
+(9, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 7', '2019-11-16 01:58:36'),
+(10, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-19 17:57:23'),
+(11, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-20 19:13:16'),
+(12, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 10:17:04'),
+(13, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 10:42:21'),
+(14, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 18:06:13');
 
 -- --------------------------------------------------------
 
@@ -281,7 +286,7 @@ CREATE TABLE `mzb_additional_property` (
   `who_will_show_the_house` varchar(50) NOT NULL,
   `previous_occupancy` varchar(50) NOT NULL,
   `secondry_number` varchar(50) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -298,7 +303,7 @@ CREATE TABLE `mzb_location_details` (
   `landmark` varchar(50) NOT NULL,
   `lat` varchar(50) NOT NULL,
   `long` varchar(50) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -310,7 +315,7 @@ CREATE TABLE `mzb_location_details` (
 CREATE TABLE `mzb_otp_verify` (
   `id` int(11) NOT NULL,
   `otp` int(6) DEFAULT NULL,
-  `expiration_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `expiration_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(100) DEFAULT NULL,
   `mobile` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -477,11 +482,11 @@ CREATE TABLE `mzb_post_details` (
   `propertyid` varchar(20) NOT NULL,
   `userID` int(11) NOT NULL,
   `property_details` int(11) NOT NULL,
-  `locality_details` int(11) NOT NULL DEFAULT '0',
-  `rental_details` int(11) NOT NULL DEFAULT '0',
-  `gallery_details` int(11) NOT NULL DEFAULT '0',
-  `amenities_details` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `locality_details` int(11) NOT NULL DEFAULT 0,
+  `rental_details` int(11) NOT NULL DEFAULT 0,
+  `gallery_details` int(11) NOT NULL DEFAULT 0,
+  `amenities_details` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -540,8 +545,8 @@ CREATE TABLE `mzb_property_details` (
   `is_posted` enum('0','1') NOT NULL,
   `is_active` enum('0','1') NOT NULL,
   `shortlist` enum('0','1') NOT NULL,
-  `report_abuse` int(11) NOT NULL DEFAULT '0',
-  `craeted_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `report_abuse` int(11) NOT NULL DEFAULT 0,
+  `craeted_on` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -554,7 +559,7 @@ CREATE TABLE `mzb_property_photos` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `photos` varchar(1000) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `property_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -577,7 +582,7 @@ CREATE TABLE `mzb_rental_details` (
   `lockin_period` varchar(50) NOT NULL,
   `available_from` varchar(50) NOT NULL,
   `idial_for` varchar(50) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -628,8 +633,8 @@ CREATE TABLE `reset_password` (
   `activation_id` varchar(32) NOT NULL,
   `agent` varchar(512) NOT NULL,
   `client_ip` varchar(32) NOT NULL,
-  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
-  `createdBy` bigint(20) NOT NULL DEFAULT '1',
+  `isDeleted` tinyint(4) NOT NULL DEFAULT 0,
+  `createdBy` bigint(20) NOT NULL DEFAULT 1,
   `createdDtm` datetime NOT NULL,
   `updatedBy` bigint(20) DEFAULT NULL,
   `updatedDtm` datetime DEFAULT NULL
@@ -868,7 +873,8 @@ CREATE TABLE `resident_rent_amenities_details` (
 --
 
 INSERT INTO `resident_rent_amenities_details` (`id`, `userID`, `propertyid`, `bathrooms`, `balcony`, `water_supply`, `gym`, `non_veg_allowed`, `gated_security`, `who_will_show_the_house`, `secondary_number`, `select_the_amenities_available`) VALUES
-(1, 11, '0', '10', '10', 'Corporation', '1', '1', '1', 'I will show', '22', 'a:5:{i:0;s:17:\"internet_services\";i:1;s:15:\"air_conditioner\";i:2;s:10:\"club_house\";i:3;s:8:\"intercom\";i:4;s:13:\"swimming_pool\";}');
+(1, 11, '0', '10', '10', 'Corporation', '1', '1', '1', 'I will show', '22', 'a:5:{i:0;s:17:\"internet_services\";i:1;s:15:\"air_conditioner\";i:2;s:10:\"club_house\";i:3;s:8:\"intercom\";i:4;s:13:\"swimming_pool\";}'),
+(3, 1, 'RR5dd62202a9be2', '43', '', '43', '34', '43', '345', '43', '43', '43');
 
 -- --------------------------------------------------------
 
@@ -882,6 +888,13 @@ CREATE TABLE `resident_rent_gallery_details` (
   `propertyid` int(11) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_rent_gallery_details`
+--
+
+INSERT INTO `resident_rent_gallery_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(2, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -898,7 +911,7 @@ CREATE TABLE `resident_rent_locality_details` (
   `street_addres` varchar(255) NOT NULL,
   `locality_lat` varchar(255) NOT NULL,
   `locality_long` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -912,7 +925,8 @@ INSERT INTO `resident_rent_locality_details` (`id`, `userID`, `propertyid`, `cit
 (4, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:09:53'),
 (5, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:10:57'),
 (6, 11, 'RR957033141', 'Delhi', '', 'hkj', '28.68627380000001', '77.22178310000004', '2019-11-11 21:58:48'),
-(7, 11, 'RR957033141', 'Select', '', 'd', '32.7766642', '-96.79698789999998', '2019-11-11 22:11:59');
+(7, 11, 'RR957033141', 'Select', '', 'd', '32.7766642', '-96.79698789999998', '2019-11-11 22:11:59'),
+(9, 1, 'RR5dd62202a9be2', '3', '435', '34', '', '', '2019-11-21 05:34:58');
 
 -- --------------------------------------------------------
 
@@ -932,7 +946,7 @@ CREATE TABLE `resident_rent_property_details` (
   `property_age` varchar(255) NOT NULL,
   `facing` varchar(255) NOT NULL,
   `property_size` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -953,7 +967,8 @@ INSERT INTO `resident_rent_property_details` (`id`, `userID`, `propertyid`, `apa
 (11, 11, 'RR966721616', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:04:23'),
 (12, 11, 'RR707696173', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:05:26'),
 (13, 11, 'RR814947341', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:07:46'),
-(14, 11, 'RR774148256', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:08:29');
+(14, 11, 'RR774148256', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:08:29'),
+(16, 1, 'RR5dd62202a', '543', '34', '34', '34', '43', '43', '43', '43', '2019-11-21 05:34:58');
 
 -- --------------------------------------------------------
 
@@ -984,7 +999,8 @@ CREATE TABLE `resident_rent_rental_details` (
 INSERT INTO `resident_rent_rental_details` (`id`, `userID`, `propertyid`, `is_available_for_lease`, `expected_lease_amount`, `expected_depost`, `is_negotiable`, `maintenance`, `availablle_from`, `preferred_tenants`, `furnishing`, `parking`, `description`) VALUES
 (1, 11, '0', 'yes', '20000', '1000', 'on', '0', '', 'FAMILY', '', 'Car', 'its a good house for the rent you can fuck any girl here'),
 (2, 11, 'RR957033141', 'yes', '2000', '10', 'on', '0', '', 'ANYONE', '', 'Bike', 'kn'),
-(3, 11, 'RR957033141', 'yes', 's', 'as', 'on', 'Select', '', 'Select', '', 'Select', 's');
+(3, 11, 'RR957033141', 'yes', 's', 'as', 'on', 'Select', '', 'Select', '', 'Select', 's'),
+(5, 1, 'RR5dd62202a9be2', '43', '43', '435', '345', '34', '43', '43', '43', '43', '43');
 
 -- --------------------------------------------------------
 
@@ -1001,6 +1017,30 @@ CREATE TABLE `resident_rent_ schedule_details` (
   `end_time` varchar(255) NOT NULL,
   `available_all_day)` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resident_rent_schedule_details`
+--
+
+CREATE TABLE `resident_rent_schedule_details` (
+  `id` int(191) NOT NULL,
+  `userID` varchar(255) NOT NULL,
+  `propertyid` varchar(255) NOT NULL,
+  `availability` varchar(255) NOT NULL,
+  `start_time` varchar(255) NOT NULL,
+  `end_time` varchar(255) NOT NULL,
+  `available_all_day` varchar(222) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `resident_rent_schedule_details`
+--
+
+INSERT INTO `resident_rent_schedule_details` (`id`, `userID`, `propertyid`, `availability`, `start_time`, `end_time`, `available_all_day`) VALUES
+(0, '1', 'RR5dd62202a9be2', '435', '435', '435', '34'),
+(1, '22', '0', 'sfsdf', 'sdf', 'sdf', 'sfdsdf');
 
 -- --------------------------------------------------------
 
@@ -1174,7 +1214,7 @@ CREATE TABLE `users` (
   `roleId` tinyint(4) NOT NULL,
   `address` varchar(222) DEFAULT NULL,
   `dob` varchar(222) DEFAULT NULL,
-  `get_whats_app_updates` tinyint(1) NOT NULL DEFAULT '1',
+  `get_whats_app_updates` tinyint(1) NOT NULL DEFAULT 1,
   `country` int(11) DEFAULT NULL,
   `state` int(11) DEFAULT NULL,
   `city` int(11) DEFAULT NULL,
@@ -1184,7 +1224,7 @@ CREATE TABLE `users` (
   `createdDtm` datetime NOT NULL,
   `updatedBy` int(11) DEFAULT NULL,
   `updatedDtm` datetime DEFAULT NULL,
-  `isDeleted` tinyint(4) NOT NULL DEFAULT '0'
+  `isDeleted` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1197,7 +1237,7 @@ INSERT INTO `users` (`id`, `email`, `mobile`, `password`, `name`, `roleId`, `add
 (3, 'dgggjd@ysbhs.dshd', '', '$2y$10$2dumS46BuRkxNT4VEFf78eN9czB.Y8aKoNmutuePAxSZsGSvFJQtm', 'Employee', 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1, '2016-12-09 17:50:22', 1, '2019-11-15 19:59:30', 1),
 (9, 'pramod.kumar@contriverz.com', '', '$2y$10$it4oy.OsQQbN5qH1z3jAMeuW1q93jJld9dI7rb2YO4p2TI8txnCvC', 'Parmod', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00 00:00:00', 1, '2019-11-14 18:22:31', 0),
 (10, 'asdasd@dh.do', '', '$2y$10$OCr3Mx1BXEyU9DqLITK1wuTPcnXwYeGZ/d9AD9KZ4Fpt1qRvefG9u', 'Devesh Choudhry', 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1, '2019-11-14 18:28:04', 1, '2019-11-15 19:59:15', 0),
-(11, 'yadgf@ss.dudh', '', '$2y$10$1.wCqBPYfnNnXxtkGkgKV.bRkwzDlDinp8xmloFTHp.581jizxalW', 'Sunil Kumar', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1, '2019-11-15 20:00:25', NULL, NULL, 0);
+(11, 'sunil.kumar@gmail.com', '5654855151', '$2y$10$1.wCqBPYfnNnXxtkGkgKV.bRkwzDlDinp8xmloFTHp.581jizxalW', 'Compnayuserteststudent', 2, 'ghfdsg                                                                ', '5435435', 0, 47, 575, 45747, 'ff', 'fghfg', 1, '2019-11-15 20:00:25', 1, '2019-11-19 14:22:12', 0);
 
 --
 -- Indexes for dumped tables
@@ -1585,7 +1625,7 @@ ALTER TABLE `commericial_sale_resale_details`
 -- AUTO_INCREMENT for table `last_login`
 --
 ALTER TABLE `last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `mzb_otp_verify`
@@ -1687,31 +1727,31 @@ ALTER TABLE `resident_pg_ schedule_details`
 -- AUTO_INCREMENT for table `resident_rent_amenities_details`
 --
 ALTER TABLE `resident_rent_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_gallery_details`
 --
 ALTER TABLE `resident_rent_gallery_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_locality_details`
 --
 ALTER TABLE `resident_rent_locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_property_details`
 --
 ALTER TABLE `resident_rent_property_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_rental_details`
 --
 ALTER TABLE `resident_rent_rental_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_ schedule_details`

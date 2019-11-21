@@ -14,19 +14,23 @@ class Property_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function userListingCount($searchText = '')
+    function ResidentialRentListCount($searchText = '')
     {
-        $this->db->select('BaseTbl.id, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
-        $this->db->from('users as BaseTbl');
-        $this->db->join('roles as Role', 'Role.id = BaseTbl.roleId','left');
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        $this->db->from('resident_rent_property_details as property');
+        $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_addres  LIKE '%".$searchText."%'
+            OR  property.property_size  LIKE '%".$searchText."%'
+            OR  property.bhk_type  LIKE '%".$searchText."%'
+            OR  property.facing  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
         $query = $this->db->get();
         
         return $query->num_rows();
@@ -39,20 +43,22 @@ class Property_model extends CI_Model
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function userListing($searchText = '', $page, $segment)
-    {
-        $this->db->select('BaseTbl.id, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, BaseTbl.createdDtm, Role.role');
-        $this->db->from('users as BaseTbl');
-        $this->db->join('roles as Role', 'Role.id = BaseTbl.roleId','left');
+    function ResidentialRentList($searchText = '', $page, $segment){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        $this->db->from('resident_rent_property_details as property');
+        $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
-            $likeCriteria = "(BaseTbl.email  LIKE '%".$searchText."%'
-                            OR  BaseTbl.name  LIKE '%".$searchText."%'
-                            OR  BaseTbl.mobile  LIKE '%".$searchText."%')";
+            $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
+                            OR  locality.city  LIKE '%".$searchText."%'
+                            OR  locality.street_addres  LIKE '%".$searchText."%'
+                            OR  property.property_size  LIKE '%".$searchText."%'
+                            OR  property.bhk_type  LIKE '%".$searchText."%'
+                            OR  property.facing  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
-        $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.roleId !=', 1);
-        $this->db->order_by('BaseTbl.id', 'DESC');
         $this->db->limit($page, $segment);
         $query = $this->db->get();
         
@@ -142,14 +148,14 @@ class Property_model extends CI_Model
      * @param number $userId : This is user id
      * @return array $result : This is user information
      */
-    function getUserInfo($userId)
-    {
-        //$this->db->select('id, name, email, mobile, roleId');
-        $this->db->select('*');
-        $this->db->from('users');
-        $this->db->where('isDeleted', 0);
-		$this->db->where('roleId !=', 1);
-        $this->db->where('id', $userId);
+    function ResidentialRentPropertyInfo($propertyid){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        $this->db->from('resident_rent_property_details as property');
+        $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->where('property.propertyid', $propertyid);
         $query = $this->db->get();
         
         return $query->row();
@@ -161,11 +167,60 @@ class Property_model extends CI_Model
      * @param array $userInfo : This is users updated information
      * @param number $userId : This is user id
      */
-    function editUser($userInfo, $userId)
-    {
-        $this->db->where('id', $userId);
-        $this->db->update('users', $userInfo);
-        
+    function editNewResidentialRentProperty($data,$PropertyId){   
+        //echo"<pre>"; print_r($data); die;
+        $data['Property'];
+        $data['Locality'];
+        $data['Rental'];
+        $data['Gallery'];
+        $data['Amenities'];
+        $data['Schedule'];
+        // $this->db->where('propertyid', $PropertyId);
+        // $this->db->update('users', $userInfo);
+
+        $this->db->set('Property.apartment_type', 'Pekka');
+        $this->db->set('Property.apartment_name', 'Pekka');
+        $this->db->set('Property.bhk_type', 'Pekka');
+        $this->db->set('Property.floor', 'Pekka');
+        $this->db->set('Property.top_floor', 'Pekka');
+        $this->db->set('Property.property_age', 'Pekka');
+        $this->db->set('Property.facing', 'Pekka');
+        $this->db->set('Property.property_size', 'Pekka');
+
+        $this->db->set('Locality.city', 'Pekka');
+        $this->db->set('Locality.locality', 'Pekka');
+        $this->db->set('Locality.street_addres', 'Pekka');
+
+        $this->db->set('Rental.is_available_for_lease', 'Pekka');
+        $this->db->set('Rental.expected_lease_amount', 'Pekka');
+        $this->db->set('Rental.expected_depost', 'Pekka');
+        $this->db->set('Rental.maintenance', 'Pekka');
+        $this->db->set('Rental.availablle_from', 'Pekka');
+        $this->db->set('Rental.preferred_tenants', 'Pekka');
+        $this->db->set('Rental.furnishing', 'Pekka');
+        $this->db->set('Rental.parking', 'Pekka');
+        $this->db->set('Rental.description', 'Pekka');
+        $this->db->set('Rental.is_negotiable', 'Pekka');
+
+        $this->db->set('Gallery.upload_images', 'Pekka');
+
+        $this->db->set('Amenities.bathrooms', 'Pekka');
+        $this->db->set('Amenities.water_supply', 'Pekka');
+        $this->db->set('Amenities.gym', 'Pekka');
+        $this->db->set('Amenities.non_veg_allowed', 'Pekka');
+        $this->db->set('Amenities.gated_security', 'Pekka');
+        $this->db->set('Amenities.who_will_show_the_house', 'Pekka');
+        $this->db->set('Amenities.secondary_number', 'Pekka');
+        $this->db->set('Amenities.select_the_amenities_available', 'Pekka');
+
+        $this->db->set('Schedule.availability', 'Pekka');
+        $this->db->set('Schedule.start_time', 'Pekka');
+        $this->db->set('Schedule.end_time', 'Pekka');
+        $this->db->set('Schedule.available_all_day', 'Pekka');
+
+        $this->db->where('a.id', 1);
+        $this->db->where('a.id = b.id');
+        $this->db->update('table as a, table2 as b');
         return TRUE;
     }
     
@@ -176,12 +231,19 @@ class Property_model extends CI_Model
      * @param number $userId : This is user id
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteUser($userId, $userInfo)
-    {
-        $this->db->where('id', $userId);
-        $this->db->update('users', $userInfo);
-        
-        return $this->db->affected_rows();
+    function deleteResidentialRentProperty($propertyid){
+        // $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        // $this->db->from('resident_rent_property_details as property');
+        // $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        // $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        // $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        // $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        // $this->db->where('property.propertyid', $propertyid);
+        // $this->db->delete('property'); 
+        // return $this->db->affected_rows();
+
+       $sql=  "SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid where property.propertyid=?";
+       $this->db->query($sql, array($propertyid));
     }
 
 

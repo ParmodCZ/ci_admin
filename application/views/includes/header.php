@@ -257,7 +257,7 @@
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url(); ?>post-residential-rent-property"><i class="fa fa-circle-o"></i>Rent</a></li>
+                    <li><a href="<?php echo base_url(); ?>ResidentialRentList"><i class="fa fa-circle-o"></i>Rent</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>Resale</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>PG/Hostel</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>Flatmates</a></li>
