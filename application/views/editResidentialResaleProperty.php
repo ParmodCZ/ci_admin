@@ -1,4 +1,25 @@
 <div class="content-wrapper">
+<?php
+      $this->load->helper('form');
+      $error = $this->session->flashdata('error');
+      if($error)
+      {
+  ?>
+  <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <?php echo $this->session->flashdata('error'); ?>                    
+  </div>
+  <?php } ?>
+  <?php  
+      $success = $this->session->flashdata('success');
+      if($success)
+      {
+  ?>
+  <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <?php echo $this->session->flashdata('success'); ?>
+  </div>
+  <?php } ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -8,7 +29,7 @@
     </section>
     
     <section class="content">
-    <form role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post" role="form">
+    <form role="form" id="EditResidentialRentAddProperty" action="<?php echo base_url() ?>EditResidentialRentAddProperty" method="post" role="form">
         <div class="row">
             <!-- left column -->
           <div  class="col-sm-12">
@@ -24,7 +45,7 @@
                 <li><a href="#Amenities" data-toggle="tab">Amenities</a></li>
                 <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
               </ul>
-            </div>
+            </div> 
             <div class="col-xs-9">
               <!-- Tab panes -->
               <div class="tab-content">
@@ -33,13 +54,26 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="apartment_type">Apartment Type *</label>
-                           <input type="text" class="form-control" id="apartment_type" name="Property[apartment_type]" required>
+                            <input type="hidden" id="PropertyId" name="PropertyId" value="<?php echo $ResidentialRentPropertyInfo->propertyid; ?>">
+                           <select class="form-control" id="apartment_type" name="Property[apartment_type]" required>
+                            <option value="">Select</option>
+                            <?php
+                            $slectedapaty = $ResidentialRentPropertyInfo->apartment_type;
+                            if(!empty($apartmenttypelist)){
+                                foreach ($apartmenttypelist as $key => $value){
+                                    ?>
+                                <option value="<?php echo $key; ?>" <?php if($key ==$slectedapaty) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                           </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="apartment_name">Apartment Name *</label>
-                            <input type="text" class="form-control" id="apartment_name" name="Property[apartment_name]" >
+                            <input type="text" class="form-control" id="apartment_name" value="<?php echo $ResidentialRentPropertyInfo->apartment_name; ?>" name="Property[apartment_name]" >
                         </div>
                     </div>
                   </div>
@@ -47,19 +81,55 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="address">BHK Type *</label>
-                           <input type="text" class="form-control" id="bhk_type" name="Property[bhk_type]" required>
+                           <select class="form-control" id="bhk_type" value="<?php echo $ResidentialRentPropertyInfo->bhk_type; ?>" name="Property[bhk_type]" required>
+                            <option value="">Select</option>
+                            <?php
+                            $slectedabhk = $ResidentialRentPropertyInfo->bhk_type;
+                            if(!empty($BHKType)){
+                                foreach ($BHKType as $key => $value){
+                                    ?>
+                                <option value="<?php echo $key; ?>" <?php if($key ==$slectedabhk) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                           </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="floor">Floor *</label>
-                            <input type="text" class="form-control" id="floor" name="Property[floor]" >
+                        <label for="floor">Floor *</label>
+                        <select class="form-control" id="floor" value="<?php echo $ResidentialRentPropertyInfo->floor; ?>" name="Property[floor]" >
+                        <option value="">Select</option>
+                        <?php
+                            $slectedfloor = $ResidentialRentPropertyInfo->floor;
+                            if(!empty($floor)){
+                                foreach ($floor as $value){
+                                    ?>
+                                <option value="<?php echo $value; ?>" <?php if($value ==$slectedfloor) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                        ?>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="top_floor">Total Floor *</label>
-                            <input type="text" class="form-control" id="top_floor" name="Property[top_floor]" >
+                            <select class="form-control" id="top_floor" value="<?php echo $ResidentialRentPropertyInfo->top_floor; ?>" name="Property[top_floor]" >
+                        <option value="">Select</option>
+                        <?php
+                            $slectedtop_floor = $ResidentialRentPropertyInfo->top_floor;
+                            if(!empty($top_floor)){
+                                foreach ($top_floor as $value){
+                                    ?>
+                                <option value="<?php echo $value; ?>" <?php if($value ==$slectedfloor) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                        ?>
+                            </select>
                         </div>
                     </div>
                   </div>
@@ -67,19 +137,44 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="property_age">Property Age *</label>
-                           <input type="text" class="form-control" id="property_age" name="Property[property_age]" required>
+                           <select type="text" class="form-control" id="property_age" value="<?php echo $ResidentialRentPropertyInfo->property_age; ?>" name="Property[property_age]" required>
+                        <option value="">Select</option>
+                            <?php
+                            $slectedproage = $ResidentialRentPropertyInfo->property_age;
+                            if(!empty($proage)){
+                                foreach ($proage as $key => $value){
+                                    ?>
+                                <option value="<?php echo $key; ?>" <?php if($key ==$slectedproage) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                           </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="facing">Facing *</label>
-                            <input type="text" class="form-control" id="facing" name="Property[facing]" >
+                            <select class="form-control" id="facing" value="<?php echo $ResidentialRentPropertyInfo->facing; ?>" name="Property[facing]" >
+                              <option value="">Select</option>
+                            <?php
+                            $slectedfacing = $ResidentialRentPropertyInfo->facing;
+                            if(!empty($facing)){
+                                foreach ($facing as $key => $value){
+                                    ?>
+                                <option value="<?php echo $key; ?>" <?php if($key ==$slectedfacing) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>  
+                            </select>
+
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group" >
                             <label for="property_size">Property Size *</label>
-                            <input type="text" class="form-control" id="property_size" name="Property[property_size]" >
+                            <input type="text" class="form-control" id="property_size" value="<?php echo $ResidentialRentPropertyInfo->property_size; ?>" name="Property[property_size]" >
                             <div class="prpty_append">Sq ft</div>
                         </div>
                     </div>
@@ -91,13 +186,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="city">City *</label>
-                           <input type="text" class="form-control" id="city" name="Locality[city]" required>
+                           <input type="text" class="form-control" id="city" value="<?php echo $ResidentialRentPropertyInfo->city; ?>" name="Locality[city]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="locality">Locality *</label>
-                            <input type="text" class="form-control" id="locality" name="Locality[locality]" >
+                            <input type="text" class="form-control" id="locality" value="<?php echo $ResidentialRentPropertyInfo->locality; ?>" name="Locality[locality]" >
                         </div>
                     </div>
                   </div>
@@ -105,7 +200,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="street_addres">Street Addres *</label>
-                           <input type="text" class="form-control" id="street_addres" name="Locality[street_addres]" required>
+                           <input type="text" class="form-control" id="street_addres" value="<?php echo $ResidentialRentPropertyInfo->street_addres; ?>" name="Locality[street_addres]" required>
                         </div>
                     </div>
                     <!-- <div class="col-md-4">
@@ -128,13 +223,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="is_available_for_lease">Is Available For Lease ? *</label>
-                           <input type="text" class="form-control" id="is_available_for_lease" name="Rental[is_available_for_lease]" required>
+                           <input type="text" class="form-control" id="is_available_for_lease" value="<?php echo $ResidentialRentPropertyInfo->is_available_for_lease; ?>" name="Rental[is_available_for_lease]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="expected_lease_amount">Expected Lease Amount *</label>
-                            <input type="text" class="form-control" id="expected_lease_amount" name="Rental[expected_lease_amount]" >
+                            <input type="text" class="form-control" id="expected_lease_amount" value="<?php echo $ResidentialRentPropertyInfo->expected_lease_amount; ?>" name="Rental[expected_lease_amount]" >
                         </div>
                     </div>
                   </div>
@@ -142,13 +237,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="expected_depost">Expected Depost *</label>
-                           <input type="text" class="form-control" id="expected_depost" name="Rental[expected_depost]" required>
+                           <input type="text" class="form-control" id="expected_depost" value="<?php echo $ResidentialRentPropertyInfo->expected_depost; ?>" name="Rental[expected_depost]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="is_negotiable">Is Negotiable *</label>
-                            <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" >
+                            <input type="text" class="form-control" id="is_negotiable" value="<?php echo $ResidentialRentPropertyInfo->is_negotiable; ?>" name="Rental[is_negotiable]" >
                         </div>
                     </div>
                   </div>
@@ -156,37 +251,37 @@
                      <div class="col-md-6">
                         <div class="form-group">
                             <label for="maintenance">Maintenance *</label>
-                            <input type="text" class="form-control" id="maintenance" name="Rental[maintenance]" >
+                            <input type="text" class="form-control" id="maintenance" value="<?php echo $ResidentialRentPropertyInfo->maintenance; ?>" name="Rental[maintenance]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="availablle_from">Availablle From *</label>
-                           <input type="text" class="form-control" id="availablle_from" name="Rental[availablle_from]" required>
+                           <input type="text" class="form-control" id="availablle_from" value="<?php echo $ResidentialRentPropertyInfo->availablle_from; ?>" name="Rental[availablle_from]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="preferred_tenants">Preferred Tenants *</label>
-                            <input type="text" class="form-control" id="preferred_tenants" name="Rental[preferred_tenants]" >
+                            <input type="text" class="form-control" id="preferred_tenants" value="<?php echo $ResidentialRentPropertyInfo->preferred_tenants; ?>" name="Rental[preferred_tenants]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="furnishing">Furnishing *</label>
-                            <input type="text" class="form-control" id="furnishing" name="Rental[furnishing]" >
+                            <input type="text" class="form-control" id="furnishing" value="<?php echo $ResidentialRentPropertyInfo->furnishing; ?>" name="Rental[furnishing]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="parking">Parking *</label>
-                            <input type="text" class="form-control" id="parking" name="Rental[parking]" >
+                            <input type="text" class="form-control" id="parking" value="<?php echo $ResidentialRentPropertyInfo->parking; ?>" name="Rental[parking]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="description">Description *</label>
-                            <input type="text" class="form-control" id="description" name="Rental[description]" >
+                            <input type="text" class="form-control" id="description" value="<?php echo $ResidentialRentPropertyInfo->description; ?>" name="Rental[description]" >
                         </div>
                     </div>
                   </div>
@@ -219,13 +314,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="bathrooms">Bathrooms *</label>
-                           <input type="text" class="form-control" id="bathrooms" name="Amenities[bathrooms]" required>
+                           <input type="text" class="form-control" id="bathrooms" value="<?php echo $ResidentialRentPropertyInfo->bathrooms; ?>" name="Amenities[bathrooms]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="water_supply">Water Supply *</label>
-                            <input type="text" class="form-control" id="water_supply" name="Amenities[water_supply]" >
+                            <input type="text" class="form-control" id="water_supply" value="<?php echo $ResidentialRentPropertyInfo->water_supply; ?>" name="Amenities[water_supply]" >
                         </div>
                     </div>
                   </div>
@@ -233,13 +328,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="gym">Gym *</label>
-                           <input type="text" class="form-control" id="gym" name="Amenities[gym]" required>
+                           <input type="text" class="form-control" id="gym" value="<?php echo $ResidentialRentPropertyInfo->gym; ?>" name="Amenities[gym]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="non_veg_allowed">Non Veg. Allowed *</label>
-                            <input type="text" class="form-control" id="non_veg_allowed" name="Amenities[non_veg_allowed]" >
+                            <input type="text" class="form-control" id="non_veg_allowed" value="<?php echo $ResidentialRentPropertyInfo->non_veg_allowed; ?>" name="Amenities[non_veg_allowed]" >
                         </div>
                     </div>
                   </div>
@@ -247,25 +342,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="gated_security">Gated Security *</label>
-                            <input type="text" class="form-control" id="gated_security" name="Amenities[gated_security]" >
+                            <input type="text" class="form-control" id="gated_security" value="<?php echo $ResidentialRentPropertyInfo->gated_security; ?>" name="Amenities[gated_security]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="who_will_show_the_house">Who Will Show The House *</label>
-                           <input type="text" class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                           <input type="text" class="form-control" id="who_will_show_the_house" value="<?php echo $ResidentialRentPropertyInfo->who_will_show_the_house; ?>" name="Amenities[who_will_show_the_house]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="secondary_number">Secondary Number *</label>
-                            <input type="text" class="form-control" id="secondary_number" name="Amenities[secondary_number]" >
+                            <input type="text" class="form-control" id="secondary_number" value="<?php echo $ResidentialRentPropertyInfo->secondary_number; ?>" name="Amenities[secondary_number]" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="select_the_amenities_available">Select The Amenities Available *</label>
-                            <input type="text" class="form-control" id="select_the_amenities_available" name="Amenities[select_the_amenities_available]" >
+                            <input type="text" class="form-control" id="select_the_amenities_available" value="<?php echo $ResidentialRentPropertyInfo->select_the_amenities_available; ?>" name="Amenities[select_the_amenities_available]" >
                         </div>
                     </div>
                   </div>
@@ -276,13 +371,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="availability">Availability *</label>
-                           <input type="text" class="form-control" id="availability" name="Schedule[availability]" required>
+                           <input type="text" class="form-control" id="availability" value="" name="Schedule[availability]" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="start_time">Start Time *</label>
-                            <input type="text" class="form-control" id="start_time" name="Schedule[start_time]" >
+                            <input type="text" class="form-control" id="start_time" value="" name="Schedule[start_time]" >
                         </div>
                     </div>
                   </div>
@@ -290,13 +385,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="end_time">End Time *</label>
-                           <input type="text" class="form-control" id="end_time" name="Schedule[end_time]" required>
+                           <input type="text" class="form-control" id="end_time" value="" name="Schedule[end_time]" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="available_all_day">Available All Day *</label>
-                            <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" >
+                            <input type="text" class="form-control" id="available_all_day" value="" name="Schedule[available_all_day]" >
                         </div>
                     </div>
                   </div>

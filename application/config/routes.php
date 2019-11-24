@@ -90,12 +90,23 @@ $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUs
 $route['createPasswordUser'] = "login/createPasswordUser";
 
 //propertys
+//rant
 $route['post-residential-rent-property'] = "Property/addNewResidentialRent";
 $route['ResidentialRentAddProperty'] = "Property/addNewResidentialRentProperty";
-
 $route['ResidentialRentList'] = 'Property/ResidentialRentList';
-$route['editresidentialrentproperty/(:num)'] = "Property/editResidentialRentProperty/$1";
+$route['ResidentialRentList/(:num)'] = "user/ResidentialRentList/$1";
+$route['editresidentialrentproperty/(:any)'] = "Property/editResidentialRentProperty/$1";
 $route['EditResidentialRentAddProperty'] = "Property/editNewResidentialRentProperty";
 $route['deleteResidentialRentProperty'] = "Property/deleteResidentialRentProperty";
+
+//resale
+$route['AddResidentialResaleProperty'] = "Property/addNewResidentialResale";
+$route['ResidentialResaleAddProperty'] = "Property/addNewResidentialResaleProperty";
+$route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
+$route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
+$route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
+$route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
+$route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
