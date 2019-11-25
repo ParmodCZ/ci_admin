@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="ResidentialResaleAddProperty" action="<?php echo base_url() ?>ResidentialResaleAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post">
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">
@@ -44,7 +44,6 @@
                      <li><a href="#Gallery" data-toggle="tab">Gallery</a></li>
                      <li><a href="#Amenities" data-toggle="tab">Amenities</a></li>
                      <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
-                     <li><a href="#information" data-toggle="tab">Information</a></li>
                   </ul>
                </div>
                <div class="col-xs-9">
@@ -175,9 +174,14 @@
                            </div>
                            <div class="col-md-4">
                               <div class="form-group" >
-                                 <label for="No_of_Units">No of Units *</label>
-                                 <input type="text" class="form-control" id="No_of_Units" name="Property[no_of_units]" required>
-                                 <div class="prpty_append">Sq ft</div>
+                                 <label for="room_type">Room Type *</label>
+                                 <input type="text" class="form-control" id="room_type" name="Property[room_type]" required>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group" >
+                                 <label for="room_type">Tenant Type *</label>
+                                 <input type="text" class="form-control" id="tenant_type" name="Property[tenant_type]" required>
                               </div>
                            </div>
                         </div>
@@ -201,8 +205,8 @@
                         <div class="row">
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label for="street_addres">Street Addres *</label>
-                                 <input type="text" class="form-control" id="street_addres" name="Locality[street_addres]" required>
+                                 <label for="street_area">Street Addres *</label>
+                                 <input type="text" class="form-control" id="street_area" name="Locality[street_area]" required>
                               </div>
                            </div>
                         </div>
@@ -212,48 +216,32 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="no_of_lease_years">No Of Lease Years? *</label>
-                                 <input type="text" class="form-control" id="no_of_lease_years" name="Rental[no_of_lease_years]" required>
+                                 <label for="expected_rent">Expected Rent *</label>
+                                 <input type="text" class="form-control" id="expected_rent" name="Rental[expected_rent]" required>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group" >
+                                 <label for="expected_deposit">Expected Deposit *</label>
+                                 <input type="text" class="form-control" id="expected_deposit" name="Rental[expected_deposit]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_currently_under_loan">Is Currently Under Loan *</label>
-                                 <input type="text" class="form-control" id="is_currently_under_loan" name="Rental[is_currently_under_loan]" required>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="expected_post">Expected Post *</label>
-                                 <input type="text" class="form-control" id="expected_post" name="Rental[expected_post]" required>
+                                 <label for="negotiable">Negotiable *</label>
+                                 <input type="text" class="form-control" id="negotiable" name="Rental[negotiable]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_price_negotiable">Is Price Negotiable *</label>
-                                 <input type="text" class="form-control" id="is_price_negotiable" name="Rental[is_price_negotiable]" required>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="maintenance_cost">Maintenance Cost *</label>
-                                 <input type="text" class="form-control" id="maintenance_cost" name="Rental[maintenance_cost]" required>
+                                 <label for="maintenance">Maintenance *</label>
+                                 <input type="text" class="form-control" id="maintenance" name="Rental[maintenance]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="available_forms">Availablle From *</label>
-                                 <input type="text" class="form-control" id="available_forms" name="Rental[available_forms]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="kitchen_type">Kitchen Type *</label>
-                                 <input type="text" class="form-control" id="kitchen_type" name="Rental[kitchen_type]" required>
+                                 <label for="available_form">Availablle From *</label>
+                                 <input type="text" class="form-control" id="available_form" name="Rental[available_form]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -350,8 +338,8 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="who_will_show_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control" id="who_will_show_house" name="Amenities[who_will_show_house]" required>
+                                 <label for="who_will_show_the_house">Who Will Show The House *</label>
+                                 <input type="text" class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -399,29 +387,6 @@
                            </div>
                         </div>
                      </div>
-                     <!-- Information -->
-                  <div class="tab-pane" id="information">
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label for="do_you_have_sale_deed_certificate">Do You Have Sale Deed Certificate *</label>
-                              <input type="text" class="form-control" id="do_you_have_sale_deed_certificate" name="Information[do_you_have_sale_deed_certificate]" required>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label for="select_have_you_paid_propery_tax">Select Have You Paid Propery Tax *</label>
-                              <input type="text" class="form-control" id="select_have_you_paid_propery_tax" name="Information[select_have_you_paid_propery_tax]" required>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label for="do_you_have_occupancy_certificate">Do You Have Occupancy Certificate *</label>
-                              <input type="text" class="form-control" id="do_you_have_occupancy_certificate" name="Information[do_you_have_occupancy_certificate]" required>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                   </div>
                </div>
                <!--  <div class="clearfix"></div> -->

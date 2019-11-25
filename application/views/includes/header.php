@@ -62,7 +62,7 @@
 
 .prpty_append {
         position: absolute;
-    left: 90%;
+    left: 76%;
     top: 24px;
     background: #929291;
     line-height: 35px;

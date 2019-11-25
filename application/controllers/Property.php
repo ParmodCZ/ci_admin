@@ -97,6 +97,45 @@ class Property extends BaseController
             $this->loadViews("addNewResidentialResale", $this->global, $data, NULL);
         }
     }
+	
+	/**
+     * This function is used to load the add new form
+     */
+    function AddResidentialPgProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
+
+            $this->loadViews("AddResidentialPgProperty", $this->global, $data, NULL);
+        }
+    }
+	/**
+     * This function is used to load the add new form
+     */
+    function addNewResidentialFlatmate(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
+
+            $this->loadViews("addNewResidentialFlatmate", $this->global, $data, NULL);
+        }
+    }
 
     /**
      * This function is used to check whether email already exist or not
@@ -137,6 +176,26 @@ class Property extends BaseController
         }
     }
 
+    /**
+     * This function is used to add new user to the system
+     */
+    function addNewResidentialResaleProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }else{       
+            $data =$this->input->post();
+            $this->load->model('property_model');
+            $result = $this->property_model->addNewResidentialResaleProperty($data,$this->vendorId);
+                
+            if($result > 0){
+                $this->session->set_flashdata('success', 'New property created successfully');
+            }else{
+                $this->session->set_flashdata('error', 'property creation failed');
+            }
+                
+            redirect('post-residential-rent-property');
+        }
+    }
     
     /**
      * This function is used load user edit information

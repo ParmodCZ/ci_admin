@@ -1,0 +1,73 @@
+Array
+(
+    [Property] => Array
+        (
+            [apartment_type] => apartment
+            [apartment_name] => vxv
+            [bhk_type] => 1
+            [ownership_type] => value
+            [floor] => 15
+            [total_floor] => 16
+            [floor_type] => value
+            [property_age] => 3-5
+            [facing] => east
+            [property_size] => 21321
+            [no_of_units] => 23213
+        )
+
+    [Locality] => Array
+        (
+            [city] => adasd
+            [locality] => asd
+            [street_addres] => as
+        )
+
+    [Rental] => Array
+        (
+            [no_of_lease_years] => as
+            [is_currently_under_loan] => h
+            [expected_post] => h
+            [is_price_negotiable] => h
+            [maintenance_cost] => h
+            [available_forms] => h
+            [kitchen_type] => h
+            [furnishing] => h
+            [parking] => h
+            [description] => h
+        )
+
+    [Gallery] => Array
+        (
+            [upload_images] => 
+        )
+
+    [Amenities] => Array
+        (
+            [bathroom] => j
+            [water_supply] => i
+            [gym] => j
+            [non_veg_allowed] => j
+            [balcony] => j
+            [power_backup] => j
+            [gated_security] => j
+            [who_will_show_house] => j
+            [secondary_number] => j
+            [select_the_amenities_available] => j
+        )
+
+    [Schedule] => Array
+        (
+            [availability] => kk
+            [start_time] => kkk
+            [end_time] => kk
+            [available_all_day] => jjh
+        )
+
+    [Information] => Array
+        (
+            [do_you_have_sale_deed_certificate] => njj
+            [select_have_you_paid_propery_tax] => mjj
+            [do_you_have_occupancy_certificate] => hhj
+        )
+
+)

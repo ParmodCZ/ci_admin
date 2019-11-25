@@ -143,6 +143,52 @@ class Property_model extends CI_Model
     }
     
     /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewResidentialResaleProperty($addNewProperty,$authuser){
+        $propertyid =uniqid('RS'); 
+        echo"<pre>";print_r($addNewProperty);die;
+        //give userID
+        $addNewProperty['Property']['userID'] =$authuser;
+        $addNewProperty['Locality']['userID'] =$authuser;
+        $addNewProperty['Rental']['userID'] =$authuser;
+        $addNewProperty['Gallery']['userID'] =$authuser;
+        $addNewProperty['Amenities']['userID'] =$authuser;
+        $addNewProperty['Schedule']['userID'] =$authuser;
+        $addNewProperty['Information']['userID'] =$authuser;
+        //give propertyid 
+        $addNewProperty['Property']['propertyid'] =$propertyid; 
+        $addNewProperty['Locality']['propertyid'] =$propertyid;  
+        $addNewProperty['Rental']['propertyid'] =$propertyid;  
+        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Amenities']['propertyid'] =$propertyid;  
+        $addNewProperty['Schedule']['propertyid'] =$propertyid; 
+        $addNewProperty['Information']['propertyid'] =$propertyid; 
+
+        $propertyinfo =$addNewProperty['Property'];
+        $localityinfo =$addNewProperty['Locality'];
+        $rentalinfo =$addNewProperty['Rental'];
+        $galleryinfo =$addNewProperty['Gallery'];
+        $amenitiesinfo =$addNewProperty['Amenities'];
+        $scheduleinfo =$addNewProperty['Schedule'];
+        $scheduleinfo =$addNewProperty['Information'];
+        //echo"<pre>";print_r($amenitiesinfo);die();
+        $this->db->trans_start();
+        $this->db->insert('resident_resale_property_details', $propertyinfo);
+        $this->db->insert('resident_resale_locality_details', $localityinfo);
+        $this->db->insert('resident_rent_rental_details', $rentalinfo);
+        $this->db->insert('resident_rent_gallery_details', $galleryinfo);
+        $this->db->insert('resident_rent_amenities_details', $amenitiesinfo);
+        $this->db->insert('resident_rent_schedule_details', $scheduleinfo);
+        $this->db->insert('resident_rent_schedule_details', $scheduleinfo);
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+
+    /**
      * This function used to get user information by id
      * @param number $userId : This is user id
      * @return array $result : This is user information
