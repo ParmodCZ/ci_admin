@@ -44,6 +44,7 @@
                      <li><a href="#Gallery" data-toggle="tab">Gallery</a></li>
                      <li><a href="#Amenities" data-toggle="tab">Amenities</a></li>
                      <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
+                     <li><a href="#information" data-toggle="tab">Information</a></li>
                   </ul>
                </div>
                <div class="col-xs-9">
@@ -85,6 +86,16 @@
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
+                                 <label for="Ownership_Type">Ownership Type *</label>
+                                 <select class="form-control required" id="Ownership_Type" name="Property[ownership_type]" required>
+                                    <option>Select</option>
+                                   <option value="value">On Lease</option>
+                                   <option value="value">Self Owned</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group">
                                  <label for="floor">Floor *</label>
                                  <select class="form-control required" id="floor" name="Property[floor]" required>
                                     <option>Select</option>
@@ -114,9 +125,22 @@
                                  </select>
                               </div>
                            </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6">
+                        <!-- </div>
+                        <div class="row"> -->
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label for="Floar_Type">Floar Type *</label>
+                                 <select class="form-control required" id="Floar_Type" name="Property[floor_type]" required>
+                                    <option>Select</option>
+                                    <option value="value">Vitrified Tiles</option>
+                                    <option value="value">MOsaic</option>
+                                    <option value="value">Marble/Granite</option>
+                                    <option value="value">Wooden</option>
+                                    <option value="value">Cement</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
                               <div class="form-group">
                                  <label for="property_age">Property Age *</label>
                                  <select class="form-control required" id="property_age" name="Property[property_age]" required>
@@ -130,7 +154,7 @@
                                  </select>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <div class="col-md-4">
                               <div class="form-group">
                                  <label for="facing">Facing *</label>
                                  <select class="form-control required" id="facing" name="Property[facing]" required>
@@ -146,6 +170,13 @@
                               <div class="form-group" >
                                  <label for="property_size">Property Size *</label>
                                  <input type="text" class="form-control" id="property_size" name="Property[property_size]" required>
+                                 <div class="prpty_append">Sq ft</div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="form-group" >
+                                 <label for="No_of_Units">No of Units *</label>
+                                 <input type="text" class="form-control" id="No_of_Units" name="Property[no_of_units]" required>
                                  <div class="prpty_append">Sq ft</div>
                               </div>
                            </div>
@@ -181,48 +212,48 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_available_for_lease">Is Available For Lease ? *</label>
-                                 <input type="text" class="form-control" id="is_available_for_lease" name="Rental[is_available_for_lease]" required>
+                                 <label for="no_of_lease_years">No Of Lease Years? *</label>
+                                 <input type="text" class="form-control" id="no_of_lease_years" name="Rental[no_of_lease_years]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="expected_lease_amount">Expected Lease Amount *</label>
-                                 <input type="text" class="form-control" id="expected_lease_amount" name="Rental[expected_lease_amount]" required>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="expected_depost">Expected Depost *</label>
-                                 <input type="text" class="form-control" id="expected_depost" name="Rental[expected_depost]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="is_negotiable">Is Negotiable *</label>
-                                 <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" required>
+                                 <label for="is_currently_under_loan">Is Currently Under Loan *</label>
+                                 <input type="text" class="form-control" id="is_currently_under_loan" name="Rental[is_currently_under_loan]" required>
                               </div>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="maintenance">Maintenance *</label>
-                                 <input type="text" class="form-control" id="maintenance" name="Rental[maintenance]" required>
+                                 <label for="expected_post">Expected Post *</label>
+                                 <input type="text" class="form-control" id="expected_post" name="Rental[expected_post]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="availablle_from">Availablle From *</label>
-                                 <input type="text" class="form-control" id="availablle_from" name="Rental[availablle_from]" required>
+                                 <label for="is_price_negotiable">Is Price Negotiable *</label>
+                                 <input type="text" class="form-control" id="is_price_negotiable" name="Rental[is_price_negotiable]" required>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="maintenance_cost">Maintenance Cost *</label>
+                                 <input type="text" class="form-control" id="maintenance_cost" name="Rental[maintenance_cost]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="preferred_tenants">Preferred Tenants *</label>
-                                 <input type="text" class="form-control" id="preferred_tenants" name="Rental[preferred_tenants]" required>
+                                 <label for="available_forms">Availablle From *</label>
+                                 <input type="text" class="form-control" id="available_forms" name="Rental[available_forms]" required>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="kitchen_type">Kitchen Type *</label>
+                                 <input type="text" class="form-control" id="kitchen_type" name="Rental[kitchen_type]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -274,7 +305,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="bathrooms">Bathrooms *</label>
-                                 <input type="text" class="form-control" id="bathrooms" name="Amenities[bathrooms]" required>
+                                 <input type="text" class="form-control" id="bathrooms" name="Amenities[bathroom]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -301,14 +332,26 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
+                                 <label for="balcony">Balcony *</label>
+                                 <input type="text" class="form-control" id="balcony" name="Amenities[balcony]" required>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
+                                 <label for="power_backup">Power Backup *</label>
+                                 <input type="text" class="form-control" id="power_backup" name="Amenities[power_backup]" required>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
                                  <label for="gated_security">Gated Security *</label>
                                  <input type="text" class="form-control" id="gated_security" name="Amenities[gated_security]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="who_will_show_the_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                                 <label for="who_will_show_house">Who Will Show The House *</label>
+                                 <input type="text" class="form-control" id="who_will_show_house" name="Amenities[who_will_show_house]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -356,6 +399,29 @@
                            </div>
                         </div>
                      </div>
+                     <!-- Information -->
+                  <div class="tab-pane" id="information">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="do_you_have_sale_deed_certificate">Do You Have Sale Deed Certificate *</label>
+                              <input type="text" class="form-control" id="do_you_have_sale_deed_certificate" name="Information[do_you_have_sale_deed_certificate]" required>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="select_have_you_paid_propery_tax">Select Have You Paid Propery Tax *</label>
+                              <input type="text" class="form-control" id="select_have_you_paid_propery_tax" name="Information[select_have_you_paid_propery_tax]" required>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="do_you_have_occupancy_certificate">Do You Have Occupancy Certificate *</label>
+                              <input type="text" class="form-control" id="do_you_have_occupancy_certificate" name="Information[do_you_have_occupancy_certificate]" required>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                   </div>
                </div>
                <!--  <div class="clearfix"></div> -->

@@ -94,7 +94,7 @@ class Property extends BaseController
             $data['top_floor'] =$count;
              $this->global['pageTitle'] = 'Admin : add Property';
 
-            $this->loadViews("addNewResidentialRent", $this->global, $data, NULL);
+            $this->loadViews("addNewResidentialResale", $this->global, $data, NULL);
         }
     }
 

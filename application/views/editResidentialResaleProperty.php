@@ -81,7 +81,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="address">BHK Type *</label>
-                           <select class="form-control" id="bhk_type" value="<?php echo $ResidentialRentPropertyInfo->bhk_type; ?>" name="Property[bhk_type]" required>
+                           <select class="form-control" id="bhk_type"  name="Property[bhk_type]" required>
                             <option value="">Select</option>
                             <?php
                             $slectedabhk = $ResidentialRentPropertyInfo->bhk_type;

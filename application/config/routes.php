@@ -99,7 +99,7 @@ $route['editresidentialrentproperty/(:any)'] = "Property/editResidentialRentProp
 $route['EditResidentialRentAddProperty'] = "Property/editNewResidentialRentProperty";
 $route['deleteResidentialRentProperty'] = "Property/deleteResidentialRentProperty";
 
-//resale
+//resale  
 $route['AddResidentialResaleProperty'] = "Property/addNewResidentialResale";
 $route['ResidentialResaleAddProperty'] = "Property/addNewResidentialResaleProperty";
 $route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
