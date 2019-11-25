@@ -101,8 +101,8 @@
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label for="top_floor">Total Floor *</label>
-                                 <select class="form-control required" id="top_floor" name="Property[top_floor]" required >
+                                 <label for="total_floor">Total Floor *</label>
+                                 <select class="form-control required" id="total_floor" name="Property[total_floor]" required >
                                     <option>Select</option>
                               <?php
                                  if(!empty($top_floor)){

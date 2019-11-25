@@ -139,7 +139,6 @@ class Property_model extends CI_Model
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
-        
         return $insert_id;
     }
     
@@ -167,63 +166,139 @@ class Property_model extends CI_Model
      * @param array $userInfo : This is users updated information
      * @param number $userId : This is user id
      */
-    function editNewResidentialRentProperty($data,$PropertyId){   
-        //echo"<pre>"; print_r($data); die;
+    function editNewResidentialRentProperty($data,$PropertyId){ 
         $Property = $data['Property'];
         $Locality = $data['Locality'];
         $Rental   = $data['Rental'];
         $Gallery  = $data['Gallery'];
         $Amenities= $data['Amenities'];
         $Schedule = $data['Schedule'];
-        // $this->db->where('propertyid', $PropertyId);
-        // $this->db->update('users', $userInfo);
 
-        $this->db->set('Property.apartment_type', $Property['apartment_type']);
-        $this->db->set('Property.apartment_name', $Property['apartment_name']);
-        $this->db->set('Property.bhk_type', $Property['bhk_type']);
-        $this->db->set('Property.floor', $Property['floor']);
-        $this->db->set('Property.top_floor', $Property['top_floor']);
-        $this->db->set('Property.property_age', $Property['property_age']);
-        $this->db->set('Property.facing', $Property['facing']);
-        $this->db->set('Property.property_size', $Property['property_size']);
+        $apartment_type = $Property['apartment_type'];
+        $apartment_name = $Property['apartment_name'];
+        $bhk_type=$Property['bhk_type'];
+        $floor= $Property['floor'];
+        $top_floor= $Property['top_floor'];
+        $property_age= $Property['property_age'];
+        $facing= $Property['facing'];
+        $property_size= $Property['property_size'];
 
-        $this->db->set('Locality.city', $Locality['city']);
-        $this->db->set('Locality.locality', $Locality['locality']);
-        $this->db->set('Locality.street_addres', $Locality['street_addres']);
+        $city= $Locality['city'];
+        $locality= $Locality['locality'];
+        $street_addres= $Locality['street_addres'];
 
-        $this->db->set('Rental.is_available_for_lease', $Rental['is_available_for_lease']);
-        $this->db->set('Rental.expected_lease_amount', $Rental['expected_lease_amount']);
-        $this->db->set('Rental.expected_depost', $Rental['expected_depost']);
-        $this->db->set('Rental.maintenance', $Rental['maintenance']);
-        $this->db->set('Rental.availablle_from', $Rental['availablle_from']);
-        $this->db->set('Rental.preferred_tenants', $Rental['preferred_tenants']);
-        $this->db->set('Rental.furnishing', $Rental['furnishing']);
-        $this->db->set('Rental.parking', $Rental['parking']);
-        $this->db->set('Rental.description', $Rental['description']);
-        $this->db->set('Rental.is_negotiable', $Rental['is_negotiable']);
+        $is_available_for_lease= $Rental['is_available_for_lease'];
+        $expected_lease_amount= $Rental['expected_lease_amount'];
+        $expected_depost= $Rental['expected_depost'];
+        $maintenance= $Rental['maintenance'];
+        $availablle_from=$Rental['availablle_from'];
+        $preferred_tenants= $Rental['preferred_tenants'];
+        $furnishing= $Rental['furnishing'];
+        $parking= $Rental['parking'];
+        $description= $Rental['description'];
+        $is_negotiable= $Rental['is_negotiable'];
 
-        $this->db->set('Gallery.upload_images', $Gallery['upload_images']);
+        $upload_images= $Gallery['upload_images'];
 
-        $this->db->set('Amenities.bathrooms', $Amenities['bathrooms']);
-        $this->db->set('Amenities.water_supply', $Amenities['water_supply']);
-        $this->db->set('Amenities.gym', $Amenities['gym']);
-        $this->db->set('Amenities.non_veg_allowed', $Amenities['non_veg_allowed']);
-        $this->db->set('Amenities.gated_security', $Amenities['gated_security']);
-        $this->db->set('Amenities.who_will_show_the_house', $Amenities['who_will_show_the_house']);
-        $this->db->set('Amenities.secondary_number', $Amenities['secondary_number']);
-        $this->db->set('Amenities.select_the_amenities_available', $Amenities['select_the_amenities_available']);
+        $bathrooms= $Amenities['bathrooms'];
+        $water_supply= $Amenities['water_supply'];
+        $gym=$Amenities['gym'];
+        $non_veg_allowed= $Amenities['non_veg_allowed'];
+        $gated_security=$Amenities['gated_security'];
+        $who_will_show_the_house= $Amenities['who_will_show_the_house'];
+        $secondary_number= $Amenities['secondary_number'];
+        $select_the_amenities_available= $Amenities['select_the_amenities_available'];
 
-        $this->db->set('Schedule.availability', $Schedule['availability']);
-        $this->db->set('Schedule.start_time', $Schedule['start_time']);
-        $this->db->set('SchedulProperty.propertyide.end_propertyidtime', $Schedule['end_time']);
-        $this->db->set('Schedule.available_all_day', $Schedule['available_all_day']);
+        $availability= $Schedule['availability'];
+        $start_time=$Schedule['start_time'];
+        $end_time= $Schedule['end_time'];
+        $available_all_day= $Schedule['available_all_day'];
 
-        $this->db->where('Property.propertyid', $PropertyId);
-        // $this->db->where('Property.propertyid = Locality.propertyid');
-        // $this->db->where('Property.propertyid = Rental.propertyid');
-        // $this->db->where('Property.propertyid = Amenities.propertyid');
-        // $this->db->where('Property.propertyid = Schedule.propertyid');
-        $this->db->update('resident_rent_property_details as Property, resident_rent_amenities_details as Amenities, resident_rent_locality_details as Locality, resident_rent_rental_details as Rental, resident_rent_gallery_details as Gallery,resident_rent_schedule_details as Schedule' );
+
+        $sql ="UPDATE `resident_rent_property_details` as `Property`, `resident_rent_amenities_details` as `Amenities`, `resident_rent_locality_details` as `Locality`, `resident_rent_rental_details` as `Rental`, `resident_rent_gallery_details` as `Gallery`, `resident_rent_schedule_details` as `Schedule` SET
+
+            `Property`.`apartment_type` = '$apartment_type', 
+            `Property`.`apartment_name` = '$apartment_name', 
+            `Property`.`bhk_type` = '$bhk_type', 
+            `Property`.`floor` = '$floor', 
+            `Property`.`top_floor` = '$top_floor', 
+            `Property`.`property_age` = '$property_age', 
+            `Property`.`facing` = '$facing', 
+            `Property`.`property_size` = '$property_size',
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_addres` = '$street_addres', 
+            `Rental`.`is_available_for_lease` = '$is_available_for_lease', 
+            `Rental`.`expected_lease_amount` = '$expected_lease_amount', 
+            `Rental`.`expected_depost` ='$expected_depost', 
+            `Rental`.`maintenance` = '$maintenance',
+            `Rental`.`availablle_from` = '$availablle_from', 
+            `Rental`.`preferred_tenants` = '$preferred_tenants', 
+            `Rental`.`furnishing` = '$furnishing', 
+            `Rental`.`parking` = '$parking', 
+            `Rental`.`description` = '$description', 
+            `Rental`.`is_negotiable` = '$is_negotiable', 
+            `Gallery`.`upload_images` = '$upload_images', 
+            `Amenities`.`bathrooms` = '$bathrooms', 
+            `Amenities`.`water_supply` = '$water_supply', 
+            `Amenities`.`gym` = '$gym', 
+            `Amenities`.`non_veg_allowed` = '$non_veg_allowed', 
+            `Amenities`.`gated_security` = '$gated_security', 
+            `Amenities`.`who_will_show_the_house` = '$who_will_show_the_house', 
+            `Amenities`.`secondary_number` = '$secondary_number', 
+            `Amenities`.`select_the_amenities_available` = '$select_the_amenities_available', 
+            `Schedule`.`availability` = '$availability', 
+            `Schedule`.`start_time` = '$start_time', 
+            `Schedule`.`end_time` = '$end_time', 
+            `Schedule`.`available_all_day` = '$available_all_day'
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        // $this->db->set('Property.apartment_type', $Property['apartment_type']);
+        // $this->db->set('Property.apartment_name', $Property['apartment_name']);
+        // $this->db->set('Property.bhk_type', $Property['bhk_type']);
+        // $this->db->set('Property.floor', $Property['floor']);
+        // $this->db->set('Property.top_floor', $Property['top_floor']);
+        // $this->db->set('Property.property_age', $Property['property_age']);
+        // $this->db->set('Property.facing', $Property['facing']);
+        // $this->db->set('Property.property_size', $Property['property_size']);
+
+        // $this->db->set('Locality.city', $Locality['city']);
+        // $this->db->set('Locality.locality', $Locality['locality']);
+        // $this->db->set('Locality.street_addres', $Locality['street_addres']);
+
+        // $this->db->set('Rental.is_available_for_lease', $Rental['is_available_for_lease']);
+        // $this->db->set('Rental.expected_lease_amount', $Rental['expected_lease_amount']);
+        // $this->db->set('Rental.expected_depost', $Rental['expected_depost']);
+        // $this->db->set('Rental.maintenance', $Rental['maintenance']);
+        // $this->db->set('Rental.availablle_from', $Rental['availablle_from']);
+        // $this->db->set('Rental.preferred_tenants', $Rental['preferred_tenants']);
+        // $this->db->set('Rental.furnishing', $Rental['furnishing']);
+        // $this->db->set('Rental.parking', $Rental['parking']);
+        // $this->db->set('Rental.description', $Rental['description']);
+        // $this->db->set('Rental.is_negotiable', $Rental['is_negotiable']);
+
+        // $this->db->set('Gallery.upload_images', $Gallery['upload_images']);
+
+        // $this->db->set('Amenities.bathrooms', $Amenities['bathrooms']);
+        // $this->db->set('Amenities.water_supply', $Amenities['water_supply']);
+        // $this->db->set('Amenities.gym', $Amenities['gym']);
+        // $this->db->set('Amenities.non_veg_allowed', $Amenities['non_veg_allowed']);
+        // $this->db->set('Amenities.gated_security', $Amenities['gated_security']);
+        // $this->db->set('Amenities.who_will_show_the_house', $Amenities['who_will_show_the_house']);
+        // $this->db->set('Amenities.secondary_number', $Amenities['secondary_number']);
+        // $this->db->set('Amenities.select_the_amenities_available', $Amenities['select_the_amenities_available']);
+
+        // $this->db->set('Schedule.availability', $Schedule['availability']);
+        // $this->db->set('Schedule.start_time', $Schedule['start_time']);
+        // $this->db->set('Schedule.end_time', $Schedule['end_time']);
+        // $this->db->set('Schedule.available_all_day', $Schedule['available_all_day']);
+
+        // $this->db->where('Property.propertyid', $PropertyId);
+        // $this->db->update('resident_rent_property_details' as 'Property', 'resident_rent_amenities_details' as 'Amenities', 'resident_rent_locality_details' as 'Locality', 'resident_rent_rental_details as Rental', 'resident_rent_gallery_details' as 'Gallery',
+        //     'resident_rent_schedule_details' as 'Schedule' );
         return TRUE;
     }
     

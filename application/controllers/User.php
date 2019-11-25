@@ -34,14 +34,10 @@ class User extends BaseController
     /**
      * This function is used to load the user list
      */
-    function userListing()
-    {
-        if($this->isAdmin() == TRUE)
-        {
+    function userListing(){
+        if($this->isAdmin() == TRUE){
             $this->loadThis();
-        }
-        else
-        {        
+        }else{        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             

@@ -61,18 +61,38 @@ class Property extends BaseController
     /**
      * This function is used to load the add new form
      */
-    function addNewResidentialRent()
-    {
-        if($this->isAdmin() == TRUE)
-        {
+    function addNewResidentialRent(){
+        if($this->isAdmin() == TRUE){
             $this->loadThis();
         }
-        else
-        {
-            $this->load->model('user_model');
-            $data['roles'] = $this->user_model->getUserRoles();
-            
-            $this->global['pageTitle'] = 'Admin : Add New Property';
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
+
+            $this->loadViews("addNewResidentialRent", $this->global, $data, NULL);
+        }
+    }
+
+    /**
+     * This function is used to load the add new form
+     */
+    function addNewResidentialResale(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
 
             $this->loadViews("addNewResidentialRent", $this->global, $data, NULL);
         }
@@ -99,27 +119,21 @@ class Property extends BaseController
     /**
      * This function is used to add new user to the system
      */
-    function addNewResidentialRentProperty()
-    {
-        if($this->isAdmin() == TRUE)
-        {
+    function addNewResidentialRentProperty(){
+        if($this->isAdmin() == TRUE){
             $this->loadThis();
-        }
-        else
-        {       $data =$this->input->post();
-                $this->load->model('property_model');
-                $result = $this->property_model->addNewResidentialRentProperty($data,$this->vendorId);
+        }else{       
+            $data =$this->input->post();
+            $this->load->model('property_model');
+            $result = $this->property_model->addNewResidentialRentProperty($data,$this->vendorId);
                 
-                if($result > 0)
-                {
-                    $this->session->set_flashdata('success', 'New property created successfully');
-                }
-                else
-                {
-                    $this->session->set_flashdata('error', 'property creation failed');
-                }
+            if($result > 0){
+                $this->session->set_flashdata('success', 'New property created successfully');
+            }else{
+                $this->session->set_flashdata('error', 'property creation failed');
+            }
                 
-                redirect('post-residential-rent-property');
+            redirect('post-residential-rent-property');
         }
     }
 
@@ -131,12 +145,25 @@ class Property extends BaseController
     function editResidentialRentProperty($propertyid = NULL){
             if($propertyid == null){
                 redirect('propertyListing');
-            } 
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
            // $data['roles'] = $this->Property_model->getUserRoles();
             $this->load->model('property_model');
             $data['ResidentialRentPropertyInfo'] = $this->property_model->ResidentialRentPropertyInfo($propertyid);
             //echo "<pre>";print_r($data);die;
-            $this->global['editResidentialRentProperty'] = 'Admin : Edit Property';
+            $this->global['pageTitle'] = 'Admin : Edit Property';
             $dd =$data['ResidentialRentPropertyInfo'];
             //echo "<pre>";print_r($dd->apartment_type);die;
             $this->loadViews("editResidentialRentProperty", $this->global, $data, NULL);
@@ -170,7 +197,7 @@ class Property extends BaseController
                     $this->session->set_flashdata('error', 'Property updation failed');
                 }
                 
-                redirect('userListing');
+                redirect('ResidentialRentList');
         }
     }
 
