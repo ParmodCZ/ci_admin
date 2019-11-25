@@ -8,7 +8,7 @@
     </section>
     
     <section class="content">
-    <form role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post" role="form">
+    <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post">
         <div class="row">
             <!-- left column -->
           <div  class="col-sm-12">
@@ -32,8 +32,9 @@
                   <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="apartment_type">Apartment Type *</label>
-                           <input type="text" class="form-control" id="apartment_type" name="Property[apartment_type]" required>
+                            <label class="control-label" for="apartment_type">Apartment Type *</label>
+                           <input type="text" class="form-control" id="apartment_type" name="Property[apartment_type]" data-error="Please enter name field." required>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
