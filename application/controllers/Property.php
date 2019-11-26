@@ -272,11 +272,11 @@ class Property extends BaseController
            // echo"<pre>";print_r($data['apartmenttypelist']);die;
            // $data['roles'] = $this->Property_model->getUserRoles();
             $this->load->model('property_model');
-            $data['ResidentialRentPropertyInfo'] = $this->property_model->ResidentialResalePropertyInfo($propertyid);
+            $data['PropertyInfo'] = $this->property_model->ResidentialResalePropertyInfo($propertyid);
             //echo "<pre>";print_r($data);die;
             $this->global['pageTitle'] = 'Admin : Edit Property';
-            $dd =$data['ResidentialRentPropertyInfo'];
-            //echo "<pre>";print_r($dd->apartment_type);die;
+            $dd =$data['PropertyInfo'];
+           // echo "<pre>";print_r($data);die;
             $this->loadViews("editResidentialRentProperty", $this->global, $data, NULL);
     }
     
