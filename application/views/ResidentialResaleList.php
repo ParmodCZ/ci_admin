@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>post-residential-rent-property"><i class="fa fa-plus"></i> Add New</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?> AddResidentialResaleProperty"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-              <div class="box">
+              <div class="box">`
                 <div class="box-header">
                     <h3 class="box-title">Users List</h3>
                     <div class="box-tools">
@@ -53,7 +53,7 @@
                         <td><?php echo $record->floor ?></td>
                         <td><?php echo $record->city ?></td>
                         <td class="text-center">
-                            <a class="btn btn-sm btn-info" href="<?php echo base_url().'editresidentialrentproperty/'.$record->propertyid; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-sm btn-info" href="<?php echo base_url().'editResidentialResaleProperty/'.$record->propertyid; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
                             <a class="btn btn-sm btn-danger deleteProperty" href="#" data-propertyid="<?php echo $record->propertyid; ?>" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
