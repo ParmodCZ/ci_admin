@@ -40,7 +40,7 @@
                   <ul class="nav nav-tabs tabs-left sideways">
                      <li class="active"><a href="#Property-Details" data-toggle="tab">Property Details</a></li>
                      <li><a href="#Locality-Details" data-toggle="tab">Locality Details</a></li>
-                     <li><a href="#Rental-Details" data-toggle="tab">Rental Details</a></li>
+                     <li><a href="#Resale-Details" data-toggle="tab">Resale Details</a></li>
                      <li><a href="#Gallery" data-toggle="tab">Gallery</a></li>
                      <li><a href="#Amenities" data-toggle="tab">Amenities</a></li>
                      <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
@@ -207,33 +207,33 @@
                            </div>
                         </div>
                      </div>
-                     <!-- Rental-Details -->
-                     <div class="tab-pane" id="Rental-Details">
+                     <!-- Resale-Details -->
+                     <div class="tab-pane" id="Resale-Details">
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="no_of_lease_years">No Of Lease Years? *</label>
-                                 <input type="text" class="form-control" id="no_of_lease_years" name="Rental[no_of_lease_years]" required>
+                                 <input type="text" class="form-control" id="no_of_lease_years" name="Resale[no_of_lease_years]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="is_currently_under_loan">Is Currently Under Loan *</label>
-                                 <input type="text" class="form-control" id="is_currently_under_loan" name="Rental[is_currently_under_loan]" required>
+                                 <input type="text" class="form-control" id="is_currently_under_loan" name="Resale[is_currently_under_loan]" required>
                               </div>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="expected_post">Expected Post *</label>
-                                 <input type="text" class="form-control" id="expected_post" name="Rental[expected_post]" required>
+                                 <label for="expected_cost">Expected Cost *</label>
+                                 <input type="text" class="form-control" id="expected_cost" name="Resale[expected_cost]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="is_price_negotiable">Is Price Negotiable *</label>
-                                 <input type="text" class="form-control" id="is_price_negotiable" name="Rental[is_price_negotiable]" required>
+                                 <input type="text" class="form-control" id="is_price_negotiable" name="Resale[is_price_negotiable]" required>
                               </div>
                            </div>
                         </div>
@@ -241,13 +241,13 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="maintenance_cost">Maintenance Cost *</label>
-                                 <input type="text" class="form-control" id="maintenance_cost" name="Rental[maintenance_cost]" required>
+                                 <input type="text" class="form-control" id="maintenance_cost" name="Resale[maintenance_cost]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_forms">Availablle From *</label>
-                                 <input type="text" class="form-control" id="available_forms" name="Rental[available_forms]" required>
+                                 <input type="text" class="form-control" id="available_forms" name="Resale[available_forms]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -322,12 +322,12 @@
                                  <input type="text" class="form-control" id="gym" name="Amenities[gym]" required>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="form-group">
                                  <label for="non_veg_allowed">Non Veg. Allowed *</label>
                                  <input type="text" class="form-control" id="non_veg_allowed" name="Amenities[non_veg_allowed]" required>
                               </div>
-                           </div>
+                           </div> -->
                         </div>
                         <div class="row">
                            <div class="col-md-6">

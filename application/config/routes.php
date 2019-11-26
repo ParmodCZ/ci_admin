@@ -102,7 +102,7 @@ $route['deleteResidentialRentProperty'] = "Property/deleteResidentialRentPropert
 //resale  
 $route['AddResidentialResaleProperty'] = "Property/addNewResidentialResale";
 $route['ResidentialResaleAddProperty'] = "Property/addNewResidentialResaleProperty";
-$route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
+$route['ResidentialResaleList']        = 'Property/ResidentialResaleList';
 $route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
 $route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
 $route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";

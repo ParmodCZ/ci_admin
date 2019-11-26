@@ -14,16 +14,39 @@ class Property_model extends CI_Model
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function ResidentialRentListCount($searchText = '')
-    {
-        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+    function ResidentialRentListCount($searchText = ''){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,schedule.*');
         $this->db->from('resident_rent_property_details as property');
         $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
-        $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
             $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_addres  LIKE '%".$searchText."%'
+            OR  property.property_size  LIKE '%".$searchText."%'
+            OR  property.bhk_type  LIKE '%".$searchText."%'
+            OR  property.facing  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
+    function ResidentialResaleListCount($searchText = ''){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('resident_resale_property_details as property');
+        $this->db->join('resident_resale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(resale.description  LIKE '%".$searchText."%'
             OR  locality.city  LIKE '%".$searchText."%'
             OR  locality.street_addres  LIKE '%".$searchText."%'
             OR  property.property_size  LIKE '%".$searchText."%'
@@ -44,12 +67,13 @@ class Property_model extends CI_Model
      * @return array $result : This is result
      */
     function ResidentialRentList($searchText = '', $page, $segment){
-        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,schedule.*');
         $this->db->from('resident_rent_property_details as property');
         $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
             $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
                             OR  locality.city  LIKE '%".$searchText."%'
@@ -60,6 +84,30 @@ class Property_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $this->db->limit($page, $segment);
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function ResidentialResaleList($searchText = '', $page, $segment){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('resident_resale_property_details as property');
+        $this->db->join('resident_resale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(resale.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_addres  LIKE '%".$searchText."%'
+            OR  property.property_size  LIKE '%".$searchText."%'
+            OR  property.bhk_type  LIKE '%".$searchText."%'
+            OR  property.facing  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
         $query = $this->db->get();
         
         $result = $query->result();        
@@ -148,11 +196,11 @@ class Property_model extends CI_Model
      */
     function addNewResidentialResaleProperty($addNewProperty,$authuser){
         $propertyid =uniqid('RS'); 
-        echo"<pre>";print_r($addNewProperty);die;
+        //echo"<pre>";print_r($addNewProperty);die;
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
-        $addNewProperty['Rental']['userID'] =$authuser;
+        $addNewProperty['Resale']['userID'] =$authuser;
         $addNewProperty['Gallery']['userID'] =$authuser;
         $addNewProperty['Amenities']['userID'] =$authuser;
         $addNewProperty['Schedule']['userID'] =$authuser;
@@ -160,7 +208,7 @@ class Property_model extends CI_Model
         //give propertyid 
         $addNewProperty['Property']['propertyid'] =$propertyid; 
         $addNewProperty['Locality']['propertyid'] =$propertyid;  
-        $addNewProperty['Rental']['propertyid'] =$propertyid;  
+        $addNewProperty['Resale']['propertyid'] =$propertyid;  
         $addNewProperty['Gallery']['propertyid'] =$propertyid;  
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
@@ -168,20 +216,20 @@ class Property_model extends CI_Model
 
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
-        $rentalinfo =$addNewProperty['Rental'];
+        $resaleinfo =$addNewProperty['Resale'];
         $galleryinfo =$addNewProperty['Gallery'];
         $amenitiesinfo =$addNewProperty['Amenities'];
         $scheduleinfo =$addNewProperty['Schedule'];
-        $scheduleinfo =$addNewProperty['Information'];
+        $information =$addNewProperty['Information'];
         //echo"<pre>";print_r($amenitiesinfo);die();
         $this->db->trans_start();
         $this->db->insert('resident_resale_property_details', $propertyinfo);
         $this->db->insert('resident_resale_locality_details', $localityinfo);
-        $this->db->insert('resident_rent_rental_details', $rentalinfo);
-        $this->db->insert('resident_rent_gallery_details', $galleryinfo);
-        $this->db->insert('resident_rent_amenities_details', $amenitiesinfo);
-        $this->db->insert('resident_rent_schedule_details', $scheduleinfo);
-        $this->db->insert('resident_rent_schedule_details', $scheduleinfo);
+        $this->db->insert('resident_resale_resale_details', $resaleinfo);
+        $this->db->insert('resident_resale_gallery_details', $galleryinfo);
+        $this->db->insert('resident_resale_amenities_details', $amenitiesinfo);
+        $this->db->insert('resident_resale_schedule_details', $scheduleinfo);
+        $this->db->insert('resident_resale_additional_information_details', $information);
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
@@ -194,12 +242,33 @@ class Property_model extends CI_Model
      * @return array $result : This is user information
      */
     function ResidentialRentPropertyInfo($propertyid){
-        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*');
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,schedule.*');
         $this->db->from('resident_rent_property_details as property');
         $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $this->db->where('property.propertyid', $propertyid);
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
+    /**
+     * This function used to get user information by id
+     * @param number $userId : This is user id
+     * @return array $result : This is user information
+     */
+    function ResidentialResalePropertyInfo($propertyid){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('resident_resale_property_details as property');
+        $this->db->join('resident_resale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_resale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
         $this->db->where('property.propertyid', $propertyid);
         $query = $this->db->get();
         

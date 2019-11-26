@@ -41,9 +41,9 @@
                         <th class="text-center">Actions</th>
                     </tr>
                     <?php
-                    if(!empty($ResidentialRentRecords))
+                    if(!empty($Records))
                     {
-                        foreach($ResidentialRentRecords as $record)
+                        foreach($Records as $record)
                         {
                     ?>
                     <tr>
@@ -79,7 +79,7 @@
             e.preventDefault();            
             var link = jQuery(this).get(0).href;            
             var value = link.substring(link.lastIndexOf('/') + 1);
-            jQuery("#searchList").attr("action", baseURL + "ResidentialRentList/" + value);
+            jQuery("#searchList").attr("action", baseURL + "editResidentialResaleProperty/" + value);
             jQuery("#searchList").submit();
         });
     });

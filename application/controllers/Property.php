@@ -32,7 +32,7 @@ class Property extends BaseController
     // }
     
     /**
-     * This function is used to load the user list
+     * This function is used to load the rent list
      */
     function ResidentialRentList(){
     //  SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid
@@ -55,6 +55,31 @@ class Property extends BaseController
             $this->global['pageTitle'] = 'Admin : User Listing';
             //echo"<pre>";print_r($data);die;
             $this->loadViews("ResidentialRentList", $this->global, $data, NULL);
+        }
+    }
+
+    /**
+     * This function is used to load the resale list
+     */
+    function ResidentialResaleList(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->property_model->ResidentialResaleListCount($searchText);
+
+            $returns = $this->paginationCompress( "ResidentialResaleList/", $count, 10 );
+            
+            $data['Records'] = $this->property_model->ResidentialResaleList($searchText, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'Admin : User Listing';
+           // echo"<pre>";print_r($data);die;
+            $this->loadViews("ResidentialResaleList", $this->global, $data, NULL);
         }
     }
 
@@ -172,7 +197,7 @@ class Property extends BaseController
                 $this->session->set_flashdata('error', 'property creation failed');
             }
                 
-            redirect('post-residential-rent-property');
+            redirect('ResidentialRentList');
         }
     }
 
@@ -192,8 +217,8 @@ class Property extends BaseController
             }else{
                 $this->session->set_flashdata('error', 'property creation failed');
             }
-                
-            redirect('post-residential-rent-property');
+                 
+            redirect('ResidentialResaleList');
         }
     }
     
@@ -221,6 +246,33 @@ class Property extends BaseController
            // $data['roles'] = $this->Property_model->getUserRoles();
             $this->load->model('property_model');
             $data['ResidentialRentPropertyInfo'] = $this->property_model->ResidentialRentPropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['pageTitle'] = 'Admin : Edit Property';
+            $dd =$data['ResidentialRentPropertyInfo'];
+            //echo "<pre>";print_r($dd->apartment_type);die;
+            $this->loadViews("editResidentialRentProperty", $this->global, $data, NULL);
+    }
+
+    function editResidentialResaleProperty($propertyid = NULL){
+            if($propertyid == null){
+                redirect('propertyListing');
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['ResidentialRentPropertyInfo'] = $this->property_model->ResidentialResalePropertyInfo($propertyid);
             //echo "<pre>";print_r($data);die;
             $this->global['pageTitle'] = 'Admin : Edit Property';
             $dd =$data['ResidentialRentPropertyInfo'];
