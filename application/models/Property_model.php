@@ -261,7 +261,7 @@ class Property_model extends CI_Model
      * @return array $result : This is user information
      */
     function ResidentialResalePropertyInfo($propertyid){
-        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*,schedule.*');
         $this->db->from('resident_resale_property_details as property');
         $this->db->join('resident_resale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_resale_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
@@ -305,7 +305,7 @@ class Property_model extends CI_Model
         $is_available_for_lease= $Rental['is_available_for_lease'];
         $expected_lease_amount= $Rental['expected_lease_amount'];
         $expected_depost= $Rental['expected_depost'];
-        $maintenance= $Rental['maintenance'];
+        $maintenance_cost= $Rental['maintenance'];
         $availablle_from=$Rental['availablle_from'];
         $preferred_tenants= $Rental['preferred_tenants'];
         $furnishing= $Rental['furnishing'];
@@ -417,7 +417,99 @@ class Property_model extends CI_Model
         return TRUE;
     }
     
-    
+    function EditResidentialResalePropertyPost($data,$PropertyId){ 
+        $Property = $data['Property'];
+        $Locality = $data['Locality'];
+        $Resale   = $data['Resale'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Schedule = $data['Schedule'];
+        $Information = $data['Information'];
+
+        $apartment_type = $Property['apartment_type'];
+        $apartment_name = $Property['apartment_name'];
+        $bhk_type=$Property['bhk_type'];
+        $floor= $Property['floor'];
+        $total_floor= $Property['total_floor'];
+        $property_age= $Property['property_age'];
+        $facing= $Property['facing'];
+        $property_size= $Property['property_size'];
+
+        $city= $Locality['city'];
+        $locality= $Locality['locality'];
+        $street_addres= $Locality['street_addres'];
+
+        $no_of_lease_years= $Resale['no_of_lease_years'];
+       // $expected_lease_amount= $Resale['expected_lease_amount'];
+        $expected_cost= $Resale['expected_cost'];
+        $maintenance= $Resale['maintenance_cost'];
+        $available_forms=$Resale['available_forms'];
+        //$preferred_tenants= $Resale['preferred_tenants'];
+        $furnishing= $Resale['furnishing'];
+        $parking= $Resale['parking'];
+        $description= $Resale['description'];
+        $is_price_negotiable= $Resale['is_price_negotiable'];
+
+        $upload_images= $Gallery['upload_images'];
+
+        $bathroom= $Amenities['bathroom'];
+        $water_supply= $Amenities['water_supply'];
+        $gym=$Amenities['gym'];
+        // $non_veg_allowed= $Amenities['non_veg_allowed'];
+        $gated_security=$Amenities['gated_security'];
+        $who_will_show_house= $Amenities['who_will_show_house'];
+        $secondary_number= $Amenities['secondary_number'];
+        $select_the_amenities_available= $Amenities['select_the_amenities_available'];
+
+        $availability= $Schedule['availability'];
+        $start_time=$Schedule['start_time'];
+        $end_time= $Schedule['end_time'];
+        $available_all_day= $Schedule['available_all_day'];
+
+
+        $sql ="UPDATE `resident_resale_property_details` as `Property`, `resident_resale_amenities_details` as `Amenities`, `resident_resale_locality_details` as `Locality`, `resident_resale_resale_details` as `Resale`, `resident_resale_gallery_details` as `Gallery`, `resident_resale_schedule_details` as `Schedule` ,`resident_resale_additional_information_details` as `Information` SET
+
+            `Property`.`apartment_type` = '$apartment_type', 
+            `Property`.`apartment_name` = '$apartment_name', 
+            `Property`.`bhk_type` = '$bhk_type', 
+            `Property`.`floor` = '$floor', 
+            `Property`.`total_floor` = '$total_floor', 
+            `Property`.`property_age` = '$property_age', 
+            `Property`.`facing` = '$facing', 
+            `Property`.`property_size` = '$property_size',
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_addres` = '$street_addres', 
+            `Resale`.`no_of_lease_years` = '$no_of_lease_years', 
+          
+            `Resale`.`expected_cost` ='$expected_cost', 
+            `Resale`.`maintenance_cost` = '$maintenance_cost',
+            `Resale`.`available_forms` = '$available_forms', 
+           
+            `Resale`.`furnishing` = '$furnishing', 
+            `Resale`.`parking` = '$parking', 
+            `Resale`.`description` = '$description', 
+            `Resale`.`is_price_negotiable` = '$is_price_negotiable', 
+            `Gallery`.`upload_images` = '$upload_images', 
+            `Amenities`.`bathroom` = '$bathroom', 
+            `Amenities`.`water_supply` = '$water_supply', 
+            `Amenities`.`gym` = '$gym', 
+
+            `Amenities`.`gated_security` = '$gated_security', 
+            `Amenities`.`who_will_show_house` = '$who_will_show_house', 
+            `Amenities`.`secondary_number` = '$secondary_number', 
+            `Amenities`.`select_the_amenities_available` = '$select_the_amenities_available', 
+            `Schedule`.`availability` = '$availability', 
+            `Schedule`.`start_time` = '$start_time', 
+            `Schedule`.`end_time` = '$end_time', 
+            `Schedule`.`available_all_day` = '$available_all_day'
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        return TRUE;
+    }
     
     /**
      * This function is used to delete the user information
@@ -435,10 +527,18 @@ class Property_model extends CI_Model
         // $this->db->delete('property'); 
         // return $this->db->affected_rows();
 
-       $sql=  "SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid where property.propertyid=?";
+       $sql=  "DELETE property FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid INNER JOIN resident_rent_schedule_details AS schedule ON schedule.propertyid=property.propertyid where property.propertyid=?";
        $this->db->query($sql, array($propertyid));
+       return TRUE;
     }
 
+    function deleteResidentialResaleProperty($propertyid){
+       $sql=  "DELETE property FROM resident_resale_property_details AS property INNER JOIN resident_resale_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_resale_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_resale_resale_details AS resale ON resale.propertyid = property.propertyid INNER JOIN resident_resale_gallery_details AS gallery ON gallery.propertyid=property.propertyid
+           INNER JOIN resident_resale_schedule_details AS schedule ON schedule.propertyid=property.propertyid
+           INNER JOIN resident_resale_additional_information_details AS information ON gallery.propertyid=property.propertyid where property.propertyid=?";
+       $this->db->query($sql, array($propertyid));
+       return TRUE;
+    }
 
     /**
      * This function is used to match users password for change password

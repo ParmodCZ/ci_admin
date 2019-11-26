@@ -253,25 +253,25 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="kitchen_type">Kitchen Type *</label>
-                                 <input type="text" class="form-control" id="kitchen_type" name="Rental[kitchen_type]" required>
+                                 <input type="text" class="form-control" id="kitchen_type" name="Resale[kitchen_type]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing" name="Rental[furnishing]" required>
+                                 <input type="text" class="form-control" id="furnishing" name="Resale[furnishing]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="parking">Parking *</label>
-                                 <input type="text" class="form-control" id="parking" name="Rental[parking]" required>
+                                 <input type="text" class="form-control" id="parking" name="Resale[parking]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="Rental[description]" required>
+                                 <input type="text" class="form-control" id="description" name="Resale[description]" required>
                               </div>
                            </div>
                         </div>

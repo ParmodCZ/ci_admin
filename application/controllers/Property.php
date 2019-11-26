@@ -278,7 +278,7 @@ class Property extends BaseController
             $this->global['pageTitle'] = 'Admin : Edit Property';
             $dd =$data['PropertyInfo'];
            // echo "<pre>";print_r($data);die;
-            $this->loadViews("editResidentialRentProperty", $this->global, $data, NULL);
+            $this->loadViews("editResidentialResaleProperty", $this->global, $data, NULL);
     }
     
     
@@ -313,6 +313,31 @@ class Property extends BaseController
         }
     }
 
+    function EditResidentialResalePropertyPost(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{ 
+         
+            $PropertyId = $this->input->post('PropertyId');          
+                
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->EditResidentialResalePropertyPost($data,$PropertyId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'Property updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Property updation failed');
+                }
+                
+                redirect('ResidentialRentList');
+        }
+    }
+
 
     /**
      * This function is used to delete the user using userId
@@ -330,6 +355,24 @@ class Property extends BaseController
             $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
             
             $result = $this->property_model->deleteResidentialRentProperty($propertyid);
+            
+            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            else { echo(json_encode(array('status'=>FALSE))); }
+        }
+    }
+    
+    function deleteResidentialResaleProperty()
+    {
+        if($this->isAdmin() == TRUE)
+        {
+            echo(json_encode(array('status'=>'access')));
+        }
+        else
+        {
+            $propertyid = $this->input->post('propertyid');
+            $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+            
+            $result = $this->property_model->deleteResidentialResaleProperty($propertyid);
             
             if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
             else { echo(json_encode(array('status'=>FALSE))); }
