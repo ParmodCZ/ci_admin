@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="ResidentialFlatmateAddProperty" action="<?php echo base_url() ?>ResidentialFlatmateAddProperty" method="post">
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">

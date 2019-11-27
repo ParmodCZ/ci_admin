@@ -222,6 +222,24 @@ class Property extends BaseController
             redirect('ResidentialResaleList');
         }
     }
+
+    function ResidentialFlatmateAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }else{       
+            $data =$this->input->post();
+            $this->load->model('property_model');
+            $result = $this->property_model->ResidentialFlatmateAddProperty($data,$this->vendorId);
+                
+            if($result > 0){
+                $this->session->set_flashdata('success', 'New property created successfully');
+            }else{
+                $this->session->set_flashdata('error', 'property creation failed');
+            }
+                 
+            redirect('ResidentialResaleList');
+        }
+    }
     
     /**
      * This function is used load user edit information

@@ -120,12 +120,12 @@ $route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResalePro
 
 
 //Flatmate	  
-// $route['addNewResidentialFlatmate'] = "Property/addNewResidentialFlatmate";
-// $route['ResidentialResaleAddProperty'] = "Property/addNewResidentialResaleProperty";
-// $route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
-// $route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
-// $route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
-// $route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
-// $route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
+$route['addNewResidentialFlatmate'] = "Property/addNewResidentialFlatmate";
+$route['ResidentialFlatmateAddProperty'] = "Property/ResidentialFlatmateAddProperty";
+$route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
+$route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
+$route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
+$route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
+$route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
