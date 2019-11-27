@@ -320,6 +320,82 @@ class Property_model extends CI_Model
         return $insert_id;
     }
 
+    function CommercialSaleAddProperty($addNewProperty,$authuser){
+        $propertyid =uniqid('CS'); 
+        //echo"<pre>";print_r($addNewProperty);die;
+        //give userID
+        $addNewProperty['Property']['userID'] =$authuser;
+        $addNewProperty['Locality']['userID'] =$authuser;
+        $addNewProperty['Resale']['userID'] =$authuser;
+        $addNewProperty['Gallery']['userID'] =$authuser;
+        $addNewProperty['Amenities']['userID'] =$authuser;
+        $addNewProperty['Information']['userID'] =$authuser;
+        //give propertyid 
+        $addNewProperty['Property']['propertyid'] =$propertyid; 
+        $addNewProperty['Locality']['propertyid'] =$propertyid;  
+        $addNewProperty['Resale']['propertyid'] =$propertyid;  
+        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Amenities']['propertyid'] =$propertyid;   
+        $addNewProperty['Information']['propertyid'] =$propertyid; 
+
+        $propertyinfo =$addNewProperty['Property'];
+        $localityinfo =$addNewProperty['Locality'];
+        $resaleinfo =$addNewProperty['Resale'];
+        $galleryinfo =$addNewProperty['Gallery'];
+        $amenitiesinfo =$addNewProperty['Amenities'];
+        $information =$addNewProperty['Information'];
+        //echo"<pre>";print_r($amenitiesinfo);die();
+        $this->db->trans_start();
+        $this->db->insert('commercial_sale_property_details', $propertyinfo);
+        $this->db->insert('commercial_sale_location_details', $localityinfo);
+        $this->db->insert('commercial_sale_resale_details', $resaleinfo);
+        $this->db->insert('commercial_sale_photo_details', $galleryinfo);
+        $this->db->insert('commercial_sale_amenities_details', $amenitiesinfo);
+        $this->db->insert('commercial_sale_additional_information_details', $information);
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+
+    function CommercialRentAddProperty($addNewProperty,$authuser){
+        $propertyid =uniqid('CR'); 
+        //echo"<pre>";print_r($addNewProperty);die;
+        //give userID
+        $addNewProperty['Property']['userID'] =$authuser;
+        $addNewProperty['Locality']['userID'] =$authuser;
+        $addNewProperty['Resale']['userID'] =$authuser;
+        $addNewProperty['Gallery']['userID'] =$authuser;
+        $addNewProperty['Amenities']['userID'] =$authuser;
+        $addNewProperty['Information']['userID'] =$authuser;
+        //give propertyid 
+        $addNewProperty['Property']['propertyid'] =$propertyid; 
+        $addNewProperty['Locality']['propertyid'] =$propertyid;  
+        $addNewProperty['Resale']['propertyid'] =$propertyid;  
+        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Amenities']['propertyid'] =$propertyid;   
+        $addNewProperty['Information']['propertyid'] =$propertyid; 
+
+        $propertyinfo =$addNewProperty['Property'];
+        $localityinfo =$addNewProperty['Locality'];
+        $resaleinfo =$addNewProperty['Resale'];
+        $galleryinfo =$addNewProperty['Gallery'];
+        $amenitiesinfo =$addNewProperty['Amenities'];
+        $information =$addNewProperty['Information'];
+        //echo"<pre>";print_r($amenitiesinfo);die();
+        $this->db->trans_start();
+        $this->db->insert('commercial_rent_property_details', $propertyinfo);
+        $this->db->insert('commercial_rent_locality_details', $localityinfo);
+        $this->db->insert('commercial_rent_rental_details', $resaleinfo);
+        $this->db->insert('commercial_rent_photo_details', $galleryinfo);
+        $this->db->insert('commercial_rent_amenities_details', $amenitiesinfo);
+        $this->db->insert('commercial_rent_additional_information_details', $information);
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+
     /**
      * This function used to get user information by id
      * @param number $userId : This is user id

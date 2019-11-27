@@ -127,5 +127,22 @@ $route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
 $route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
 $route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
 $route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
+
+//commercial sale	  
+$route['addNewCommercialSale'] = "Property/addNewCommercialSale";
+$route['CommercialSaleAddProperty'] = "Property/CommercialSaleAddProperty";
+$route['CommercialResaleList'] = 'Property/CommercialRensaleList';
+$route['CommercialResaleList/(:num)'] = "user/CommercialResaleList/$1";
+$route['editCommercialResaleProperty/(:any)'] = "Property/editCommercialResaleProperty/$1";
+$route['EditCommercialResaleAddProperty'] = "Property/EditCommercialResaleAddProperty";
+$route['deleteCommercialResaleProperty'] = "Property/deleteCommercialResaleProperty";
+//commercial Rent	
+$route['addNewCommercialRent'] = "Property/addNewCommercialRent";
+$route['CommercialRentAddProperty'] = "Property/CommercialRentAddProperty";
+$route['CommercialResaleList'] = 'Property/CommercialRensaleList';
+$route['CommercialResaleList/(:num)'] = "user/CommercialResaleList/$1";
+$route['editCommercialResaleProperty/(:any)'] = "Property/editCommercialResaleProperty/$1";
+$route['EditCommercialResaleAddProperty'] = "Property/EditCommercialResaleAddProperty";
+$route['deleteCommercialResaleProperty'] = "Property/deleteCommercialResaleProperty";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

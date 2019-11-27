@@ -163,6 +163,40 @@ class Property extends BaseController
         }
     }
 
+    function addNewCommercialSale(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
+
+            $this->loadViews("addNewCommercialSale", $this->global, $data, NULL);
+        }
+    }
+
+    function addNewCommercialRent(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{
+            $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+             $this->global['pageTitle'] = 'Admin : add Property';
+
+            $this->loadViews("addNewCommercialRent", $this->global, $data, NULL);
+        }
+    }
+
     /**
      * This function is used to check whether email already exist or not
      */
@@ -248,6 +282,43 @@ class Property extends BaseController
             $data =$this->input->post();
             $this->load->model('property_model');
             $result = $this->property_model->ResidentialFlatmateAddProperty($data,$this->vendorId);
+                
+            if($result > 0){
+                $this->session->set_flashdata('success', 'New property created successfully');
+            }else{
+                $this->session->set_flashdata('error', 'property creation failed');
+            }
+                 
+            redirect('ResidentialResaleList');
+        }
+    }
+    
+    function CommercialSaleAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }else{       
+            $data =$this->input->post();
+            $this->load->model('property_model');
+            $result = $this->property_model->CommercialSaleAddProperty($data,$this->vendorId);
+                
+            if($result > 0){
+                $this->session->set_flashdata('success', 'New property created successfully');
+            }else{
+                $this->session->set_flashdata('error', 'property creation failed');
+            }
+                 
+            redirect('ResidentialResaleList');
+        }
+    }
+
+    function CommercialRentAddProperty(){
+        
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }else{       
+            $data =$this->input->post();
+            $this->load->model('property_model');
+            $result = $this->property_model->CommercialRentAddProperty($data,$this->vendorId);
                 
             if($result > 0){
                 $this->session->set_flashdata('success', 'New property created successfully');
