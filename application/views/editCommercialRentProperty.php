@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="CommercialRentAddProperty" action="<?php echo base_url() ?>CommercialRentAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="EditCommercialRentAddProperty" action="<?php echo base_url() ?>EditCommercialRentAddProperty" method="post">
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">
@@ -86,7 +86,7 @@
                                  <?php 
                                     $property_age = $PropertyInfo->age_of_property;
                                     if(!empty($proage)){
-                                      foreach ($proage as $value){ ?>
+                                      foreach ($proage as $key=>$value){ ?>
                                       <option value="<?php echo $value; ?>" <?php if($key ==$property_age) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }

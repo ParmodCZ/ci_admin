@@ -640,31 +640,106 @@ class Property extends BaseController
                 redirect('ResidentialRentList');
         }
     }
-    function EditResidentiaPGAddProperty(){
-            if($this->isAdmin() == TRUE){
-                $this->loadThis();
-            }
-            else{ 
-             
-                $PropertyId = $this->input->post('PropertyId');          
-                    
-                    $data = $this->input->post(); 
-                    $this->load->model('property_model');
-                    $result = $this->property_model->EditResidentiaPGAddProperty($data,$PropertyId);
-                    
-                    if($result == true)
-                    {
-                        $this->session->set_flashdata('success', 'Property updated successfully');
-                    }
-                    else
-                    {
-                        $this->session->set_flashdata('error', 'Property updation failed');
-                    }
-                    
-                    redirect('ResidentialRentList');
-            }
-        }
 
+    function EditResidentiaPGAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{ 
+         
+            $PropertyId = $this->input->post('PropertyId');          
+                
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->EditResidentiaPGAddProperty($data,$PropertyId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'Property updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Property updation failed');
+                }
+                
+                redirect('ResidentialRentList');
+        }
+    }
+    function EditResidentialFlatmateAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{ 
+         
+            $PropertyId = $this->input->post('PropertyId');          
+                
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->EditResidentialFlatmateAddProperty($data,$PropertyId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'Property updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Property updation failed');
+                }
+                
+                redirect('ResidentialFlatmateList');
+        }
+    }
+
+    function EditCommercialSaleAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{ 
+         
+            $PropertyId = $this->input->post('PropertyId');          
+                
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->EditCommercialSaleAddProperty($data,$PropertyId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'Property updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Property updation failed');
+                }
+                
+                redirect('CommercialSaleList');
+        }
+    }
+
+    function EditCommercialRentAddProperty(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{ 
+         
+            $PropertyId = $this->input->post('PropertyId');          
+                
+                $data = $this->input->post(); 
+                $this->load->model('property_model');
+                $result = $this->property_model->EditCommercialRentAddProperty($data,$PropertyId);
+                
+                if($result == true)
+                {
+                    $this->session->set_flashdata('success', 'Property updated successfully');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Property updation failed');
+                }
+                
+                redirect('CommercialSaleList');
+        }
+    }
+    
     /**
      * This function is used to delete the user using userId
      * @return boolean $result : TRUE / FALSE

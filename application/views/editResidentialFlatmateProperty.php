@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="ResidentialFlatmateAddProperty" action="<?php echo base_url() ?>ResidentialFlatmateAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="EditResidentialFlatmateAddProperty" action="<?php echo base_url() ?>EditResidentialFlatmateAddProperty" method="post">
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">
@@ -79,7 +79,7 @@
                                  <?php
                                     $BHK =$PropertyInfo->bhk_type;
                                     if(!empty($BHKType)){
-                                      foreach ($BHKType as $value){ ?>
+                                      foreach ($BHKType as $key=>$value){ ?>
                                       <option value="<?php echo $value; ?>" <?php if($key ==$BHK) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }
@@ -97,10 +97,10 @@
                                  <select class="form-control required" id="floor" name="Property[floor]" required>
                                     <option>Select</option>
                                  <?php
-                                    $floor = $PropertyInfo->floor;
+                                    $floorsed = $PropertyInfo->floor;
                                     if(!empty($floor)){
-                                      foreach ($floor as $value){ ?>
-                                      <option value="<?php echo $value; ?>" <?php if($key ==$floor) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                      foreach ($floor as $key=>$value){ ?>
+                                      <option value="<?php echo $value; ?>" <?php if($key ==$floorsed) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }
                                  ?>
@@ -115,7 +115,7 @@
                               <?php 
                                  $total_floor = $PropertyInfo->total_floor;
                                  if(!empty($top_floor)){
-                                   foreach ($top_floor as $value){ ?>
+                                   foreach ($top_floor as $key => $value){ ?>
                                    <option value="<?php echo $value; ?>" <?php if($key ==$total_floor) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                   <?php }
                                  }
@@ -131,7 +131,7 @@
                                  <?php 
                                     $property_age = $PropertyInfo->property_age;
                                     if(!empty($proage)){
-                                      foreach ($proage as $value){ ?>
+                                      foreach ($proage as $key=>$value){ ?>
                                       <option value="<?php echo $value; ?>" <?php if($key ==$property_age) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }
@@ -151,10 +151,10 @@
                                  <select class="form-control required" id="facing" name="Property[facing]" required>
                                     <option>Select</option>
                                     <?php 
-                                    $facing = $PropertyInfo->facing;
+                                    $faced = $PropertyInfo->facing;
                                     if(!empty($facing)){
                                       foreach ($facing as $value){ ?>
-                                      <option value="<?php echo $value; ?>" <?php if($key ==$facing) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                      <option value="<?php echo $value; ?>" <?php if($key ==$faced) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }
                                  ?>

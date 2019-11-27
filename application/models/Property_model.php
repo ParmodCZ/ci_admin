@@ -944,6 +944,274 @@ class Property_model extends CI_Model
         return TRUE;
     }
 
+    function EditResidentialFlatmateAddProperty($data,$PropertyId){ 
+        //echo"<pre>"; print_r($data);die;
+        $Property = $data['Property'];
+        $Locality = $data['Locality'];
+        $Rental   = $data['Rental'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Schedule = $data['Schedule'];
+
+        $apartment_type = $Property['apartment_type'];
+        $apartment_name = $Property['apartment_name'];
+        $bhk_type       =$Property['bhk_type'];
+        $floor           = $Property['floor'];
+        $total_floor    = $Property['total_floor'];
+        $property_age   = $Property['property_age'];
+        $facing         = $Property['facing'];
+        $property_size  = $Property['property_size'];
+        $room_type      = $Property['room_type'];
+        $tenant_type  = $Property['tenant_type'];
+
+        $city           = $Locality['city'];
+        $locality       = $Locality['locality'];
+        $street_area  = $Locality['street_area'];
+
+        $expected_rent = $Rental['expected_rent'];
+        $expected_deposit     = $Rental['expected_deposit'];
+        $maintenance       = $Rental['maintenance'];
+        $available_form   =$Rental['available_form'];
+        $negotiable        = $Rental['negotiable'];
+        $furnishing           = $Rental['furnishing'];
+        $description       = $Rental['description'];
+        $parking         = $Rental['parking'];
+
+        $upload_images= $Gallery['upload_images'];
+
+        $bathroom= $Amenities['bathroom'];
+        $water_supply= $Amenities['water_supply'];
+        $gym=$Amenities['gym'];
+        $non_veg_allowed= $Amenities['non_veg_allowed'];
+        $balcony= $Amenities['balcony'];
+        $gated_security=$Amenities['gated_security'];
+        $who_will_show_the_house= $Amenities['who_will_show_the_house'];
+        $secondary_number= $Amenities['secondary_number'];
+        $select_the_amenities_available= $Amenities['select_the_amenities_available'];
+
+        $availability= $Schedule['availability'];
+        $start_time=$Schedule['start_time'];
+        $end_time= $Schedule['end_time'];
+        $available_all_day= $Schedule['available_all_day'];
+
+        $sql ="UPDATE `resident_flatmates_property_details` as `Property`, `resident_flatmates_amenities_details` as `Amenities`, `resident_flatmates_locality_details` as `Locality`, `resident_flatmates_rental_details` as `Rental`, `resident_flatmates_gallery_details` as `Gallery`, `resident_flatmates_schedule_details` as `Schedule` SET
+
+            `Property`.`apartment_type` = '$apartment_type', 
+            `Property`.`apartment_name` = '$apartment_name', 
+            `Property`.`bhk_type` = '$bhk_type', 
+            `Property`.`floor` = '$floor', 
+            `Property`.`total_floor` = '$total_floor', 
+            `Property`.`property_age` = '$property_age', 
+            `Property`.`facing` = '$facing', 
+            `Property`.`property_size` = '$property_size',
+            `Property`.`room_type` = '$room_type',
+            `Property`.`tenant_type` = '$tenant_type',
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_area` = '$street_area', 
+
+            `Rental`.`expected_rent` = '$expected_rent', 
+            `Rental`.`expected_deposit` ='$expected_deposit', 
+            `Rental`.`maintenance` = '$maintenance',
+            `Rental`.`available_form` = '$available_form', 
+            `Rental`.`furnishing` = '$furnishing', 
+            `Rental`.`parking` = '$parking', 
+            `Rental`.`description` = '$description', 
+            `Rental`.`negotiable` = '$negotiable', 
+
+            `Gallery`.`upload_images` = '$upload_images', 
+
+            `Amenities`.`bathroom` = '$bathroom', 
+            `Amenities`.`water_supply` = '$water_supply', 
+            `Amenities`.`gym` = '$gym', 
+            `Amenities`.`non_veg_allowed` = '$non_veg_allowed', 
+            `Amenities`.`balcony` = '$balcony', 
+            `Amenities`.`gated_security` = '$gated_security', 
+            `Amenities`.`who_will_show_the_house` = '$who_will_show_the_house', 
+            `Amenities`.`secondary_number` = '$secondary_number', 
+            `Amenities`.`select_the_amenities_available` = '$select_the_amenities_available', 
+
+            `Schedule`.`availability` = '$availability', 
+            `Schedule`.`start_time` = '$start_time', 
+            `Schedule`.`end_time` = '$end_time', 
+            `Schedule`.`available_all_day` = '$available_all_day'
+
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        return TRUE;
+    }
+
+    function EditCommercialSaleAddProperty($data,$PropertyId){ 
+       // echo"<pre>"; print_r($data);die;
+        $Property = $data['Property'];
+        $Locality = $data['Locality'];
+        $Rental   = $data['Resale'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Information = $data['Information'];
+
+        $property_type = $Property['property_type'];
+        $floor_info = $Property['floor_info'];
+        $area       =$Property['area'];
+        $age_of_property= $Property['age_of_property'];
+        $furnishing     = $Property['furnishing'];
+        $other_features  = $Property['other_features'];
+        
+        $city           = $Locality['city'];
+        $locality       = $Locality['locality'];
+        $street_area    = $Locality['street_area'];
+        $landmark      = $Locality['landmark'];
+
+        $expected_price = $Rental['expected_price'];
+        $negotiable     = $Rental['negotiable'];
+        $available_form =$Rental['available_from'];
+        $ownership_type = $Rental['ownership_type'];
+        $ideal_for      = $Rental['ideal_for'];
+
+        $upload_images= $Gallery['upload_images'];
+
+        $power_backup= $Amenities['power_backup'];
+        $lift= $Amenities['lift'];
+        $parking=$Amenities['parking'];
+        $available_slots= $Amenities['available_slots'];
+
+        // $balcony= $Amenities['balcony'];
+        // $gated_security=$Amenities['gated_security'];
+        // $who_will_show_the_house= $Amenities['who_will_show_the_house'];
+        // $secondary_number= $Amenities['secondary_number'];
+        // $select_the_amenities_available= $Amenities['select_the_amenities_available'];
+
+        $description= $Information['description'];
+        $previous_occupancy=$Information['previous_occupancy'];
+        $locality_type= $Information['locality_type'];
+        $who_will_show_the_house= $Information['who_will_show_the_house'];
+        $secondary_number= $Information['secondary_number'];
+
+        $sql ="UPDATE `commercial_sale_property_details` as `Property`, `commercial_sale_amenities_details` as `Amenities`, `commercial_sale_location_details` as `Locality`, `commercial_sale_resale_details` as `Rental`, `commercial_sale_photo_details` as `Gallery`, `commercial_sale_additional_information_details` as `Information` SET
+
+            `Property`.`property_type` = '$property_type',  
+            `Property`.`floor_info` = '$floor_info', 
+            `Property`.`area` = '$area', 
+            `Property`.`age_of_property` = '$age_of_property', 
+            `Property`.`furnishing` = '$furnishing', 
+            `Property`.`other_features` = '$other_features', 
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_area` = '$street_area', 
+            `Locality`.`landmark` = '$landmark', 
+
+            `Rental`.`expected_price` = '$expected_price', 
+            `Rental`.`negotiable` ='$negotiable', 
+            `Rental`.`available_from` = '$available_form', 
+            `Rental`.`ownership_type` = '$ownership_type',  
+            `Rental`.`ideal_for` = '$ideal_for',
+
+            `Gallery`.`upload_images` = '$upload_images', 
+
+            `Amenities`.`power_backup` = '$power_backup', 
+            `Amenities`.`lift` = '$lift', 
+            `Amenities`.`parking` = '$parking',
+            `Amenities`.`available_slots` = '$available_slots',  
+
+            `Information`.`description` = '$description', 
+            `Information`.`previous_occupancy` = '$previous_occupancy', 
+            `Information`.`locality_type` = '$locality_type', 
+            `Information`.`who_will_show_the_house` = '$who_will_show_the_house',
+            `Information`.`secondary_number` = '$secondary_number'
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        return TRUE;
+    }
+
+    function EditCommercialRentAddProperty($data,$PropertyId){ 
+        //echo"<pre>"; print_r($data);die;
+        $Property = $data['Property'];
+        $Locality = $data['Locality'];
+        $Rental   = $data['Rent'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Information = $data['Information'];
+
+        $property_type = $Property['property_type'];
+        $floor_info = $Property['floor_info'];
+        $area       =$Property['area'];
+        $age_of_property= $Property['age_of_property'];
+        $furnishing     = $Property['furnishing'];
+        $other_features  = $Property['other_features'];
+        
+        $city           = $Locality['city'];
+        $locality       = $Locality['locality'];
+        $street_area    = $Locality['street_area'];
+        $landmark      = $Locality['landmark'];
+
+        $expected_rent = $Rental['expected_rent'];
+        $maintenance    = $Rental['maintenance'];
+        $lease_duration =$Rental['lease_duration'];
+        $lockin_period  = $Rental['lockin_period'];
+        $deposit        = $Rental['deposit'];
+        $available_from = $Rental['available_from'];
+        $ideal_for      = $Rental['ideal_for'];
+
+        $upload_images= $Gallery['upload_images'];
+
+        $power_backup= $Amenities['power_backup'];
+        $lift= $Amenities['lift'];
+        $parking=$Amenities['parking'];
+        $available_slots= $Amenities['available_slots'];
+
+        $description= $Information['description'];
+        $previous_occupancy=$Information['previous_occupancy'];
+        $locality_type= $Information['locality_type'];
+        $who_will_show_the_house= $Information['who_will_show_the_house'];
+        $secondary_number= $Information['secondary_number'];
+
+        $sql ="UPDATE `commercial_rent_property_details` as `Property`, `commercial_rent_amenities_details` as `Amenities`, `commercial_rent_locality_details` as `Locality`, `commercial_rent_rental_details` as `Rental`, `commercial_rent_photo_details` as `Gallery`, `commercial_rent_additional_information_details` as `Information` SET
+
+            `Property`.`property_type` = '$property_type',  
+            `Property`.`floor_info` = '$floor_info', 
+            `Property`.`area` = '$area', 
+            `Property`.`age_of_property` = '$age_of_property', 
+            `Property`.`furnishing` = '$furnishing', 
+            `Property`.`other_features` = '$other_features', 
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_area` = '$street_area', 
+            `Locality`.`landmark` = '$landmark', 
+
+            `Rental`.`expected_rent` = '$expected_rent', 
+            `Rental`.`maintenance` = '$maintenance', 
+            `Rental`.`lease_duration` = '$lease_duration', 
+            `Rental`.`lockin_period` ='$lockin_period', 
+            `Rental`.`available_from` = '$available_from', 
+            `Rental`.`deposit` = '$deposit',  
+            `Rental`.`ideal_for` = '$ideal_for',
+
+            `Gallery`.`upload_images` = '$upload_images', 
+
+            `Amenities`.`power_backup` = '$power_backup', 
+            `Amenities`.`lift` = '$lift', 
+            `Amenities`.`parking` = '$parking',
+            `Amenities`.`available_slots` = '$available_slots',  
+
+            `Information`.`description` = '$description', 
+            `Information`.`previous_occupancy` = '$previous_occupancy', 
+            `Information`.`locality_type` = '$locality_type', 
+            `Information`.`who_will_show_the_house` = '$who_will_show_the_house',
+            `Information`.`secondary_number` = '$secondary_number'
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        return TRUE;
+    }
+
     function EditResidentiaPGAddProperty($data,$PropertyId){ 
         //echo "<pre>";print_r($data);die;
         $Property = $data['PG'];
