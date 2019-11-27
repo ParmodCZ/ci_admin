@@ -60,7 +60,7 @@ class Property_model extends CI_Model
     }
 
     function ResidentiaPGListCount($searchText = ''){
-        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*');
+        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
         $this->db->from('resident_pg_room_details as room');
         $this->db->join('resident_pg_amenities_details as amenities', 'amenities.propertyid = room.propertyid','INNER');
         $this->db->join('resident_pg_locality_details as locality', 'locality.propertyid = room.propertyid','INNER');
@@ -83,7 +83,7 @@ class Property_model extends CI_Model
     }
 
     function ResidentialFlatmateListCount($searchText = ''){
-       $this->db->select('property.*, amenities.*, locality.*, pg.*, gallery.*');
+       $this->db->select('property.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
         $this->db->from('resident_flatmates_property_details as property');
         $this->db->join('resident_flatmates_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
@@ -208,7 +208,7 @@ class Property_model extends CI_Model
     }
 
     function ResidentiaPGList($searchText = '', $page, $segment){
-        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*');
+        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
         $this->db->from('resident_pg_room_details as room');
         $this->db->join('resident_pg_amenities_details as amenities', 'amenities.propertyid = room.propertyid','INNER');
         $this->db->join('resident_pg_locality_details as locality', 'locality.propertyid = room.propertyid','INNER');
@@ -646,6 +646,58 @@ class Property_model extends CI_Model
         $this->db->join('resident_resale_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         $this->db->join('resident_resale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
         $this->db->where('property.propertyid', $propertyid);
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
+    function editResidentiaPGPropertyInfo($propertyid){
+        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
+        $this->db->from('resident_pg_room_details as room');
+        $this->db->join('resident_pg_amenities_details as amenities', 'amenities.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_locality_details as locality', 'locality.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_pg_details as pg', 'pg.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_gallery_details as gallery', 'gallery.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_schedule_details as schedule', 'schedule.propertyid = room.propertyid','INNER');
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
+    function editResidentialFlatmatePropertyInfo($propertyid){
+        $this->db->select('property.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
+        $this->db->from('resident_flatmates_property_details as property');
+        $this->db->join('resident_flatmates_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_rental_details as pg', 'pg.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
+    function editCommercialSalePropertyInfo($propertyid){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('commercial_sale_property_details as property');
+        $this->db->join('commercial_sale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_location_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        $query = $this->db->get();
+        
+        return $query->row();
+    }
+
+    function editCommercialRentPropertyInfo($propertyid){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,information.*');
+        $this->db->from('commercial_rent_property_details as property');
+        $this->db->join('commercial_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
         $query = $this->db->get();
         
         return $query->row();

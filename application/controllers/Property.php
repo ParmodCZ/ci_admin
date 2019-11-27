@@ -476,6 +476,113 @@ class Property extends BaseController
             $this->loadViews("editResidentialResaleProperty", $this->global, $data, NULL);
     }
     
+    function editResidentiaPGProperty($propertyid = NULL){
+            if($propertyid == null){
+                redirect('propertyListing');
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['PropertyInfo'] = $this->property_model->editResidentiaPGPropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['pageTitle'] = 'Admin : Edit Property';
+            $dd =$data['PropertyInfo'];
+           // echo "<pre>";print_r($data);die;
+            $this->loadViews("editResidentiaPGProperty", $this->global, $data, NULL);
+    }
+
+    function editResidentialFlatmateProperty($propertyid = NULL){
+            if($propertyid == null){
+                redirect('propertyListing');
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['PropertyInfo'] = $this->property_model->editResidentialFlatmatePropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['pageTitle'] = 'Admin : Edit Property';
+            $dd =$data['PropertyInfo'];
+           //echo "<pre>";print_r($data);die;
+            $this->loadViews("editResidentialFlatmateProperty", $this->global, $data, NULL);
+    }
+
+    function editCommercialSaleProperty($propertyid = NULL){
+            if($propertyid == null){
+                redirect('propertyListing');
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['PropertyInfo'] = $this->property_model->editCommercialSalePropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['pageTitle'] = 'Admin : Edit Property';
+            $dd =$data['PropertyInfo'];
+           //echo "<pre>";print_r($data);die;
+            $this->loadViews("editCommercialSaleProperty", $this->global, $data, NULL);
+    }
+
+    function editCommercialRentProperty($propertyid = NULL){
+            if($propertyid == null){
+                redirect('propertyListing');
+            }
+             $count=[];
+            for($i=1;$i<=100;$i++){
+                array_push($count, $i);
+            }
+            $data['floor'] =$count;
+            $data['top_floor'] =$count;
+              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+
+             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+
+            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
+           // echo"<pre>";print_r($data['apartmenttypelist']);die;
+           // $data['roles'] = $this->Property_model->getUserRoles();
+            $this->load->model('property_model');
+            $data['PropertyInfo'] = $this->property_model->editCommercialRentPropertyInfo($propertyid);
+            //echo "<pre>";print_r($data);die;
+            $this->global['pageTitle'] = 'Admin : Edit Property';
+            $dd =$data['PropertyInfo'];
+           //echo "<pre>";print_r($data);die;
+            $this->loadViews("editCommercialRentProperty", $this->global, $data, NULL);
+    }
     
     /**
      * This function is used to edit the user information
