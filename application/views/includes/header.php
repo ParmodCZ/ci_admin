@@ -259,8 +259,8 @@
                   <ul class="treeview-menu">
                     <li><a href="<?php echo base_url(); ?>ResidentialRentList"><i class="fa fa-circle-o"></i>Rent</a></li>
                     <li><a href="<?php echo base_url(); ?>ResidentialResaleList"><i class="fa fa-circle-o"></i>Resale</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>PG/Hostel</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Flatmates</a></li>
+                    <li><a href="<?php echo base_url(); ?>ResidentiaPGList"><i class="fa fa-circle-o"></i>PG/Hostel</a></li>
+                    <li><a href="<?php echo base_url(); ?>ResidentialFlatmateList"><i class="fa fa-circle-o"></i>Flatmates</a></li>
                   </ul>
                 </li>
                 <li class="treeview">

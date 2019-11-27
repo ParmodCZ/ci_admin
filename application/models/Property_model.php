@@ -58,6 +58,99 @@ class Property_model extends CI_Model
         
         return $query->num_rows();
     }
+
+    function ResidentiaPGListCount($searchText = ''){
+        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*');
+        $this->db->from('resident_pg_room_details as room');
+        $this->db->join('resident_pg_amenities_details as amenities', 'amenities.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_locality_details as locality', 'locality.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_pg_details as pg', 'pg.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_gallery_details as gallery', 'gallery.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_schedule_details as schedule', 'schedule.propertyid = room.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(pg.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  room.property_size  LIKE '%".$searchText."%'
+            OR  room.expected_rent_per_person  LIKE '%".$searchText."%'
+            OR  room.select_the_type_of_rooms  LIKE '%".$searchText."%'
+            OR  room.room_amenities  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
+    function ResidentialFlatmateListCount($searchText = ''){
+       $this->db->select('property.*, amenities.*, locality.*, pg.*, gallery.*');
+        $this->db->from('resident_flatmates_property_details as property');
+        $this->db->join('resident_flatmates_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_rental_details as pg', 'pg.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(pg.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  property.property_size  LIKE '%".$searchText."%'
+            OR  property.apartment_name  LIKE '%".$searchText."%'
+            OR  property.bhk_type  LIKE '%".$searchText."%'
+            OR  property.facing  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
+    function CommercialSaleListCount($searchText = ''){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('commercial_sale_property_details as property');
+        $this->db->join('commercial_sale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_location_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(resale.expected_price  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  locality.landmark  LIKE '%".$searchText."%'
+            OR  property.area  LIKE '%".$searchText."%'
+            OR  property.property_type  LIKE '%".$searchText."%'
+            OR  property.floor_info  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+
+    function CommercialRentListCount($searchText = ''){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,information.*');
+        $this->db->from('commercial_rent_property_details as property');
+        $this->db->join('commercial_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(
+            rental.expected_rent  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  locality.landmark  LIKE '%".$searchText."%'
+            OR  property.area  LIKE '%".$searchText."%'
+            OR  property.property_type  LIKE '%".$searchText."%'
+            OR  property.floor_info  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
     
     /**
      * This function is used to get the user listing count
@@ -110,6 +203,129 @@ class Property_model extends CI_Model
         }
         $query = $this->db->get();
         
+        $result = $query->result();        
+        return $result;
+    }
+
+    function ResidentiaPGList($searchText = '', $page, $segment){
+        $this->db->select('room.*, amenities.*, locality.*, pg.*, gallery.*');
+        $this->db->from('resident_pg_room_details as room');
+        $this->db->join('resident_pg_amenities_details as amenities', 'amenities.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_locality_details as locality', 'locality.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_pg_details as pg', 'pg.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_gallery_details as gallery', 'gallery.propertyid = room.propertyid','INNER');
+        $this->db->join('resident_pg_schedule_details as schedule', 'schedule.propertyid = room.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(pg.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  room.property_size  LIKE '%".$searchText."%'
+            OR  room.expected_rent_per_person  LIKE '%".$searchText."%'
+            OR  room.select_the_type_of_rooms  LIKE '%".$searchText."%'
+            OR  room.room_amenities  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function ResidentialFlatmateList($searchText = '', $page, $segment){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,schedule.*');
+        $this->db->from('resident_flatmates_property_details as property');
+        $this->db->join('resident_flatmates_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  property.property_size  LIKE '%".$searchText."%'
+            OR  property.apartment_name  LIKE '%".$searchText."%'
+            OR  property.bhk_type  LIKE '%".$searchText."%'
+            OR  property.facing  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        
+        $result = $query->result();        
+        return $result;
+    }
+
+    function CommercialSaleList($searchText = '', $page, $segment){
+        $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+        $this->db->from('commercial_sale_property_details as property');
+        $this->db->join('commercial_sale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_location_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_sale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(
+            resale.expected_price  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  locality.landmark  LIKE '%".$searchText."%'
+            OR  property.area  LIKE '%".$searchText."%'
+            OR  property.property_type  LIKE '%".$searchText."%'
+            OR  property.floor_info  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        //echo $this->db->last_query();die;
+        $result = $query->result();        
+        return $result;
+    }
+
+    // function CommercialSaleList($searchText = '', $page, $segment){
+    //     $this->db->select('property.*, amenities.*, locality.*, resale.*, gallery.*,information.*');
+    //     $this->db->from('commercial_sale_property_details as property');
+    //     $this->db->join('commercial_sale_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+    //     $this->db->join('commercial_sale_location_details as locality', 'locality.propertyid = property.propertyid','INNER');
+    //     $this->db->join('commercial_sale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
+    //     $this->db->join('commercial_sale_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+    //     $this->db->join('commercial_sale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+    //     if(!empty($searchText)) {
+    //         $likeCriteria = "(
+    //         resale.expected_price  LIKE '%".$searchText."%'
+    //         OR  locality.city  LIKE '%".$searchText."%'
+    //         OR  locality.street_area  LIKE '%".$searchText."%'
+    //         OR  locality.landmark  LIKE '%".$searchText."%'
+    //         OR  property.area  LIKE '%".$searchText."%'
+    //         OR  property.property_type  LIKE '%".$searchText."%'
+    //         OR  property.floor_info  LIKE '%".$searchText."%')";
+    //         $this->db->where($likeCriteria);
+    //     }
+    //     $query = $this->db->get();
+    //     //echo $this->db->last_query();die;
+    //     $result = $query->result();        
+    //     return $result;
+    // }
+
+    function CommercialRentList($searchText = '', $page, $segment){
+        $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,information.*');
+        $this->db->from('commercial_rent_property_details as property');
+        $this->db->join('commercial_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
+        $this->db->join('commercial_rent_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        if(!empty($searchText)) {
+            $likeCriteria = "(
+            rental.expected_rent  LIKE '%".$searchText."%'
+            OR  locality.city  LIKE '%".$searchText."%'
+            OR  locality.street_area  LIKE '%".$searchText."%'
+            OR  locality.landmark  LIKE '%".$searchText."%'
+            OR  property.area  LIKE '%".$searchText."%'
+            OR  property.property_type  LIKE '%".$searchText."%'
+            OR  property.floor_info  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $query = $this->db->get();
+        //echo $this->db->last_query();die;
         $result = $query->result();        
         return $result;
     }

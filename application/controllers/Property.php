@@ -84,6 +84,94 @@ class Property extends BaseController
         }
     }
 
+    function ResidentiaPGList(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->property_model->ResidentiaPGListCount($searchText);
+
+            $returns = $this->paginationCompress( "ResidentiaPGList/", $count, 10 );
+            
+            $data['Records'] = $this->property_model->ResidentiaPGList($searchText, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'Admin : User Listing';
+            //echo"<pre>";print_r($data);die;
+            $this->loadViews("ResidentiaPGList", $this->global, $data, NULL);
+        }
+    }
+
+    function ResidentialFlatmateList(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->property_model->ResidentialFlatmateListCount($searchText);
+
+            $returns = $this->paginationCompress( "ResidentialFlatmateList/", $count, 10 );
+            
+            $data['Records'] = $this->property_model->ResidentialFlatmateList($searchText, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'Admin : User Listing';
+            //echo"<pre>";print_r($data);die;
+            $this->loadViews("ResidentialFlatmateList", $this->global, $data, NULL);
+        }
+    }
+
+    function CommercialSaleList(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->property_model->CommercialSaleListCount($searchText);
+
+            $returns = $this->paginationCompress( "CommercialSaleList/", $count, 10 );
+            
+            $data['Records'] = $this->property_model->CommercialSaleList($searchText, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'Admin : User Listing';
+            //echo"<pre>";print_r($data);die;
+            $this->loadViews("CommercialSaleList", $this->global, $data, NULL);
+        }
+    }
+
+    function CommercialRentList(){
+        if($this->isAdmin() == TRUE){
+            $this->loadThis();
+        }
+        else{        
+            $searchText = $this->security->xss_clean($this->input->post('searchText'));
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->property_model->CommercialRentListCount($searchText);
+
+            $returns = $this->paginationCompress( "CommercialRentList/", $count, 10 );
+            
+            $data['Records'] = $this->property_model->CommercialRentList($searchText, $returns["page"], $returns["segment"]);
+            
+            $this->global['pageTitle'] = 'Admin : User Listing';
+            //echo"<pre>";print_r($data);die;
+            $this->loadViews("CommercialRentList", $this->global, $data, NULL);
+        }
+    }
+
     /**
      * This function is used to load the add new form
      */
@@ -289,7 +377,7 @@ class Property extends BaseController
                 $this->session->set_flashdata('error', 'property creation failed');
             }
                  
-            redirect('ResidentialResaleList');
+            redirect('ResidentialFlatmateList');
         }
     }
     
