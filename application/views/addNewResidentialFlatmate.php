@@ -85,16 +85,6 @@
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label for="Ownership_Type">Ownership Type *</label>
-                                 <select class="form-control required" id="Ownership_Type" name="Property[ownership_type]" required>
-                                    <option>Select</option>
-                                   <option value="value">On Lease</option>
-                                   <option value="value">Self Owned</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="form-group">
                                  <label for="floor">Floor *</label>
                                  <select class="form-control required" id="floor" name="Property[floor]" required>
                                     <option>Select</option>
@@ -121,21 +111,6 @@
                                   <?php }
                                  }
                               ?>
-                                 </select>
-                              </div>
-                           </div>
-                        <!-- </div>
-                        <div class="row"> -->
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label for="Floar_Type">Floar Type *</label>
-                                 <select class="form-control required" id="Floar_Type" name="Property[floor_type]" required>
-                                    <option>Select</option>
-                                    <option value="value">Vitrified Tiles</option>
-                                    <option value="value">MOsaic</option>
-                                    <option value="value">Marble/Granite</option>
-                                    <option value="value">Wooden</option>
-                                    <option value="value">Cement</option>
                                  </select>
                               </div>
                            </div>
@@ -322,12 +297,6 @@
                               <div class="form-group">
                                  <label for="balcony">Balcony *</label>
                                  <input type="text" class="form-control" id="balcony" name="Amenities[balcony]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="power_backup">Power Backup *</label>
-                                 <input type="text" class="form-control" id="power_backup" name="Amenities[power_backup]" required>
                               </div>
                            </div>
                            <div class="col-md-6">

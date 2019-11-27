@@ -110,13 +110,13 @@ $route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResalePro
 
 
 //PG	  
-// $route['AddResidentialPgProperty'] = "Property/AddResidentialPgProperty";
-// $route['ResidentialResaleAddProperty'] = "Property/addNewResidentialResaleProperty";
-// $route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
-// $route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
-// $route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
-// $route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
-// $route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
+$route['AddResidentialPgProperty'] = "Property/AddResidentialPgProperty";
+$route['ResidentialPgAddProperty'] = "Property/ResidentialPgAddProperty";
+$route['ResidentialResaleList'] = 'Property/ResidentialRensaleList';
+$route['ResidentialResaleList/(:num)'] = "user/ResidentialResaleList/$1";
+$route['editResidentialResaleProperty/(:any)'] = "Property/editResidentialResaleProperty/$1";
+$route['EditResidentialResaleAddProperty'] = "Property/EditResidentialResaleAddProperty";
+$route['deleteResidentialResaleProperty'] = "Property/deleteResidentialResaleProperty";
 
 
 //Flatmate	  

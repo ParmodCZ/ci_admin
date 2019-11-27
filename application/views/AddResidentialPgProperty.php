@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="ResidentialPgAddProperty" action="<?php echo base_url() ?>ResidentialPgAddProperty" method="post">
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">
@@ -40,7 +40,7 @@
                   <ul class="nav nav-tabs tabs-left sideways">
                      <li class="active"><a href="#PG-Details" data-toggle="tab">PG Details</a></li>
                      <li><a href="#Locality-Details" data-toggle="tab">Locality Details</a></li>
-                     <li><a href="#Rental-Details" data-toggle="tab">Rental Details</a></li>
+                     <li><a href="#Schedule-Details" data-toggle="tab">Schedule Details</a></li>
                      <li><a href="#Gallery" data-toggle="tab">Gallery</a></li>
                      <li><a href="#Amenities" data-toggle="tab">Amenities</a></li>
                      <li><a href="#Room" data-toggle="tab">Room Details</a></li>
@@ -122,71 +122,33 @@
                            </div>
                         </div>
                      </div>
-                     <!-- Rental-Details -->
-                     <div class="tab-pane" id="Rental-Details">
+                     <!-- Schedule-Details -->
+                     <div class="tab-pane" id="Schedule-Details">
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="no_of_lease_years">No Of Lease Years? *</label>
-                                 <input type="text" class="form-control" id="no_of_lease_years" name="Rental[no_of_lease_years]" required>
+                                 <label for="availability">Availability *</label>
+                                 <input type="text" class="form-control" id="availability" name="Schedule[availability]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_currently_under_loan">Is Currently Under Loan *</label>
-                                 <input type="text" class="form-control" id="is_currently_under_loan" name="Rental[is_currently_under_loan]" required>
+                                 <label for="start_time">Start Time *</label>
+                                 <input type="text" class="form-control" id="start_time" name="Schedule[start_time]" required>
                               </div>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="expected_post">Expected Post *</label>
-                                 <input type="text" class="form-control" id="expected_post" name="Rental[expected_post]" required>
+                                 <label for="end_time">End Time *</label>
+                                 <input type="text" class="form-control" id="end_time" name="Schedule[end_time]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_price_negotiable">Is Price Negotiable *</label>
-                                 <input type="text" class="form-control" id="is_price_negotiable" name="Rental[is_price_negotiable]" required>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="maintenance_cost">Maintenance Cost *</label>
-                                 <input type="text" class="form-control" id="maintenance_cost" name="Rental[maintenance_cost]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="available_forms">Availablle From *</label>
-                                 <input type="text" class="form-control" id="available_forms" name="Rental[available_forms]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="kitchen_type">Kitchen Type *</label>
-                                 <input type="text" class="form-control" id="kitchen_type" name="Rental[kitchen_type]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group" >
-                                 <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing" name="Rental[furnishing]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group" >
-                                 <label for="parking">Parking *</label>
-                                 <input type="text" class="form-control" id="parking" name="Rental[parking]" required>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="form-group" >
-                                 <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="Rental[description]" required>
+                                 <label for="available_all_day">Available All Day *</label>
+                                 <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required>
                               </div>
                            </div>
                         </div>

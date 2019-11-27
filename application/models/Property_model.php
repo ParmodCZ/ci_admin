@@ -255,9 +255,7 @@ class Property_model extends CI_Model
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         // $addNewProperty['Information']['propertyid'] =$propertyid; 
-unset($addNewProperty['Property']['ownership_type']);
-unset($addNewProperty['Property']['floor_type']);
-unset($addNewProperty['Amenities']['power_backup']);
+
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Resale'];
@@ -274,6 +272,48 @@ unset($addNewProperty['Amenities']['power_backup']);
         $this->db->insert('resident_flatmates_amenities_details', $amenitiesinfo);
         $this->db->insert('resident_flatmates_schedule_details', $scheduleinfo);
         // $this->db->insert('resident_resale_additional_information_details', $information);
+        $insert_id = $this->db->insert_id();
+        
+        $this->db->trans_complete();
+        return $insert_id;
+    }
+
+    function ResidentialPgAddProperty($addNewProperty,$authuser){
+        $propertyid =uniqid('PG'); 
+        //echo"<pre>";print_r($addNewProperty);die;
+        //give userID
+        $addNewProperty['PG']['userID'] =$authuser;
+        $addNewProperty['Locality']['userID'] =$authuser;
+        $addNewProperty['Rental']['userID'] =$authuser;
+        $addNewProperty['Gallery']['userID'] =$authuser;
+        $addNewProperty['Amenities']['userID'] =$authuser;
+        $addNewProperty['Schedule']['userID'] =$authuser;
+        $addNewProperty['Room']['userID'] =$authuser;
+        //give propertyid 
+        $addNewProperty['PG']['propertyid'] =$propertyid; 
+        $addNewProperty['Locality']['propertyid'] =$propertyid;  
+        $addNewProperty['Rental']['propertyid'] =$propertyid;  
+        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Amenities']['propertyid'] =$propertyid;  
+        $addNewProperty['Schedule']['propertyid'] =$propertyid; 
+        $addNewProperty['Room']['propertyid'] =$propertyid; 
+
+        $propertyinfo =$addNewProperty['PG'];
+        $localityinfo =$addNewProperty['Locality'];
+        $rentalinfo =$addNewProperty['Rental'];
+        $galleryinfo =$addNewProperty['Gallery'];
+        $amenitiesinfo =$addNewProperty['Amenities'];
+        $scheduleinfo =$addNewProperty['Schedule'];
+        $information =$addNewProperty['Room'];
+        //echo"<pre>";print_r($amenitiesinfo);die();
+        $this->db->trans_start();
+        $this->db->insert('resident_pg_pg_details', $propertyinfo);
+        $this->db->insert('resident_pg_locality_details', $localityinfo);
+        //$this->db->insert('resident_pg_rental_details', $rentalinfo);
+        $this->db->insert('resident_pg_gallery_details', $galleryinfo);
+        $this->db->insert('resident_pg_amenities_details', $amenitiesinfo);
+        $this->db->insert('resident_pg_schedule_details', $scheduleinfo);
+        $this->db->insert('resident_pg_room_details', $information);
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
