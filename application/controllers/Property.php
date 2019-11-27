@@ -625,6 +625,7 @@ class Property extends BaseController
                 
                 $data = $this->input->post(); 
                 $this->load->model('property_model');
+                 // echo "<pre>";print_r($data);die;
                 $result = $this->property_model->EditResidentialResalePropertyPost($data,$PropertyId);
                 
                 if($result == true)
@@ -639,7 +640,30 @@ class Property extends BaseController
                 redirect('ResidentialRentList');
         }
     }
-
+    function EditResidentiaPGAddProperty(){
+            if($this->isAdmin() == TRUE){
+                $this->loadThis();
+            }
+            else{ 
+             
+                $PropertyId = $this->input->post('PropertyId');          
+                    
+                    $data = $this->input->post(); 
+                    $this->load->model('property_model');
+                    $result = $this->property_model->EditResidentiaPGAddProperty($data,$PropertyId);
+                    
+                    if($result == true)
+                    {
+                        $this->session->set_flashdata('success', 'Property updated successfully');
+                    }
+                    else
+                    {
+                        $this->session->set_flashdata('error', 'Property updation failed');
+                    }
+                    
+                    redirect('ResidentialRentList');
+            }
+        }
 
     /**
      * This function is used to delete the user using userId

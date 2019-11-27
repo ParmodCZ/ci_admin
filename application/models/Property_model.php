@@ -893,7 +893,9 @@ class Property_model extends CI_Model
         $start_time=$Schedule['start_time'];
         $end_time= $Schedule['end_time'];
         $available_all_day= $Schedule['available_all_day'];
-
+        $do_you_have_sale_deed_certificate =$Information['do_you_have_sale_deed_certificate'];
+        $select_have_you_paid_propery_tax =$Information['select_have_you_paid_propery_tax'];
+        $do_you_have_occupancy_certificate =$Information['do_you_have_occupancy_certificate'];
 
         $sql ="UPDATE `resident_resale_property_details` as `Property`, `resident_resale_amenities_details` as `Amenities`, `resident_resale_locality_details` as `Locality`, `resident_resale_resale_details` as `Resale`, `resident_resale_gallery_details` as `Gallery`, `resident_resale_schedule_details` as `Schedule` ,`resident_resale_additional_information_details` as `Information` SET
 
@@ -928,6 +930,89 @@ class Property_model extends CI_Model
             `Amenities`.`who_will_show_house` = '$who_will_show_house', 
             `Amenities`.`secondary_number` = '$secondary_number', 
             `Amenities`.`select_the_amenities_available` = '$select_the_amenities_available', 
+            `Schedule`.`availability` = '$availability', 
+            `Schedule`.`start_time` = '$start_time', 
+            `Schedule`.`end_time` = '$end_time', 
+            `Schedule`.`available_all_day` = '$available_all_day'
+            `Information`.`do_you_have_sale_deed_certificate` = '$do_you_have_sale_deed_certificate'
+            `Information`.`select_have_you_paid_propery_tax` = '$select_have_you_paid_propery_tax'
+            `Information`.`do_you_have_occupancy_certificate` = '$do_you_have_occupancy_certificate'
+             WHERE `Property`.`propertyid` = ?";
+
+             //echo $sql;die;
+         $this->db->query($sql, array($PropertyId));
+        return TRUE;
+    }
+
+    function EditResidentiaPGAddProperty($data,$PropertyId){ 
+        //echo "<pre>";print_r($data);die;
+        $Property = $data['PG'];
+        $Locality = $data['Locality'];
+        //$Resale   = $data['Resale'];
+        $Gallery  = $data['Gallery'];
+        $Amenities= $data['Amenities'];
+        $Schedule = $data['Schedule'];
+        $Room = $data['Room'];
+
+        $place_is_available_for = $Property['place_is_available_for'];
+        $preferred_guests = $Property['preferred_guests'];
+        $available_from=$Property['available_from'];
+        $gate_closing_time= $Property['gate_closing_time'];
+        $food_included= $Property['food_included'];
+        $pg_hostel_rules= $Property['pg_hostel_rules'];
+        $description= $Property['description'];
+
+        $city= $Locality['city'];
+        $locality= $Locality['locality'];
+        $street_area= $Locality['street_area'];
+
+        $select_the_type_of_rooms= $Room['select_the_type_of_rooms'];
+        $expected_rent_per_person= $Room['expected_rent_per_person'];
+        $expected_deposit_per_person=$Room['expected_deposit_per_person'];
+        $room_amenities= $Room['room_amenities'];
+
+        $upload_images= $Gallery['upload_images'];
+
+        $available_service_laundry= $Amenities['available_service_laundry'];
+        $available_service_room_cleaning= $Amenities['available_service_room_cleaning'];
+        $available_service_warden_facility=$Amenities['available_service_warden_facility'];
+        $available_amenities= $Amenities['available_amenities'];
+        $parking=$Amenities['parking'];
+  
+        $availability= $Schedule['availability'];
+        $start_time=$Schedule['start_time'];
+        $end_time= $Schedule['end_time'];
+        $available_all_day= $Schedule['available_all_day'];
+        //$Room[''];
+
+
+        $sql ="UPDATE `resident_pg_pg_details` as `Property`, `resident_pg_amenities_details` as `Amenities`, `resident_pg_locality_details` as `Locality`, `resident_pg_room_details` as `Room`, `resident_pg_gallery_details` as `Gallery`, `resident_pg_schedule_details` as `Schedule` SET
+
+            `Property`.`place_is_available_for` = '$place_is_available_for', 
+            `Property`.`preferred_guests` = '$preferred_guests', 
+            `Property`.`available_from` = '$available_from', 
+            `Property`.`gate_closing_time` = '$gate_closing_time', 
+            `Property`.`food_included` = '$food_included',  
+            `Property`.`pg_hostel_rules` = '$pg_hostel_rules', 
+            `Property`.`description` = '$description',
+
+            `Locality`.`city` = '$city', 
+            `Locality`.`locality` = '$locality', 
+            `Locality`.`street_area` = '$street_area', 
+            
+            `Room`.`select_the_type_of_rooms` ='$select_the_type_of_rooms', 
+            `Room`.`expected_rent_per_person` = '$expected_rent_per_person',
+            `Room`.`expected_deposit_per_person` = '$expected_deposit_per_person',  
+            `Room`.`room_amenities` = '$room_amenities', 
+
+            `Gallery`.`upload_images` = '$upload_images',
+
+            `Amenities`.`available_service_laundry` = '$available_service_laundry', 
+            `Amenities`.`available_service_room_cleaning` = '$available_service_room_cleaning', 
+            `Amenities`.`available_service_warden_facility` = '$available_service_warden_facility', 
+            `Amenities`.`available_amenities` = '$available_amenities', 
+            `Amenities`.`parking` = '$parking', 
+
             `Schedule`.`availability` = '$availability', 
             `Schedule`.`start_time` = '$start_time', 
             `Schedule`.`end_time` = '$end_time', 
