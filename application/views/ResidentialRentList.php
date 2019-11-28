@@ -20,7 +20,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Users List</h3>
                     <div class="box-tools">
-                        <form action="<?php echo base_url() ?>userListing" method="POST" id="searchList">
+                        <form action="<?php echo base_url() ?>ResidentialRentList" method="POST" id="searchList">
                             <div class="input-group">
                               <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                               <div class="input-group-btn">
@@ -33,11 +33,11 @@
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Role</th>
-                        <th>Created On</th>
+                        <th>Apartment Type</th>
+                        <th>Apartment Name</th>
+                        <th>BHK Type</th>
+                        <th>Floor</th>
+                        <th>City</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     <?php
@@ -54,7 +54,7 @@
                         <td><?php echo $record->city ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'editresidentialrentproperty/'.$record->propertyid; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-sm btn-danger deleteProperty" href="#" data-propertyid="<?php echo $record->propertyid; ?>" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger" href="#"onclick="deletefn(<?php echo $record->propertyid; ?>,'deleteResidentialRentProperty',' Residential Rent Property');" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php

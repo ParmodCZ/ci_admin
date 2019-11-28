@@ -270,8 +270,8 @@
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Rent</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Sale</a></li>
+                    <li><a href="<?php echo base_url(); ?>CommercialSaleList"><i class="fa fa-circle-o"></i>Rent</a></li>
+                    <li><a href="<?php echo base_url(); ?>CommercialRentList"><i class="fa fa-circle-o"></i>Sale</a></li>
                   </ul>
                 </li>
               </ul>
