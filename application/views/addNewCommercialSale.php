@@ -55,10 +55,17 @@
                               <div class="form-group">
                                  <label for="property_type">Property Type *</label>
                                  <select class="form-control required" id="property_type" name="Property[property_type]" data-error="Please enter name field." required>
-                                    <option>Select</option>
-                                    <option value="apartment">Apartment</option>
+                                    <!-- <option value="apartment">Apartment</option>
                                     <option value="independent house/villa">Independent House/Villa</option>
-                                    <option value="gated community villa">Gated Community Villa</option>
+                                    <option value="gated community villa">Gated Community Villa</option> -->
+                                    <option>Select</option>
+                                    <option value="OFFICE">Office</option>
+                                    <option value="COWORKING">Co-Working</option>
+                                    <option value="SHOP">Shop</option>
+                                    <option value="SHOWROOM">Showroom</option>
+                                    <option value="GODOWN_WAREHOUSE">Godown/Warehouse</option>
+                                    <option value="INDUSTRIAL_BUILDING">Industrial Building</option>
+                                    <option value="INDUSTRIAL_SHED">Industrial Shed</option>
                                  </select>
                                  <div class="help-block with-errors"></div>
                               </div>
@@ -94,7 +101,11 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing" name="Property[furnishing]" required>
+                                 <select class="form-control required" id="furnishing" name="Property[furnishing]" required>
+                                    <option value="FULLY_FURNISHED">Fully Furnished</option>
+                                    <option value="SEMI_FURNISHED">Semi Furnished</option>
+                                    <option value="NOT_FURNISHED">Unfurnished</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
@@ -160,7 +171,10 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="ownership_type">Ownership Type *</label>
-                                 <input type="text" class="form-control" id="ownership_type" name="Resale[ownership_type]" required>
+                                 <select class="form-control" id="ownership_type" name="Resale[ownership_type]" required>
+                                    <option value="LEASEHOLD">On Lease</option>
+                                    <option value="FREEHOLD">Self Owned</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -200,13 +214,21 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="power_backup">Power Backup *</label>
-                                 <input type="text" class="form-control" id="power_backup" name="Amenities[power_backup]" required>
+                                 <select class="form-control" id="power_backup" name="Amenities[power_backup]" required>
+                                    <option value="FULL">Full</option>
+                                    <option value="DG_BACKUP">DG Backup</option>
+                                    <option value="NEED_TO_ARRANGE">Need to Arrange</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="lift">Lift *</label>
-                                 <input type="text" class="form-control" id="lift" name="Amenities[lift]" required>
+                                 <select class="form-control required" id="lift" name="Amenities[lift]" required>
+                                    <option value="NONE">None</option>
+                                    <option value="PERSONAL">Personal</option>
+                                    <option alue="COMMON">Common</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -214,7 +236,12 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="parking">parking *</label>
-                                 <input type="text" class="form-control" id="parking" name="Amenities[parking]" required>
+                                 <select class="form-control" id="parking" name="Amenities[parking]" required>
+                                    <option value="NONE">None</option>
+                                    <option value="PUBLIC_RESERVED">Public And Reserved</option>
+                                    <option value="PUBLIC">Public</option>
+                                    <option value="RESERVED">Reserved</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -237,21 +264,41 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="previous_occupancy">Previous Occupancy *</label>
-                                 <input type="text" class="form-control" id="previous_occupancy" name="Information[previous_occupancy]" required>
+                                 <select class="form-control" id="previous_occupancy" name="Information[previous_occupancy]" required>
+                                    <option value="FIRST_TIME_RENTING">First Time Renting</option>
+                                    <option value="CURRENTLY_RENTED">Currently Rented</option>
+                                    <option value="PREVIOUSLY_RENTED">Previously Rented</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-md-4">
                               <div class="form-group">
-                                 <label for="locality_type">Locality Yype *</label>
-                                 <input type="text" class="form-control" id="locality_type" name="Information[locality_type]" required>
+                                 <label for="locality_type">Locality Type *</label>
+                                 <select class="form-control" id="locality_type" name="Information[locality_type]" required>
+                                    <option value="MARKET_COMPLEX">Market Complex</option>
+                                    <option value="SHOPPING_MALL">Shopping Mall</option>
+                                    <option value="RESIDENTIAL_AREA">Residential Area</option>
+                                    <option value="STANDALONE_BUILDING">Standalone Building</option>
+                                    <option value="INDUSTRIAL_AREA">Industrial Area</option>
+                                    <option value="TECH_PARK">Tech Park</option>
+                                    <option value="OFFICE_AREA">Office Area</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="who_will_show_the_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control" id="who_will_show_the_house" name="Information[who_will_show_the_house]" required>
+                                 <select class="form-control" id="who_will_show_the_house" name="Information[who_will_show_the_house]" required>
+                                    <option value="">Select</option>
+                                    <option value="I_HAVE_KEYS">I will show</option>
+                                    <option value="NEED_HELP">Need Help</option>
+                                    <option value="NEIGHBOURS">Neighbours</option>
+                                    <option value="OTHERS">Others</option>
+                                    <option value="SECURITY">Security</option>
+                                    <option value="TENANTS">Tenants</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">

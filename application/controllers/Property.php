@@ -257,9 +257,14 @@ class Property extends BaseController
         }
         else{
             $count=[];
-            for($i=1;$i<=100;$i++){
-                array_push($count, $i);
+            for($i=-2;$i<=100;$i++){
+                ///array_push($count, $i);
+                $count[$i]=$i;
             }
+            $count[$i]='Lower Basement';
+            $count[$i]='Upper Basement';
+            $count[$i]='Ground';
+            $count[$i]='Full Building';
             $data['floor'] =$count;
             $data['top_floor'] =$count;
              $this->global['pageTitle'] = 'Admin : add Property';

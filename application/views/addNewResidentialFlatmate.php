@@ -150,13 +150,29 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="room_type">Room Type *</label>
-                                 <input type="text" class="form-control" id="room_type" name="Property[room_type]" required>
+                                 <!-- <input type="text" class="form-control" id="room_type" name="Property[room_type]" required> -->
+                              <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input" id="room_type1" name="Property[room_type]">
+                                 <label class="custom-control-label" value='single' for="room_type1">Single Room</label>
+                               <!-- </div>
+                               <div class="custom-control custom-radio custom-control-inline"> -->
+                                 <input type="radio" class="custom-control-input" id="room_type2" name="Property[room_type]">
+                                 <label class="custom-control-label" value='shared' for="room_type2">Shared Room</label>
+                               </div>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="room_type">Tenant Type *</label>
-                                 <input type="text" class="form-control" id="tenant_type" name="Property[tenant_type]" required>
+                                 <!-- <input type="text" class="form-control" id="tenant_type" name="Property[tenant_type]" required> -->
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                 <input type="radio" class="custom-control-input" id="male" name="Property[tenant_type]">
+                                 <label class="custom-control-label"value='male' for="male">Male</label>
+                               <!-- </div>
+                               <div class="custom-control custom-radio custom-control-inline"> -->
+                                 <input type="radio" class="custom-control-input" id="female" name="Property[tenant_type]">
+                                 <label class="custom-control-label"  value='female' for="female">Female</label>
+                               </div>
                               </div>
                            </div>
                         </div>
@@ -210,7 +226,11 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="maintenance">Maintenance *</label>
-                                 <input type="text" class="form-control" id="maintenance" name="Rental[maintenance]" required>
+                                 <select type="text" class="form-control" id="maintenance" name="Rental[maintenance]" required>
+                                    <option value="">Select</option>
+                                    <option value="false">Maintenance Included</option>
+                                    <option value="true">Maintenance Extra</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -222,13 +242,24 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing" name="Rental[furnishing]" required>
+                                 <select class="form-control" id="furnishing" name="Rental[furnishing]" required>
+                                    <option value="">Select</option>
+                                    <option value="FULLY_FURNISHED">Fully furnished</option>
+                                    <option value="SEMI_FURNISHED">Semi-furnished</option>
+                                    <option value="NOT_FURNISHED">Unfurnished</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="parking">Parking *</label>
-                                 <input type="text" class="form-control" id="parking" name="Rental[parking]" required>
+                                 <select  class="form-control" id="parking" name="Rental[parking]" required>
+                                    <option value="">Select</option>
+                                    <option value="TWO_WHEELER">Bike</option>
+                                    <option value="FOUR_WHEELER">Car</option>
+                                    <option value="BOTH">Bike and Car</option>
+                                    <option value="NONE">None</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -274,7 +305,12 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="water_supply">Water Supply *</label>
-                                 <input type="text" class="form-control" id="water_supply" name="Amenities[water_supply]" required>
+                                 <select  class="form-control" id="water_supply" name="Amenities[water_supply]" required>
+                                    <option value="">Select</option>
+                                    <option value="CORPORATION">Corporation</option>
+                                    <option value="BOREWELL">Borewell</option>
+                                    <option value="CORP_BORE">Both</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -282,13 +318,21 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="gym">Gym *</label>
-                                 <input type="text" class="form-control" id="gym" name="Amenities[gym]" required>
+                                 <select  class="form-control" id="gym" name="Amenities[gym]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="non_veg_allowed">Non Veg. Allowed *</label>
-                                 <input type="text" class="form-control" id="non_veg_allowed" name="Amenities[non_veg_allowed]" required>
+                                 <select  class="form-control" id="non_veg_allowed" name="Amenities[non_veg_allowed]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -302,13 +346,25 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="gated_security">Gated Security *</label>
-                                 <input type="text" class="form-control" id="gated_security" name="Amenities[gated_security]" required>
+                                 <select type="text" class="form-control" id="gated_security" name="Amenities[gated_security]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="who_will_show_the_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                                 <select class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                                    <option value="">Select</option>
+                                    <option value="I_HAVE_KEYS">I will show</option>
+                                    <option value="NEED_HELP">Need Help</option>
+                                    <option value="NEIGHBOURS">Neighbours</option>
+                                    <option value="OTHERS">Others</option>
+                                    <option value="SECURITY">Security</option>
+                                    <option value="TENANTS">Tenants</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
