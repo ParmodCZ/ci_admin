@@ -13,6 +13,15 @@
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-validator.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datepicker({
+                inline: true,
+                sideBySide: true
+            });
+        });
+    </script>
     <script type="text/javascript">
         var windowURL = window.location.href;
         pageURL = windowURL.substring(0, windowURL.lastIndexOf('/'));

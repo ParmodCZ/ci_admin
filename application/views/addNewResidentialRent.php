@@ -76,10 +76,12 @@
                                  <label for="address">BHK Type *</label>
                                  <select class="form-control required" id="bhk_type" name="Property[bhk_type]" required>
                                     <option>Select</option>
-                                    <option value="1">1 RK</option>
-                                    <option value="2">1 BHK</option>
-                                    <option value="3">2 BHK</option>
-                                    <option value="4">3 BHK</option>
+                                    <option value="RK1">1 RK</option>
+                                    <option value="BHK1">1 BHK</option>
+                                    <option value="BHK2">2 BHK</option>
+                                    <option value="BHK3">3 BHK</option>
+                                    <option value="BHK4">4 BHK</option>
+                                    <option value="BHK4PLUS">4+ BHK</option>
                                  </select>
                               </div>
                            </div>
@@ -88,6 +90,7 @@
                                  <label for="floor">Floor *</label>
                                  <select class="form-control required" id="floor" name="Property[floor]" required>
                                     <option>Select</option>
+                                    <option value="0">Ground</option>
                            <?php
                             
                               if(!empty($floor)){
@@ -104,6 +107,7 @@
                                  <label for="top_floor">Total Floor *</label>
                                  <select class="form-control required" id="top_floor" name="Property[top_floor]" required >
                                     <option>Select</option>
+                                    <option value="0">Ground Only</option>
                               <?php
                                  if(!empty($top_floor)){
                                    foreach ($top_floor as $value){ ?>
@@ -122,11 +126,11 @@
                                  <select class="form-control required" id="property_age" name="Property[property_age]" required>
                                     <option>Select</option>
                                     <option value="-1">Under Construction</option>
-                                    <option value="0">Less than one year</option>
-                                    <option value="1-3">1 - 3 Years</option>
-                                    <option value="3-5">3-5 Years</option>
-                                    <option value="5-10">5-10 Years</option>
-                                    <option value="10+">More than 10 Years</option>
+                                    <option value="0">Less than 1 year</option>
+                                    <option value="1">1-3 years</option>
+                                    <option value="3">3-5 years</option>
+                                    <option value="5">5-10 years</option>
+                                    <option value="10">More than 10 years</option>
                                  </select>
                               </div>
                            </div>
@@ -135,10 +139,16 @@
                                  <label for="facing">Facing *</label>
                                  <select class="form-control required" id="facing" name="Property[facing]" required>
                                     <option>Select</option>
-                                    <option value="north">North</option>
-                                    <option value="east">East</option>
-                                    <option value="west">West</option>
-                                    <option value="south">South</option>
+                                 <option value="">Select</option>
+                                 <option value="N">North</option>
+                                 <option value="S">South</option>
+                                 <option value="E">East</option>
+                                 <option value="W">West</option>
+                                 <option value="NE">North-East</option>
+                                 <option value="SE">South-East</option>
+                                 <option value="NW">North-West</option>
+                                 <option value="SW">South-West</option>
+                                 <option value="DK">Don't Know</option>
                                  </select>
                               </div>
                            </div>
@@ -181,8 +191,16 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_available_for_lease">Is Available For Lease ? *</label>
-                                 <input type="text" class="form-control" id="is_available_for_lease" name="Rental[is_available_for_lease]" required>
+                                 <!-- Default inline 1-->
+                                  <label for="is_available_for_lease">Is Available For Lease ? *</label>
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseYes" name="Rental[is_available_for_lease]">
+                                   <label class="custom-control-label" for="AvailableForLeaseYes">Yes</label>
+
+                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseNo" name="Rental[is_available_for_lease]" checked>
+                                   <label class="custom-control-label" for="AvailableForLeaseNo">No</label>
+                                 </div>
+                                 <!-- <input type="text" class="form-control" id="is_available_for_lease" name="Rental[is_available_for_lease]" required> -->
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -201,8 +219,11 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="is_negotiable">Is Negotiable *</label>
-                                 <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" required>
+                                <label class="custom-control-label" for="is_negotiable">Is Negotiable *</label>
+                                 <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="is_negotiable" value="yes">
+                                 </div>
+                                 <!-- <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" required> -->
                               </div>
                            </div>
                         </div>
@@ -210,37 +231,59 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="maintenance">Maintenance *</label>
-                                 <input type="text" class="form-control" id="maintenance" name="Rental[maintenance]" required>
+                                 <select class="form-control required" id="maintenance" name="Rental[maintenance]" required>
+                                    <option value="">Select</option>
+                                    <option value="false">Maintenance Included</option>
+                                    <option value="true">Maintenance Extra</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="availablle_from">Availablle From *</label>
-                                 <input type="text" class="form-control" id="availablle_from" name="Rental[availablle_from]" required>
+                                 <input type="text" class="form-control datetimepicker" id="availablle_from" name="Rental[availablle_from]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="preferred_tenants">Preferred Tenants *</label>
-                                 <input type="text" class="form-control" id="preferred_tenants" name="Rental[preferred_tenants]" required>
+                                 <select class="form-control required" id="preferred_tenants" name="Rental[preferred_tenants]" required>
+                                    <option value="">Select</option>
+                                    <option value="ANYONE">Doesn't Matter</option>
+                                    <option value="FAMILY">Family</option>
+                                    <option value="BACHELOR">Bachelors</option>
+                                    <option value="COMPANY">Company</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing" name="Rental[furnishing]" required>
+                                 <select class="form-control required" id="furnishing" name="Rental[furnishing]" required>
+                                    <option value="">Select</option>
+                                    <option value="FULLY_FURNISHED">Fully furnished</option>
+                                    <option value="SEMI_FURNISHED">Semi-furnished</option>
+                                    <option value="NOT_FURNISHED">Unfurnished</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="parking">Parking *</label>
-                                 <input type="text" class="form-control" id="parking" name="Rental[parking]" required>
+                                 <select class="form-control" id="parking" name="Rental[parking]" required>
+                                    <option value="">Select</option>
+                                    <option value="TWO_WHEELER">Bike</option>
+                                    <option value="FOUR_WHEELER">Car</option>
+                                    <option value="BOTH">Bike and Car</option>
+                                    <option value="NONE">None</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
-                                 <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="Rental[description]" required>
+                                 <label for="description">Description </label>
+                                 <textarea class="form-control" id="description" name="Rental[description]">
+                                 </textarea>
                               </div>
                            </div>
                         </div>
@@ -280,7 +323,12 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="water_supply">Water Supply *</label>
-                                 <input type="text" class="form-control" id="water_supply" name="Amenities[water_supply]" required>
+                                 <select class="form-control required" id="water_supply" name="Amenities[water_supply]" required>
+                                    <option value="">Select</option>
+                                    <option value="CORPORATION">Corporation</option>
+                                    <option value="BOREWELL">Borewell</option>
+                                    <option value="CORP_BORE">Both</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -288,13 +336,21 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="gym">Gym *</label>
-                                 <input type="text" class="form-control" id="gym" name="Amenities[gym]" required>
+                                 <select class="form-control required" id="gym" name="Amenities[gym]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="non_veg_allowed">Non Veg. Allowed *</label>
-                                 <input type="text" class="form-control" id="non_veg_allowed" name="Amenities[non_veg_allowed]" required>
+                                 <select class="form-control required" id="non_veg_allowed" name="Amenities[non_veg_allowed]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -302,13 +358,25 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="gated_security">Gated Security *</label>
-                                 <input type="text" class="form-control" id="gated_security" name="Amenities[gated_security]" required>
+                                 <select class="form-control" id="gated_security" name="Amenities[gated_security]" required>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="who_will_show_the_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                                 <select class="form-control" id="who_will_show_the_house" name="Amenities[who_will_show_the_house]" required>
+                                    <option value="">Select</option>
+                                    <option value="I_HAVE_KEYS">I will show</option>
+                                    <option value="NEED_HELP">Need Help</option>
+                                    <option value="NEIGHBOURS">Neighbours</option>
+                                    <option value="OTHERS">Others</option>
+                                    <option value="SECURITY">Security</option>
+                                    <option value="TENANTS">Tenants</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -317,12 +385,169 @@
                                  <input type="text" class="form-control" id="secondary_number" name="Amenities[secondary_number]" required>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                          <!--  <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="select_the_amenities_available">Select The Amenities Available *</label>
                                  <input type="text" class="form-control" id="select_the_amenities_available" name="Amenities[select_the_amenities_available]" required>
                               </div>
-                           </div>
+                           </div> -->
+                           <div class="col-md-12 col-sm-12">
+<div class="formLabel margin-bottom-20">Select the amenities available </div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="LIFT" id="LIFT">
+<label for="LIFT"></label>
+<span class="amenities lift"></span>
+<div>Lift</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="INTERNET" id="INTERNET">
+<label for="INTERNET"></label>
+<span class="amenities internet"></span>
+<div>Internet Services</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="AC" id="AC">
+<label for="AC"></label>
+<span class="amenities ac"></span>
+<div>Air Conditioner</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="CLUB" id="CLUB">
+<label for="CLUB"></label>
+<span class="amenities club"></span>
+<div>Club House</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="INTERCOM" id="INTERCOM">
+<label for="INTERCOM"></label>
+<span class="amenities intercom"></span>
+<div>Intercom</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="POOL" id="POOL">
+<label for="POOL"></label>
+<span class="amenities pool"></span>
+<div>Swimming Pool</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="CPA" id="CPA">
+<label for="CPA"></label>
+<span class="amenities playarea"></span>
+<div>Children's Play Area</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="FS" id="FS">
+<label for="FS"></label>
+<span class="amenities fire-safety"></span>
+<div>Fire Safety</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="SERVANT" id="SERVANT">
+<label for="SERVANT"></label>
+<span class="amenities servant"></span>
+<div>Servant Room</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="SC" id="SC">
+<label for="SC"></label>
+<span class="amenities shopping"></span>
+<div>Shopping Center</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="GP" id="GP">
+<label for="GP"></label>
+<span class="amenities gas-pipe"></span>
+<div>Gas Pipeline</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="PARK" id="PARK">
+<label for="PARK"></label>
+<span class="amenities park"></span>
+<div>Park</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="RWH" id="RWH">
+<label for="RWH"></label>
+<span class="amenities rwh"></span>
+<div>Rain Water Harvesting</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="STP" id="STP">
+<label for="STP"></label>
+<span class="amenities stp"></span>
+<div>Sewage Treatment Plant</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="HK" id="HK">
+<label for="HK"></label>
+<span class="amenities house-keeping"></span>
+<div>House Keeping</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="PB" id="PB">
+<label for="PB"></label>
+<span class="amenities power-backup"></span>
+<div>Power Backup</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6">
+<div class="formCheckbox">
+<input type="checkbox" value="true" name="VP" id="VP">
+<label for="VP"></label>
+<span class="amenities vp"></span>
+<div>Visitor Parking</div>
+</div>
+</div>
+</div>
+</div>
                         </div>
                      </div>
                      <!-- Schedule -->
