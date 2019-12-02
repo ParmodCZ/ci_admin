@@ -22,7 +22,7 @@ class Property extends BaseController
         $this->isLoggedIn();   
     }
     
-    /**
+    /** 
      * This function used to load the first screen of the user
      */
     // public function index()
@@ -769,22 +769,60 @@ class Property extends BaseController
     
     function deleteResidentialResaleProperty()
     {
-        if($this->isAdmin() == TRUE)
-        {
+        if($this->isAdmin() == TRUE){
             echo(json_encode(array('status'=>'access')));
         }
-        else
-        {
+        else{
             $propertyid = $this->input->post('propertyid');
-            $userInfo = array('isDeleted'=>1,'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
-            
-            $result = $this->property_model->deleteResidentialResaleProperty($propertyid);
-            
+            $result = $this->property_model->deleteResidentialResaleProperty($propertyid);           
+            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            else { echo(json_encode(array('status'=>FALSE))); }
+        }
+    }
+
+    function deleteResidentiaPGProperty(){
+        if($this->isAdmin() == TRUE){
+            echo(json_encode(array('status'=>'access')));
+        }else{
+            $propertyid = $this->input->post('propertyid');
+            $result = $this->property_model->deleteResidentiaPGProperty($propertyid);
+            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            else { echo(json_encode(array('status'=>FALSE))); }
+        }
+    }
+
+    function deleteResidentialFlatmateProperty(){
+        if($this->isAdmin() == TRUE){
+            echo(json_encode(array('status'=>'access')));
+        }else{
+            $propertyid = $this->input->post('propertyid');
+            $result = $this->property_model->deleteResidentialFlatmateProperty($propertyid);
+            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            else { echo(json_encode(array('status'=>FALSE))); }
+        }
+    }
+
+    function deleteCommercialSaleProperty(){
+        if($this->isAdmin() == TRUE){
+            echo(json_encode(array('status'=>'access')));
+        }else{
+            $propertyid = $this->input->post('propertyid');
+            $result = $this->property_model->deleteCommercialSaleProperty($propertyid);
             if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
             else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
     
+    function deleteCommercialRentProperty(){
+        if($this->isAdmin() == TRUE){
+            echo(json_encode(array('status'=>'access')));
+        }else{
+            $propertyid = $this->input->post('propertyid');
+            $result = $this->property_model->deleteCommercialRentProperty($propertyid);
+            if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
+            else { echo(json_encode(array('status'=>FALSE))); }
+        }
+    }
     // /**
     //  * Page not found : error 404
     //  */

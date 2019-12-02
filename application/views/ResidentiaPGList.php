@@ -54,7 +54,7 @@
                         <td><?php echo $record->room_amenities ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'editResidentiaPGProperty/'.$record->propertyid; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-sm btn-danger deleteResidentialResaleProperty" onclick="deletefn(<?php echo $record->propertyid; ?>,'deleteResidentiaPGProperty','PG Property');" href="#" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger deleteProperty" data-propertyid="<?php echo $record->propertyid; ?>" data-url="deleteResidentiaPGProperty" data-msg="Residential PG Property" href="#" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php

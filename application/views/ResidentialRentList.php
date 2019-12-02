@@ -54,7 +54,7 @@
                         <td><?php echo $record->city ?></td>
                         <td class="text-center">
                             <a class="btn btn-sm btn-info" href="<?php echo base_url().'editresidentialrentproperty/'.$record->propertyid; ?>" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a class="btn btn-sm btn-danger" href="#"onclick="deletefn(<?php echo $record->propertyid; ?>,'deleteResidentialRentProperty',' Residential Rent Property');" title="Delete"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-sm btn-danger deleteProperty" data-propertyid="<?php echo $record->propertyid; ?>" data-url="deleteResidentialRentProperty" data-msg="Residential Rent Property" href="#" title="Delete"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php

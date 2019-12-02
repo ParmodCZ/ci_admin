@@ -226,7 +226,7 @@ class Property_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $query = $this->db->get();
-        
+        //echo $this->db->last_query();die;
         $result = $query->result();        
         return $result;
     }
@@ -250,7 +250,7 @@ class Property_model extends CI_Model
             $this->db->where($likeCriteria);
         }
         $query = $this->db->get();
-        
+        //echo $this->db->last_query();die;
         $result = $query->result();        
         return $result;
     }
@@ -1317,6 +1317,23 @@ class Property_model extends CI_Model
        $sql=  "DELETE property FROM resident_resale_property_details AS property INNER JOIN resident_resale_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_resale_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_resale_resale_details AS resale ON resale.propertyid = property.propertyid INNER JOIN resident_resale_gallery_details AS gallery ON gallery.propertyid=property.propertyid
            INNER JOIN resident_resale_schedule_details AS schedule ON schedule.propertyid=property.propertyid
            INNER JOIN resident_resale_additional_information_details AS information ON gallery.propertyid=property.propertyid where property.propertyid=?";
+       $this->db->query($sql, array($propertyid));
+       return TRUE;
+    }
+    function deleteResidentiaPGProperty($propertyid){
+       $sql="DELETE `room` FROM `resident_pg_room_details` as `room` INNER JOIN `resident_pg_amenities_details` as `amenities` ON `amenities`.`propertyid` = `room`.`propertyid` INNER JOIN `resident_pg_locality_details` as `locality` ON `locality`.`propertyid` = `room`.`propertyid` INNER JOIN `resident_pg_pg_details` as `pg` ON `pg`.`propertyid` = `room`.`propertyid` INNER JOIN `resident_pg_gallery_details` as `gallery` ON `gallery`.`propertyid` = `room`.`propertyid` INNER JOIN `resident_pg_schedule_details` as `schedule` ON `schedule`.`propertyid` = `room`.`propertyid` where room.propertyid=?";
+       $this->db->query($sql, array($propertyid));
+       return TRUE;
+    }
+
+    function deleteCommercialRentProperty($propertyid){
+       $sql="DELETE `property` FROM `commercial_rent_property_details` as `property` INNER JOIN `commercial_rent_amenities_details` as `amenities` ON `amenities`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_rent_locality_details` as `locality` ON `locality`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_rent_rental_details` as `rental` ON `rental`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_rent_photo_details` as `gallery` ON `gallery`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_rent_additional_information_details` as `information` ON `information`.`propertyid` = `property`.`propertyid` where property.propertyid=?";
+       $this->db->query($sql, array($propertyid));
+       return TRUE;
+    }
+
+    function deleteCommercialSaleProperty($propertyid){
+       $sql="DELETE `property` FROM `commercial_sale_property_details` as `property` INNER JOIN `commercial_sale_amenities_details` as `amenities` ON `amenities`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_sale_location_details` as `locality` ON `locality`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_sale_resale_details` as `resale` ON `resale`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_sale_photo_details` as `gallery` ON `gallery`.`propertyid` = `property`.`propertyid` INNER JOIN `commercial_sale_additional_information_details` as `information` ON `information`.`propertyid` = `property`.`propertyid` where property.propertyid=?";
        $this->db->query($sql, array($propertyid));
        return TRUE;
     }

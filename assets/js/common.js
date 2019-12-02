@@ -30,8 +30,10 @@ jQuery(document).ready(function(){
 	});
 	//deleteProperty
 	jQuery(document).on("click", ".deleteProperty", function(){
+		var msg = $(this).data("msg");
+		var url = $(this).data("url");
 		var propertyid = $(this).data("propertyid"),
-			hitURL = baseURL + "deleteResidentialRentProperty",
+			hitURL = baseURL + url,
 			currentRow = $(this);
 		
 		var confirmation = confirm("Are you sure to delete this Property ?");
@@ -46,7 +48,7 @@ jQuery(document).ready(function(){
 			}).done(function(data){
 				console.log(data);
 				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Property successfully deleted"); }
+				if(data.status = true) { alert(msg + " successfully deleted"); }
 				else if(data.status = false) { alert("Property deletion failed"); }
 				else { alert("Access denied..!"); }
 			});
@@ -54,55 +56,55 @@ jQuery(document).ready(function(){
 	});
 	
 	//deleteResidentialResaleProperty
-	jQuery(document).on("click", ".deleteResidentialResaleProperty", function(){
-		var propertyid = $(this).data("propertyid"),
-			hitURL = baseURL + "deleteResidentialResaleProperty",
-			currentRow = $(this);
+	// jQuery(document).on("click", ".deleteResidentialResaleProperty", function(){
+	// 	var propertyid = $(this).data("propertyid"),
+	// 		hitURL = baseURL + "deleteResidentialResaleProperty",
+	// 		currentRow = $(this);
 		
-		var confirmation = confirm("Are you sure to delete this Property ?");
+	// 	var confirmation = confirm("Are you sure to delete this Property ?");
 		
-		if(confirmation)
-		{
-			jQuery.ajax({
-			type : "POST",
-			dataType : "json",
-			url : hitURL,
-			data : { propertyid : propertyid } 
-			}).done(function(data){
-				console.log(data);
-				currentRow.parents('tr').remove();
-				if(data.status = true) { alert("Property successfully deleted"); }
-				else if(data.status = false) { alert("Property deletion failed"); }
-				else { alert("Access denied..!"); }
-			});
-		}
-	});
+	// 	if(confirmation)
+	// 	{
+	// 		jQuery.ajax({
+	// 		type : "POST",
+	// 		dataType : "json",
+	// 		url : hitURL,
+	// 		data : { propertyid : propertyid } 
+	// 		}).done(function(data){
+	// 			console.log(data);
+	// 			currentRow.parents('tr').remove();
+	// 			if(data.status = true) { alert("Property successfully deleted"); }
+	// 			else if(data.status = false) { alert("Property deletion failed"); }
+	// 			else { alert("Access denied..!"); }
+	// 		});
+	// 	}
+	// });
 	
 	jQuery(document).on("click", ".searchList", function(){
 		
 	});
 });
 
-function deletefn(moduleid,url,module='this'){
-	var propertyid = moduleid,
-		hitURL = baseURL + url,
-		currentRow = $(this);
+// function deletefn(moduleid,url,module='this'){
+// 	var propertyid = moduleid,
+// 		hitURL = baseURL + url,
+// 		currentRow = $(this);
 	
-	var confirmation = confirm("Are you sure to delete this Property ?");
+// 	var confirmation = confirm("Are you sure to delete this Property ?");
 	
-	if(confirmation)
-	{
-		jQuery.ajax({
-		type : "POST",
-		dataType : "json",
-		url : hitURL,
-		data : { propertyid : propertyid } 
-		}).done(function(data){
-			console.log(data);
-			currentRow.parents('tr').remove();
-			if(data.status = true) { alert("Property successfully deleted"); }
-			else if(data.status = false) { alert("Property deletion failed"); }
-			else { alert("Access denied..!"); }
-		});
-	}
-}
+// 	if(confirmation)
+// 	{
+// 		jQuery.ajax({
+// 		type : "POST",
+// 		dataType : "json",
+// 		url : hitURL,
+// 		data : { propertyid : propertyid } 
+// 		}).done(function(data){
+// 			console.log(data);
+// 			currentRow.parents('tr').remove();
+// 			if(data.status = true) { alert("Property successfully deleted"); }
+// 			else if(data.status = false) { alert("Property deletion failed"); }
+// 			else { alert("Access denied..!"); }
+// 		});
+// 	}
+// }
