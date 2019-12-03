@@ -31,6 +31,10 @@ class Property extends BaseController
         
     //     $this->loadViews("dashboard", $this->global, NULL , NULL);
     // }
+
+    function proidtest(){
+        echo"<pre>";print_r($this->property_model->ExistLastPropertyID('commercial_rent_rental_details'));
+    }
     
     /**
      * This function is used to load the rent list

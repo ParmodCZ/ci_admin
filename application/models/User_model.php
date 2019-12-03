@@ -8,7 +8,7 @@
  * @since : 15 November 2016
  */
 class User_model extends CI_Model
-{
+{   
     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text

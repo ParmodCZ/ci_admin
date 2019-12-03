@@ -8,7 +8,31 @@
  * @since : 15 November 2016
  */
 class Property_model extends CI_Model
-{
+{   
+
+    function generatePropertyID($length = 9,$extasrt="",$notqul='') {
+      $characters = '0123456789';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $realstr =$extasrt.$randomString;
+        if($realstr==$notqul){
+          $this->generatePropertyID($length,$extasrt,$notqul);
+        }
+      return $realstr;
+    }
+
+    function ExistLastPropertyID($table){
+        $sql = "SELECT MAX(propertyid) AS propertyid FROM $table";
+        $res = $this->db->query($sql);
+        //echo $this->db->last_query();die;
+        $result =$res->result();
+        $property=$result[0];
+        $propertyid=$property->propertyid;
+        return $propertyid;
+    }
     /**
      * This function is used to get the user listing count
      * @param string $searchText : This is optional search text
@@ -370,7 +394,8 @@ class Property_model extends CI_Model
      * @return number $insert_id : This is last inserted id
      */
     function addNewResidentialRentProperty($addNewProperty,$authuser){
-        $propertyid =uniqid('RR'); 
+        $lastpropertyid =$this->ExistLastPropertyID('resident_rent_property_details');
+        $propertyid = $this->generatePropertyID(7,"RR",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
@@ -411,8 +436,8 @@ class Property_model extends CI_Model
      * @return number $insert_id : This is last inserted id
      */
     function addNewResidentialResaleProperty($addNewProperty,$authuser){
-        $propertyid =uniqid('RS'); 
-        //echo"<pre>";print_r($addNewProperty);die;
+        $lastpropertyid =$this->ExistLastPropertyID('resident_resale_property_details');
+        $propertyid = $this->generatePropertyID(7,"RS",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
@@ -453,8 +478,8 @@ class Property_model extends CI_Model
     }
 
     function ResidentialFlatmateAddProperty($addNewProperty,$authuser){
-        $propertyid =uniqid('RS'); 
-        //echo"<pre>";print_r($addNewProperty);die;
+        $lastpropertyid =$this->ExistLastPropertyID('resident_flatmates_property_details');
+        $propertyid = $this->generatePropertyID(7,"RF",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
@@ -495,9 +520,8 @@ class Property_model extends CI_Model
     }
 
     function ResidentialPgAddProperty($addNewProperty,$authuser){
-        $propertyid =uniqid('PG'); 
-        //echo"<pre>";print_r($addNewProperty);die;
-        //give userID
+        $lastpropertyid =$this->ExistLastPropertyID('resident_pg_pg_details');
+        $propertyid = $this->generatePropertyID(7,"PG",$lastpropertyid);
         $addNewProperty['PG']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
         $addNewProperty['Rental']['userID'] =$authuser;
@@ -537,8 +561,8 @@ class Property_model extends CI_Model
     }
 
     function CommercialSaleAddProperty($addNewProperty,$authuser){
-        $propertyid =uniqid('CS'); 
-        //echo"<pre>";print_r($addNewProperty);die;
+        $lastpropertyid =$this->ExistLastPropertyID('commercial_sale_property_details');
+        $propertyid = $this->generatePropertyID(7,"CS",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
@@ -576,7 +600,8 @@ class Property_model extends CI_Model
 
     function CommercialRentAddProperty($addNewProperty,$authuser){
         $propertyid =uniqid('CR'); 
-        //echo"<pre>";print_r($addNewProperty);die;
+        $lastpropertyid =$this->ExistLastPropertyID('commercial_rent_property_details');
+        $propertyid = $this->generatePropertyID(7,"CR",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;

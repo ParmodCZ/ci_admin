@@ -146,3 +146,4 @@ $route['EditCommercialRentAddProperty'] = "Property/EditCommercialRentAddPropert
 $route['deleteCommercialRentProperty'] = "Property/deleteCommercialRentProperty";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+$route['proidtest'] = "Property/proidtest";
