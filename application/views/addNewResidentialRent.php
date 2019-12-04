@@ -223,7 +223,6 @@
                                  <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="is_negotiable" value="Yes" name="Rental[is_negotiable]">
                                  </div>
-                                 <!-- <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" required> -->
                               </div>
                            </div>
                         </div>
@@ -394,162 +393,42 @@
                         <div class="col-md-12 col-sm-12">
                            <div class="formLabel margin-bottom-20">Select the amenities available </div>
                            <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="LIFT" id="LIFT">
-                                    <label for="LIFT"></label>
-                                    <span class="amenities lift"></span>
-                                    <div>Lift</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="INTERNET" id="INTERNET">
-                                    <label for="INTERNET"></label>
-                                    <span class="amenities internet"></span>
-                                    <div>Internet Services</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="AC" id="AC">
-                                    <label for="AC"></label>
-                                    <span class="amenities ac"></span>
-                                    <div>Air Conditioner</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="CLUB" id="CLUB">
-                                    <label for="CLUB"></label>
-                                    <span class="amenities club"></span>
-                                    <div>Club House</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="INTERCOM" id="INTERCOM">
-                                    <label for="INTERCOM"></label>
-                                    <span class="amenities intercom"></span>
-                                    <div>Intercom</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="POOL" id="POOL">
-                                    <label for="POOL"></label>
-                                    <span class="amenities pool"></span>
-                                    <div>Swimming Pool</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="CPA" id="CPA">
-                                    <label for="CPA"></label>
-                                    <span class="amenities playarea"></span>
-                                    <div>Children's Play Area</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="FS" id="FS">
-                                    <label for="FS"></label>
-                                    <span class="amenities fire-safety"></span>
-                                    <div>Fire Safety</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[] value="SERVANT" id="SERVANT">
-                                    <label for="SERVANT"></label>
-                                    <span class="amenities servant"></span>
-                                    <div>Servant Room</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox"name="amenitiesarr[]" value="SC" id="SC">
-                                    <label for="SC"></label>
-                                    <span class="amenities shopping"></span>
-                                    <div>Shopping Center</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="GP" id="GP">
-                                    <label for="GP"></label>
-                                    <span class="amenities gas-pipe"></span>
-                                    <div>Gas Pipeline</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="PARK" id="PARK">
-                                    <label for="PARK"></label>
-                                    <span class="amenities park"></span>
-                                    <div>Park</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="RWH" id="RWH">
-                                    <label for="RWH"></label>
-                                    <span class="amenities rwh"></span>
-                                    <div>Rain Water Harvesting</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="STP" id="STP">
-                                    <label for="STP"></label>
-                                    <span class="amenities stp"></span>
-                                    <div>Sewage Treatment Plant</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="HK" id="HK">
-                                    <label for="HK"></label>
-                                    <span class="amenities house-keeping"></span>
-                                    <div>House Keeping</div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[]" value="PB" id="PB">
-                                    <label for="PB"></label>
-                                    <span class="amenities power-backup"></span>
-                                    <div>Power Backup</div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-sm-6">
-                                 <div class="formCheckbox">
-                                    <input type="checkbox" name="amenitiesarr[] " value="VP" id="VP">
-                                    <label for="VP"></label>
-                                    <span class="amenities vp"></span>
-                                    <div>Visitor Parking</div>
-                                 </div>
-                              </div>
-                           </div>
+                        <?php 
+                           $checkarr= array(
+                               'LIFT'=>array('Lift','fa-square'),
+                                'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                'AC' => array('Air Conditioner','fa-window-maximize'),
+                                'CLUB' => array('Club House','fa-cc-diners-club'),
+                                'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                'POOL' => array('Swimming Pool','fa-bath'),
+                                'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                'SERVANT' => array('Servant Room','fa-child'),
+                                'SC' => array('Shopping Center','fa-shopping-cart'),
+                                'GP' => array('Gas Pipeline','fa-sun-o'),
+                                'PARK' => array('Park','fa-tree'),
+                                'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                'HK' => array('House Keeping','fa-female'),
+                                'PB' => array('Power Backup','fa-battery-full'),
+                                'VP' => array('Visitor Parking','fa-product-hunt')
+                            );
+                         foreach($checkarr as $key=>$check){
+                          ?>
+                            <div class="col-md-6 col-sm-6">
+                               <div class="formCheckbox">
+                                  <input type="checkbox" name="amenitiesarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                                  <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                  <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
+                                  <span class="amenities lift"></span>
+                               </div>
+                            </div>
+                         <?php }
+                         ?>
                         </div>
                         </div>
                      </div>
+                  </div>
                      <!-- Schedule -->
                      <div class="tab-pane" id="Schedule">
                         <div class="row">

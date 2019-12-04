@@ -14,9 +14,15 @@
     <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap-validator.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/datepicker/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $('.datetimepicker').datepicker({
+                inline: true,
+                sideBySide: true
+            });
+
+            $('.timepicker').timepicker({
                 inline: true,
                 sideBySide: true
             });

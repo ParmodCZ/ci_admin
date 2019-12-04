@@ -505,33 +505,38 @@
                         <div class="formLabel margin-bottom-20">Select the amenities available </div>
                          <div class="row">
                           <?php 
-                        $checkarr= Array(
-                                '0' => 'LIFT',
-                                '1' => 'INTERNET',
-                                '2' => 'AC',
-                                '3' => 'CLUB',
-                                '4' => 'INTERCOM',
-                                '5' => 'POOL',
-                                '6' => 'CPA',
-                                '7' => 'FS',
-                                '8' => 'on',
-                                '9' => 'SC',
-                                '10' => 'GP',
-                                '11' => 'PARK',
-                                '12' => 'RWH',
-                                '13' => 'STP',
-                                '14' => 'HK',
-                                '15' => 'PB',
-                                '16' => 'VP',
+                        $checkarr= array(
+                               'LIFT'=>array('Lift','fa-square'),
+                                'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                'AC' => array('Air Conditioner','fa-window-maximize'),
+                                'CLUB' => array('Club House','fa-cc-diners-club'),
+                                'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                'POOL' => array('Swimming Pool','fa-bath'),
+                                'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                'SERVANT' => array('Servant Room','fa-child'),
+                                'SC' => array('Shopping Center','fa-shopping-cart'),
+                                'GP' => array('Gas Pipeline','fa-sun-o'),
+                                'PARK' => array('Park','fa-tree'),
+                                'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                'HK' => array('House Keeping','fa-female'),
+                                'PB' => array('Power Backup','fa-battery-full'),
+                                'VP' => array('Visitor Parking','fa-product-hunt')
                             );
-                         foreach($checkarr as $check){
+                          $selectaa = array();
+                          if(!empty($ResidentialRentPropertyInfo->select_the_amenities_available)){
+                            $selectaa = explode(',',$ResidentialRentPropertyInfo->select_the_amenities_available);
+                          }
+                         foreach($checkarr as $key=>$check){
+                          $checkaaa = (in_array($key, $selectaa))?"checked":'';
                           ?>
                             <div class="col-md-6 col-sm-6">
                                <div class="formCheckbox">
-                                  <input type="checkbox" name="amenitiesarr[]" value="<?php echo $check; ?>" id="<?php echo $check; ?>">
-                                  <label for="<?php echo $check; ?>"></label>
+                                  <input type="checkbox" name="amenitiesarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>" <?php echo $checkaaa; ?> >
+                                  <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                  <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
                                   <span class="amenities lift"></span>
-                                  <div><?php echo $check; ?></div>
                                </div>
                             </div>
                          <?php }
