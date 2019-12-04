@@ -18,7 +18,7 @@ class Property_model extends CI_Model
           $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         $realstr =$extasrt.$randomString;
-        if($realstr==$notqul){
+        if($realstr<=$notqul){
           $this->generatePropertyID($length,$extasrt,$notqul);
         }
       return $realstr;
@@ -410,7 +410,7 @@ class Property_model extends CI_Model
         $addNewProperty['Gallery']['propertyid'] =$propertyid;  
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
-
+        $addNewProperty['Amenities']['select_the_amenities_available']= implode(",",$addNewProperty['amenitiesarr']);
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $rentalinfo =$addNewProperty['Rental'];
@@ -775,8 +775,7 @@ class Property_model extends CI_Model
         $gated_security=$Amenities['gated_security'];
         $who_will_show_the_house= $Amenities['who_will_show_the_house'];
         $secondary_number= $Amenities['secondary_number'];
-        $select_the_amenities_available= $Amenities['select_the_amenities_available'];
-
+        $select_the_amenities_available= implode(",",$data['amenitiesarr']);
         $availability= $Schedule['availability'];
         $start_time=$Schedule['start_time'];
         $end_time= $Schedule['end_time'];

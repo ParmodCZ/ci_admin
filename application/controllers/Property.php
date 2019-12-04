@@ -320,6 +320,7 @@ class Property extends BaseController
             $this->loadThis();
         }else{       
             $data =$this->input->post();
+            //echo"<pre>";print_r(implode(",",$data['amenitiesarr']));die;
             $this->load->model('property_model');
             $result = $this->property_model->addNewResidentialRentProperty($data,$this->vendorId);
                 

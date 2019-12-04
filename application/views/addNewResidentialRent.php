@@ -194,11 +194,11 @@
                                  <!-- Default inline 1-->
                                   <label for="is_available_for_lease">Is Available For Lease ? *</label>
                                  <div class="custom-control custom-radio custom-control-inline">
-                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseYes" name="Rental[is_available_for_lease]">
+                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseYes" name="Rental[is_available_for_lease]" value="Yes">
                                    <label class="custom-control-label" for="AvailableForLeaseYes">Yes</label>
 
                                    <input type="radio" class="custom-control-input" id="AvailableForLeaseNo" name="Rental[is_available_for_lease]" checked>
-                                   <label class="custom-control-label" for="AvailableForLeaseNo">No</label>
+                                   <label class="custom-control-label" value="No" for="AvailableForLeaseNo">No</label>
                                  </div>
                                  <!-- <input type="text" class="form-control" id="is_available_for_lease" name="Rental[is_available_for_lease]" required> -->
                               </div>
@@ -221,7 +221,7 @@
                               <div class="form-group">
                                 <label class="custom-control-label" for="is_negotiable">Is Negotiable *</label>
                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="is_negotiable" value="yes">
+                                    <input type="checkbox" class="custom-control-input" id="is_negotiable" value="Yes" name="Rental[is_negotiable]">
                                  </div>
                                  <!-- <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" required> -->
                               </div>

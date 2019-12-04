@@ -255,7 +255,7 @@
                             <label for="is_negotiable">Is Negotiable *</label>
                             <!-- <input type="text" class="form-control" id="is_negotiable" name="Rental[is_negotiable]" > -->
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="is_negotiable" value="yes" <?php echo $ResidentialRentPropertyInfo->is_negotiable; ?> >
+                                <input type="checkbox" class="custom-control-input" id="is_negotiable" value="Yes" <?php echo ($ResidentialRentPropertyInfo->is_negotiable=='Yes')?'checked':'' ?> >
                              </div>
                         </div>
                     </div>
@@ -497,11 +497,46 @@
                             <input type="text" class="form-control" id="secondary_number" value="<?php echo $ResidentialRentPropertyInfo->secondary_number; ?>" name="Amenities[secondary_number]" >
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group" >
+                    <div class="col-md-12">
+                        <!-- <div class="form-group" >
                             <label for="select_the_amenities_available">Select The Amenities Available *</label>
                             <input type="text" class="form-control" id="select_the_amenities_available" value="<?php echo $ResidentialRentPropertyInfo->select_the_amenities_available; ?>" name="Amenities[select_the_amenities_available]" >
-                        </div>
+                        </div> -->
+                        <div class="formLabel margin-bottom-20">Select the amenities available </div>
+                         <div class="row">
+                          <?php 
+                        $checkarr= Array(
+                                '0' => 'LIFT',
+                                '1' => 'INTERNET',
+                                '2' => 'AC',
+                                '3' => 'CLUB',
+                                '4' => 'INTERCOM',
+                                '5' => 'POOL',
+                                '6' => 'CPA',
+                                '7' => 'FS',
+                                '8' => 'on',
+                                '9' => 'SC',
+                                '10' => 'GP',
+                                '11' => 'PARK',
+                                '12' => 'RWH',
+                                '13' => 'STP',
+                                '14' => 'HK',
+                                '15' => 'PB',
+                                '16' => 'VP',
+                            );
+                         foreach($checkarr as $check){
+                          ?>
+                            <div class="col-md-6 col-sm-6">
+                               <div class="formCheckbox">
+                                  <input type="checkbox" name="amenitiesarr[]" value="<?php echo $check; ?>" id="<?php echo $check; ?>">
+                                  <label for="<?php echo $check; ?>"></label>
+                                  <span class="amenities lift"></span>
+                                  <div><?php echo $check; ?></div>
+                               </div>
+                            </div>
+                         <?php }
+                         ?>
+                          </div>
                     </div>
                   </div>
                 </div>
