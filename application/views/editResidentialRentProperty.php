@@ -498,10 +498,6 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <!-- <div class="form-group" >
-                            <label for="select_the_amenities_available">Select The Amenities Available *</label>
-                            <input type="text" class="form-control" id="select_the_amenities_available" value="<?php echo $ResidentialRentPropertyInfo->select_the_amenities_available; ?>" name="Amenities[select_the_amenities_available]" >
-                        </div> -->
                         <div class="formLabel margin-bottom-20">Select the amenities available </div>
                          <div class="row">
                           <?php 

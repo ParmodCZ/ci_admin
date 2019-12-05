@@ -369,7 +369,7 @@ class Property extends BaseController
                 $this->session->set_flashdata('error', 'property creation failed');
             }
                  
-            redirect('ResidentialResaleList');
+            redirect('ResidentiaPGList');
         }
     }
     
@@ -378,6 +378,7 @@ class Property extends BaseController
             $this->loadThis();
         }else{       
             $data =$this->input->post();
+           // echo"<pre>";print_r($data);die;
             $this->load->model('property_model');
             $result = $this->property_model->ResidentialFlatmateAddProperty($data,$this->vendorId);
                 
@@ -469,20 +470,13 @@ class Property extends BaseController
             }
             $data['floor'] =$count;
             $data['top_floor'] =$count;
-              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
-
-             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
-
-            $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
-            $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
-           // echo"<pre>";print_r($data['apartmenttypelist']);die;
-           // $data['roles'] = $this->Property_model->getUserRoles();
+            $data['BHKType'] = array('RK1'=>'1 RK','BHK1'=>'1 BHK','BHK2'=>'2 BHK','BHK3'=>'3 BHK','BHK4'=>'4 BHK');
+             $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
+            $data['facing'] =array('N'=>'North','E'=>'East','W'=>'West','S'=>'South','NE'=>'North-East','SE'=>'South-East','NW'=>'North-West','SW'=>'South-West','DK'=>"Don't Know");
             $this->load->model('property_model');
             $data['PropertyInfo'] = $this->property_model->ResidentialResalePropertyInfo($propertyid);
-            //echo "<pre>";print_r($data);die;
             $this->global['pageTitle'] = 'Admin : Edit Property';
             $dd =$data['PropertyInfo'];
-           // echo "<pre>";print_r($data);die;
             $this->loadViews("editResidentialResaleProperty", $this->global, $data, NULL);
     }
     

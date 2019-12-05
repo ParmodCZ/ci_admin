@@ -54,25 +54,48 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="place_is_available_for">Place Is Available For *</label>
-                                 <input type="text" class="form-control" id="place_is_available_for" name="PG[place_is_available_for]" required>
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="boys" name="PG[place_is_available_for]" value="male">
+                                   <label class="custom-control-label" for="boys">male</label>
+                                   <input type="radio" class="custom-control-input" id="girls" name="PG[place_is_available_for]" checked>
+                                   <label class="custom-control-label" value="female" for="girls">female</label>
+                                   <input type="radio" class="custom-control-input" id="anyone" name="PG[place_is_available_for]" checked>
+                                   <label class="custom-control-label" value="anyone" for="anyone">anyone</label>
+                                 </div>
                               </div>
                            </div>
 						   <div class="col-md-6">
                               <div class="form-group">
                                  <label for="preferred_guests">Preferred Guests *</label>
-                                 <input type="text" class="form-control" id="preferred_guests" name="PG[preferred_guests]" required>
+                                 <select class="form-control" id="preferred_guests" name="PG[preferred_guests]" required>
+                                    <option>Select</option>
+                                   <?php 
+                                   $gursts =array(
+                                                   'PROFESSIONAL'=>'Working Professional',
+                                                   'STUDENT'=>'Student',
+                                                   'BOTH'=>'Both'
+                                                   );
+                                   if(!empty($gursts)){
+                                      foreach ($gursts as $key => $value){
+                                          ?>
+                                      <option value="<?php echo $key; ?>" ><?php echo $value; ?></option>
+                                          <?php
+                                      }
+                                    }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
 						   <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_from">Available From *</label>
-                                 <input type="text" class="form-control" id="available_from" name="PG[available_from]" required>
+                                 <input type="text" class="form-control datetimepicker" id="available_from" name="PG[available_from]" required>
                               </div>
                            </div>
 						   <div class="col-md-6">
                               <div class="form-group">
                                  <label for="gate_closing_time">Gate Closing Time *</label>
-                                 <input type="text" class="form-control" id="gate_closing_time" name="PG[gate_closing_time]" required>
+                                 <input type="text" class="form-control timepicker" id="gate_closing_time" name="PG[gate_closing_time]" required>
                               </div>
                            </div>
                         </div>
@@ -80,19 +103,56 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="food_included">Food Included *</label>
-                                 <input type="text" class="form-control" id="food_included" name="PG[food_included]" required>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseYes"  name="PG[food_included]" value="Yes">
+                                   <label class="custom-control-label" for="AvailableForLeaseYes">Yes</label>
+
+                                   <input type="radio" class="custom-control-input" id="AvailableForLeaseNo"  name="PG[food_included]" checked>
+                                   <label class="custom-control-label" value="No" for="AvailableForLeaseNo">No</label>
+                                 </div>
                               </div>
                            </div>
-                           <div class="col-md-6">
-                              <div class="form-group" >
-                                 <label for="pg_hostel_rules">PG Hostel Rules *</label>
-                                 <input type="text" class="form-control" id="pg_hostel_rules" name="PG[pg_hostel_rules]" required>
-                              </div>
+                     <div class="col-md-12 col-sm-12">
+                        <div class="formLabel margin-bottom-20">PG Hostel Rules </div>
+                           <div class="row">
+                              <?php 
+                                 $checkarr= array(
+                                     'LIFT'=>array('Lift','fa-square'),
+                                      'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                      'AC' => array('Air Conditioner','fa-window-maximize'),
+                                      'CLUB' => array('Club House','fa-cc-diners-club'),
+                                      'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                      'POOL' => array('Swimming Pool','fa-bath'),
+                                      'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                      'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                      'SERVANT' => array('Servant Room','fa-child'),
+                                      'SC' => array('Shopping Center','fa-shopping-cart'),
+                                      'GP' => array('Gas Pipeline','fa-sun-o'),
+                                      'PARK' => array('Park','fa-tree'),
+                                      'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                      'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                      'HK' => array('House Keeping','fa-female'),
+                                      'PB' => array('Power Backup','fa-battery-full'),
+                                      'VP' => array('Visitor Parking','fa-product-hunt')
+                                  );
+                               foreach($checkarr as $key=>$check){
+                                ?>
+                                  <div class="col-md-6 col-sm-6">
+                                     <div class="formCheckbox">
+                                        <input type="checkbox" name="hostelrulesarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                                        <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                        <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
+                                        <span class="amenities lift"></span>
+                                     </div>
+                                  </div>
+                               <?php }
+                               ?>
                            </div>
-						   <div class="col-md-6">
+                        </div>
+						         <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="PG[description]" required>
+                                 <textarea class="form-control" id="description" name="PG[description]" required></textarea>
                               </div>
                            </div>
                         </div>
@@ -128,13 +188,17 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="availability">Availability *</label>
-                                 <input type="text" class="form-control" id="availability" name="Schedule[availability]" required>
+                                 <select class="form-control" id="availability" name="Schedule[availability]" required>
+                                 <option value="EVERYDAY">Everyday (Monday - Sunday)</option>
+                                 <option value="WEEKDAY">Weekdays (Monday - Friday)</option>
+                                 <option value="WEEKEND">Weekends (Saturday - Sunday)</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="start_time">Start Time *</label>
-                                 <input type="text" class="form-control" id="start_time" name="Schedule[start_time]" required>
+                                 <input type="text" class="form-control timepicker" id="start_time" name="Schedule[start_time]" required>
                               </div>
                            </div>
                         </div>
@@ -142,13 +206,14 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="end_time">End Time *</label>
-                                 <input type="text" class="form-control" id="end_time" name="Schedule[end_time]" required>
+                                 <input type="text" class="form-control timepicker" id="end_time" name="Schedule[end_time]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_all_day">Available All Day *</label>
-                                 <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required>
+                                <!--  <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required> -->
+                                <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" required>
                               </div>
                            </div>
                         </div>
@@ -168,12 +233,6 @@
                                  </div>
                               </div>
                            </div>
-                           <!-- <div class="col-md-6">
-                              <div class="form-group">
-                                  <label for="dob">Apartment Name *</label>
-                                  <input type="text" class="form-control" id="dob" name="dob" >
-                              </div>
-                              </div> -->
                         </div>
                      </div>
                      <!-- Amenities -->
@@ -182,13 +241,25 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_service_laundry">Available_Service_Laundry ? *</label>
-                                 <input type="text" class="form-control" id="available_service_laundry" name="Amenities[available_service_laundry]" required>
+                                 <!-- <input type="text" class="form-control" id="available_service_laundry" name="Amenities[available_service_laundry]" required> -->
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="availableservicelaundryY" name="Amenities[available_service_laundry]" value="Yes">
+                                   <label class="custom-control-label" for="availableservicelaundryY">Yes</label>
+                                   <input type="radio" class="custom-control-input" id="availableservicelaundryN" name="Amenities[available_service_laundry]" checked>
+                                   <label class="custom-control-label" value="No" for="availableservicelaundryN">No</label>
+                                 </div>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_service_room_cleaning">Available Service Room Cleaning ? *</label>
-                                 <input type="text" class="form-control" id="available_service_room_cleaning" name="Amenities[available_service_room_cleaning]" required>
+                                 <!-- <input type="text" class="form-control" id="available_service_room_cleaning" name="Amenities[available_service_room_cleaning]" required> -->
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="roomcleaningY" name="Amenities[available_service_laundry]" value="Yes">
+                                   <label class="custom-control-label" for="roomcleaningY">Yes</label>
+                                   <input type="radio" class="custom-control-input" id="roomcleaningN" name="Amenities[available_service_room_cleaning]" checked>
+                                   <label class="custom-control-label" value="No" for="roomcleaningN">No</label>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -196,21 +267,75 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_service_warden_facility">Available Service Warden Facility ? *</label>
-                                 <input type="text" class="form-control" id="available_service_warden_facility" name="Amenities[available_service_warden_facility]" required>
+                                 <div class="custom-control custom-radio custom-control-inline">
+                                   <input type="radio" class="custom-control-input" id="wardenfacilityY" name="Amenities[available_service_warden_facility]" value="Yes">
+                                   <label class="custom-control-label" for="wardenfacilityY">Yes</label>
+                                   <input type="radio" class="custom-control-input" id="wardenfacilityN" name="Amenities[available_service_warden_facility]" checked>
+                                   <label class="custom-control-label" value="No" for="wardenfacilityN">No</label>
+                                 </div>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_amenities">Available Amenities *</label>
                                  <input type="text" class="form-control" id="available_amenities" name="Amenities[available_amenities]" required>
                               </div>
+                           </div> -->
+                        <div class="col-md-12 col-sm-12">
+                           <div class="formLabel margin-bottom-20">Available Amenities </div>
+                           <div class="row">
+                              <?php 
+                                 $checkarr= array(
+                                     'LIFT'=>array('Lift','fa-square'),
+                                      'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                      'AC' => array('Air Conditioner','fa-window-maximize'),
+                                      'CLUB' => array('Club House','fa-cc-diners-club'),
+                                      'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                      'POOL' => array('Swimming Pool','fa-bath'),
+                                      'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                      'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                      'SERVANT' => array('Servant Room','fa-child'),
+                                      'SC' => array('Shopping Center','fa-shopping-cart'),
+                                      'GP' => array('Gas Pipeline','fa-sun-o'),
+                                      'PARK' => array('Park','fa-tree'),
+                                      'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                      'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                      'HK' => array('House Keeping','fa-female'),
+                                      'PB' => array('Power Backup','fa-battery-full'),
+                                      'VP' => array('Visitor Parking','fa-product-hunt')
+                                  );
+                               foreach($checkarr as $key=>$check){
+                                ?>
+                                  <div class="col-md-6 col-sm-6">
+                                     <div class="formCheckbox">
+                                        <input type="checkbox" name="amenitiesarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                                        <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                        <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
+                                        <span class="amenities lift"></span>
+                                     </div>
+                                  </div>
+                               <?php }
+                               ?>
                            </div>
                         </div>
+                        </div>
                         <div class="row">
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="form-group">
                                  <label for="Aparking">Parking *</label>
                                  <input type="text" class="form-control" id="Aparking" name="Amenities[parking]" required>
+                              </div>
+                           </div> -->
+                           <div class="col-md-6">
+                              <div class="form-group" >
+                                 <label for="parking">Parking *</label>
+                                 <select class="form-control" id="parking" name="Amenities[parking]" required>
+                                    <option value="">Select</option>
+                                    <option value="TWO_WHEELER">Bike</option>
+                                    <option value="FOUR_WHEELER">Car</option>
+                                    <option value="BOTH">Bike and Car</option>
+                                    <option value="NONE">None</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -220,8 +345,23 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
+                                 <?php
+                                    $roomty = array(
+                                       'singal' =>'Singal',
+                                       'double' =>'Double',
+                                       'three' =>'Three',
+                                       'four' =>'Four' 
+                                    ); 
+                                 ?>
                                  <label for="select_the_type_of_rooms">Select The Type Of Rooms *</label>
-                                 <input type="text" class="form-control" id="select_the_type_of_rooms" name="Room[select_the_type_of_rooms]" required>
+                                 <select class="form-control" id="select_the_type_of_rooms" name="Room[select_the_type_of_rooms]" required>
+                                    <option>select</option>
+                                    <?php
+                                       foreach ($roomty as $key => $value) {
+                                          echo "<option value='$key'>$value</option>";
+                                       }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -238,12 +378,50 @@
                                  <input type="text" class="form-control" id="expected_deposit_per_person" name="Room[expected_deposit_per_person]" required>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="form-group">
                                  <label for="room_amenities">Room Amenities *</label>
                                  <input type="text" class="form-control" id="room_amenities" name="Room[room_amenities]" required>
                               </div>
+                           </div> -->
+
+                           <div class="col-md-12 col-sm-12">
+                           <div class="formLabel margin-bottom-20">Room Amenities </div>
+                           <div class="row">
+                              <?php 
+                                 $checkarr= array(
+                                     'LIFT'=>array('Lift','fa-square'),
+                                      'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                      'AC' => array('Air Conditioner','fa-window-maximize'),
+                                      'CLUB' => array('Club House','fa-cc-diners-club'),
+                                      'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                      'POOL' => array('Swimming Pool','fa-bath'),
+                                      'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                      'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                      'SERVANT' => array('Servant Room','fa-child'),
+                                      'SC' => array('Shopping Center','fa-shopping-cart'),
+                                      'GP' => array('Gas Pipeline','fa-sun-o'),
+                                      'PARK' => array('Park','fa-tree'),
+                                      'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                      'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                      'HK' => array('House Keeping','fa-female'),
+                                      'PB' => array('Power Backup','fa-battery-full'),
+                                      'VP' => array('Visitor Parking','fa-product-hunt')
+                                  );
+                               foreach($checkarr as $key=>$check){
+                                ?>
+                                  <div class="col-md-6 col-sm-6">
+                                     <div class="formCheckbox">
+                                        <input type="checkbox" name="amenitiesroomarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                                        <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                        <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
+                                        <span class="amenities lift"></span>
+                                     </div>
+                                  </div>
+                               <?php }
+                               ?>
                            </div>
+                        </div>
                         </div>
                      </div>
                   </div>

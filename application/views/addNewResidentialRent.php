@@ -138,7 +138,7 @@
                               <div class="form-group">
                                  <label for="facing">Facing *</label>
                                  <select class="form-control required" id="facing" name="Property[facing]" required>
-                                    <option>Select</option>
+                                 <option>Select</option>
                                  <option value="">Select</option>
                                  <option value="N">North</option>
                                  <option value="S">South</option>

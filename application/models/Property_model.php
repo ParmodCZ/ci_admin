@@ -496,7 +496,7 @@ class Property_model extends CI_Model
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         // $addNewProperty['Information']['propertyid'] =$propertyid; 
-
+        $addNewProperty['Amenities']['select_the_amenities_available'] =implode(",",$addNewProperty['amenitiesarr']);
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Resale'];
@@ -520,6 +520,7 @@ class Property_model extends CI_Model
     }
 
     function ResidentialPgAddProperty($addNewProperty,$authuser){
+        //echo"<pre>";print_r($addNewProperty);die;
         $lastpropertyid =$this->ExistLastPropertyID('resident_pg_pg_details');
         $propertyid = $this->generatePropertyID(7,"PG",$lastpropertyid);
         $addNewProperty['PG']['userID'] =$authuser;
@@ -537,6 +538,10 @@ class Property_model extends CI_Model
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         $addNewProperty['Room']['propertyid'] =$propertyid; 
+
+        $addNewProperty['PG']['pg_hostel_rules']= implode(",",$addNewProperty['hostelrulesarr']);
+        $addNewProperty['Amenities']['available_amenities'] =implode(",",$addNewProperty['amenitiesarr']);
+        $addNewProperty['Room']['room_amenities'] =implode(",",$addNewProperty['amenitiesroomarr']);
 
         $propertyinfo =$addNewProperty['PG'];
         $localityinfo =$addNewProperty['Locality'];
@@ -1246,12 +1251,16 @@ class Property_model extends CI_Model
         $Schedule = $data['Schedule'];
         $Room = $data['Room'];
 
+        // $addNewProperty['PG']['pg_hostel_rules']= implode(",",$addNewProperty['hostelrulesarr']);
+        // $addNewProperty['Amenities']['available_amenities'] =implode(",",$addNewProperty['amenitiesarr']);
+        // $addNewProperty['Room']['room_amenities'] =implode(",",$addNewProperty['amenitiesroomarr']);
+        
         $place_is_available_for = $Property['place_is_available_for'];
         $preferred_guests = $Property['preferred_guests'];
         $available_from=$Property['available_from'];
         $gate_closing_time= $Property['gate_closing_time'];
         $food_included= $Property['food_included'];
-        $pg_hostel_rules= $Property['pg_hostel_rules'];
+        $pg_hostel_rules= implode(",",$addNewProperty['hostelrulesarr']);
         $description= $Property['description'];
 
         $city= $Locality['city'];
@@ -1261,14 +1270,14 @@ class Property_model extends CI_Model
         $select_the_type_of_rooms= $Room['select_the_type_of_rooms'];
         $expected_rent_per_person= $Room['expected_rent_per_person'];
         $expected_deposit_per_person=$Room['expected_deposit_per_person'];
-        $room_amenities= $Room['room_amenities'];
+        $room_amenities= implode(",",$addNewProperty['amenitiesroomarr']);
 
         $upload_images= $Gallery['upload_images'];
 
         $available_service_laundry= $Amenities['available_service_laundry'];
         $available_service_room_cleaning= $Amenities['available_service_room_cleaning'];
         $available_service_warden_facility=$Amenities['available_service_warden_facility'];
-        $available_amenities= $Amenities['available_amenities'];
+        $available_amenities= implode(",",$addNewProperty['amenitiesarr']);
         $parking=$Amenities['parking'];
   
         $availability= $Schedule['availability'];

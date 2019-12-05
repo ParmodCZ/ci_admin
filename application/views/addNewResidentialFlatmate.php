@@ -55,10 +55,19 @@
                               <div class="form-group">
                                  <label for="apartment_type">Apartment Type *</label>
                                  <select class="form-control required" id="apartment_type" name="Property[apartment_type]" data-error="Please enter name field." required>
-                                    <option>Select</option>
-                                    <option value="apartment">Apartment</option>
-                                    <option value="independent house/villa">Independent House/Villa</option>
-                                    <option value="gated community villa">Gated Community Villa</option>
+                                   <option>Select</option>
+                                    <?php 
+                                       $apartmenttypelist = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa',
+                                          'standalone building'=>'Standalone Building'
+                                       );
+                                       if(!empty($apartmenttypelist)){
+                                         foreach ($apartmenttypelist as $key => $value){
+                                             ?>
+                                         <option value="<?php echo $key; ?>" ><?php echo $value; ?></option>
+                                             <?php
+                                         }
+                                       }
+                                    ?>
                                  </select>
                                  <div class="help-block with-errors"></div>
                               </div>
@@ -76,10 +85,12 @@
                                  <label for="address">BHK Type *</label>
                                  <select class="form-control required" id="bhk_type" name="Property[bhk_type]" required>
                                     <option>Select</option>
-                                    <option value="1">1 RK</option>
-                                    <option value="2">1 BHK</option>
-                                    <option value="3">2 BHK</option>
-                                    <option value="4">3 BHK</option>
+                                    <option value="RK1">1 RK</option>
+                                    <option value="BHK1">1 BHK</option>
+                                    <option value="BHK2">2 BHK</option>
+                                    <option value="BHK3">3 BHK</option>
+                                    <option value="BHK4">4 BHK</option>
+                                    <option value="BHK4PLUS">4+ BHK</option>
                                  </select>
                               </div>
                            </div>
@@ -88,14 +99,15 @@
                                  <label for="floor">Floor *</label>
                                  <select class="form-control required" id="floor" name="Property[floor]" required>
                                     <option>Select</option>
-                           <?php
-                            
-                              if(!empty($floor)){
-                                foreach ($floor as $value){ ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                               <?php }
-                              }
-                           ?>
+                                    <option value="0">Ground</option>
+                                 <?php
+                                  
+                                    if(!empty($floor)){
+                                      foreach ($floor as $value){ ?>
+                                      <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                     <?php }
+                                    }
+                                 ?>
                                  </select>
                               </div>
                            </div>
@@ -104,13 +116,14 @@
                                  <label for="total_floor">Total Floor *</label>
                                  <select class="form-control required" id="total_floor" name="Property[total_floor]" required >
                                     <option>Select</option>
-                              <?php
-                                 if(!empty($top_floor)){
-                                   foreach ($top_floor as $value){ ?>
-                                   <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                                  <?php }
-                                 }
-                              ?>
+                                    <option value="0">Ground Only</option>
+                                 <?php
+                                    if(!empty($top_floor)){
+                                      foreach ($top_floor as $value){ ?>
+                                      <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                     <?php }
+                                    }
+                                 ?>
                                  </select>
                               </div>
                            </div>
@@ -120,11 +133,11 @@
                                  <select class="form-control required" id="property_age" name="Property[property_age]" required>
                                     <option>Select</option>
                                     <option value="-1">Under Construction</option>
-                                    <option value="0">Less than one year</option>
-                                    <option value="1-3">1 - 3 Years</option>
-                                    <option value="3-5">3-5 Years</option>
-                                    <option value="5-10">5-10 Years</option>
-                                    <option value="10+">More than 10 Years</option>
+                                    <option value="0">Less than 1 year</option>
+                                    <option value="1">1-3 years</option>
+                                    <option value="3">3-5 years</option>
+                                    <option value="5">5-10 years</option>
+                                    <option value="10">More than 10 years</option>
                                  </select>
                               </div>
                            </div>
@@ -133,10 +146,15 @@
                                  <label for="facing">Facing *</label>
                                  <select class="form-control required" id="facing" name="Property[facing]" required>
                                     <option>Select</option>
-                                    <option value="north">North</option>
-                                    <option value="east">East</option>
-                                    <option value="west">West</option>
-                                    <option value="south">South</option>
+                                    <option value="N">North</option>
+                                    <option value="S">South</option>
+                                    <option value="E">East</option>
+                                    <option value="W">West</option>
+                                    <option value="NE">North-East</option>
+                                    <option value="SE">South-East</option>
+                                    <option value="NW">North-West</option>
+                                    <option value="SW">South-West</option>
+                                    <option value="DK">Don't Know</option>
                                  </select>
                               </div>
                            </div>
@@ -220,7 +238,8 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="negotiable">Negotiable *</label>
-                                 <input type="text" class="form-control" id="negotiable" name="Rental[negotiable]" required>
+                                <!--  <input type="text" class="form-control" id="negotiable" required> -->
+                                  <input type="checkbox" class="custom-control-input" id="negotiable" value="Yes"  name="Rental[negotiable]"  >
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -236,7 +255,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_form">Availablle From *</label>
-                                 <input type="text" class="form-control" id="available_form" name="Rental[available_form]" required>
+                                 <input type="text" class="form-control datetimepicker " id="available_form" name="Rental[available_form]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -265,7 +284,7 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="Rental[description]" required>
+                                 <textarea  class="form-control" id="description" name="Rental[description]" required></textarea>
                               </div>
                            </div>
                         </div>
@@ -373,10 +392,47 @@
                                  <input type="text" class="form-control" id="secondary_number" name="Amenities[secondary_number]" required>
                               </div>
                            </div>
-                           <div class="col-md-6">
+                           <!-- <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="select_the_amenities_available">Select The Amenities Available *</label>
                                  <input type="text" class="form-control" id="select_the_amenities_available" name="Amenities[select_the_amenities_available]" required>
+                              </div>
+                           </div> -->
+                           <div class="col-md-12">
+                              <label for="select_the_amenities_available">Select The Amenities Available *</label>
+                              <div class="row">
+                                 <?php 
+                           $checkarr= array(
+                               'LIFT'=>array('Lift','fa-square'),
+                                'INTERNET' => array('Internet Services','fa-internet-explorer'),
+                                'AC' => array('Air Conditioner','fa-window-maximize'),
+                                'CLUB' => array('Club House','fa-cc-diners-club'),
+                                'INTERCOM' =>array('Intercom','fa-american-sign-language-interpreting'),
+                                'POOL' => array('Swimming Pool','fa-bath'),
+                                'CPA' => array("Children's Play Area",'fa-futbol-o'),
+                                'FS' => array('Fire Safety','fa-fire-extinguisher'),
+                                'SERVANT' => array('Servant Room','fa-child'),
+                                'SC' => array('Shopping Center','fa-shopping-cart'),
+                                'GP' => array('Gas Pipeline','fa-sun-o'),
+                                'PARK' => array('Park','fa-tree'),
+                                'RWH' => array('Rain Water Harvesting','fa-cloud'),
+                                'STP' => array('Sewage Treatment Plant','fa-medkit'),
+                                'HK' => array('House Keeping','fa-female'),
+                                'PB' => array('Power Backup','fa-battery-full'),
+                                'VP' => array('Visitor Parking','fa-product-hunt')
+                                  );
+                               foreach($checkarr as $key=>$check){
+                                ?>
+                                  <div class="col-md-6 col-sm-6">
+                                     <div class="formCheckbox">
+                                        <input type="checkbox" name="amenitiesarr[]" value="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                                        <i class="fa <?php echo $check[1]; ?>" aria-hidden="true"></i>
+                                        <label for="<?php echo $key; ?>"><?php echo $check[0]; ?></label>
+                                        <span class="amenities lift"></span>
+                                     </div>
+                                  </div>
+                               <?php }
+                               ?>
                               </div>
                            </div>
                         </div>
@@ -387,13 +443,18 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="availability">Availability *</label>
-                                 <input type="text" class="form-control" id="availability" name="Schedule[availability]" required>
+                                 <select class="form-control" id="availability" name="Schedule[availability]" required>
+                                    <option value="">Select</option>
+                                    <option value="EVERYDAY">Everyday (Monday - Sunday)</option>
+                                    <option value="WEEKDAY">Weekdays (Monday - Friday)</option>
+                                    <option value="WEEKEND">Weekends (Saturday - Sunday)</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="start_time">Start Time *</label>
-                                 <input type="text" class="form-control" id="start_time" name="Schedule[start_time]" required>
+                                 <input type="text" class="form-control timepicker" id="start_time" name="Schedule[start_time]" required>
                               </div>
                            </div>
                         </div>
@@ -401,13 +462,14 @@
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="end_time">End Time *</label>
-                                 <input type="text" class="form-control" id="end_time" name="Schedule[end_time]" required>
+                                 <input type="text" class="form-control timepicker" id="end_time" name="Schedule[end_time]" required>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="available_all_day">Available All Day *</label>
-                                 <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required>
+                                 <!-- <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required> -->
+                                 <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" required>
                               </div>
                            </div>
                         </div>
