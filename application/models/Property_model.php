@@ -478,12 +478,13 @@ class Property_model extends CI_Model
     }
 
     function ResidentialFlatmateAddProperty($addNewProperty,$authuser){
+       // echo "<pre>";print_r($addNewProperty);die;
         $lastpropertyid =$this->ExistLastPropertyID('resident_flatmates_property_details');
         $propertyid = $this->generatePropertyID(7,"RF",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
-        $addNewProperty['Resale']['userID'] =$authuser;
+        $addNewProperty['Rental']['userID'] =$authuser;
         $addNewProperty['Gallery']['userID'] =$authuser;
         $addNewProperty['Amenities']['userID'] =$authuser;
         $addNewProperty['Schedule']['userID'] =$authuser;
@@ -491,7 +492,7 @@ class Property_model extends CI_Model
         //give propertyid 
         $addNewProperty['Property']['propertyid'] =$propertyid; 
         $addNewProperty['Locality']['propertyid'] =$propertyid;  
-        $addNewProperty['Resale']['propertyid'] =$propertyid;  
+        $addNewProperty['Rental']['propertyid'] =$propertyid;  
         $addNewProperty['Gallery']['propertyid'] =$propertyid;  
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
@@ -499,7 +500,7 @@ class Property_model extends CI_Model
         $addNewProperty['Amenities']['select_the_amenities_available'] =implode(",",$addNewProperty['amenitiesarr']);
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
-        $resaleinfo =$addNewProperty['Resale'];
+        $resaleinfo =$addNewProperty['Rental'];
         $galleryinfo =$addNewProperty['Gallery'];
         $amenitiesinfo =$addNewProperty['Amenities'];
         $scheduleinfo =$addNewProperty['Schedule'];
@@ -655,7 +656,7 @@ class Property_model extends CI_Model
         $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
-        $this->db->where('property.propertyid', $propertyid);
+        $this->db->where('property.propertyid', $propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();
@@ -675,7 +676,7 @@ class Property_model extends CI_Model
         $this->db->join('resident_resale_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('resident_resale_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         $this->db->join('resident_resale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
-        $this->db->where('property.propertyid', $propertyid);
+        $this->db->where('property.propertyid', $propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();
@@ -689,6 +690,7 @@ class Property_model extends CI_Model
         $this->db->join('resident_pg_pg_details as pg', 'pg.propertyid = room.propertyid','INNER');
         $this->db->join('resident_pg_gallery_details as gallery', 'gallery.propertyid = room.propertyid','INNER');
         $this->db->join('resident_pg_schedule_details as schedule', 'schedule.propertyid = room.propertyid','INNER');
+        $this->db->where('room.propertyid', $propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();
@@ -702,6 +704,7 @@ class Property_model extends CI_Model
         $this->db->join('resident_flatmates_rental_details as pg', 'pg.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
+        $this->db->where('property.propertyid',$propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();
@@ -715,6 +718,7 @@ class Property_model extends CI_Model
         $this->db->join('commercial_sale_resale_details as resale', 'resale.propertyid = property.propertyid','INNER');
         $this->db->join('commercial_sale_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('commercial_sale_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        $this->db->where('property.propertyid', $propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();
@@ -728,6 +732,7 @@ class Property_model extends CI_Model
         $this->db->join('commercial_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('commercial_rent_photo_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('commercial_rent_additional_information_details as information', 'information.propertyid = property.propertyid','INNER');
+        $this->db->where('property.propertyid', $propertyid)->limit(1);
         $query = $this->db->get();
         
         return $query->row();

@@ -168,28 +168,22 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="room_type">Room Type *</label>
-                                 <!-- <input type="text" class="form-control" id="room_type" name="Property[room_type]" required> -->
                               <div class="custom-control custom-radio custom-control-inline">
-                                 <input type="radio" class="custom-control-input" id="room_type1" name="Property[room_type]">
-                                 <label class="custom-control-label" value='single' for="room_type1">Single Room</label>
-                               <!-- </div>
-                               <div class="custom-control custom-radio custom-control-inline"> -->
-                                 <input type="radio" class="custom-control-input" id="room_type2" name="Property[room_type]">
-                                 <label class="custom-control-label" value='shared' for="room_type2">Shared Room</label>
+                                 <input type="radio" class="custom-control-input" id="room_type1" name="Property[room_type]" value='single' >
+                                 <label class="custom-control-label" for="room_type1">Single Room</label>
+                                 <input type="radio" class="custom-control-input" id="room_type2" name="Property[room_type]" value='shared'>
+                                 <label class="custom-control-label" for="room_type2">Shared Room</label>
                                </div>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="room_type">Tenant Type *</label>
-                                 <!-- <input type="text" class="form-control" id="tenant_type" name="Property[tenant_type]" required> -->
                                  <div class="custom-control custom-radio custom-control-inline">
-                                 <input type="radio" class="custom-control-input" id="male" name="Property[tenant_type]">
-                                 <label class="custom-control-label"value='male' for="male">Male</label>
-                               <!-- </div>
-                               <div class="custom-control custom-radio custom-control-inline"> -->
-                                 <input type="radio" class="custom-control-input" id="female" name="Property[tenant_type]">
-                                 <label class="custom-control-label"  value='female' for="female">Female</label>
+                                 <input type="radio" class="custom-control-input" id="male" name="Property[tenant_type]" value='male'>
+                                 <label class="custom-control-label" for="male">Male</label>
+                                 <input type="radio" class="custom-control-input" id="female" name="Property[tenant_type]" value='female'>
+                                 <label class="custom-control-label" for="female">Female</label>
                                </div>
                               </div>
                            </div>
@@ -238,8 +232,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="negotiable">Negotiable *</label>
-                                <!--  <input type="text" class="form-control" id="negotiable" required> -->
-                                  <input type="checkbox" class="custom-control-input" id="negotiable" value="Yes"  name="Rental[negotiable]"  >
+                                  <input type="checkbox" class="custom-control-input" id="negotiable" value="Yes"  name="Rental[negotiable]" >
                               </div>
                            </div>
                            <div class="col-md-6">

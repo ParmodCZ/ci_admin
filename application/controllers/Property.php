@@ -491,9 +491,7 @@ class Property extends BaseController
             $data['floor'] =$count;
             $data['top_floor'] =$count;
               $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
-
-             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
-
+              $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
             $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
             $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
            // echo"<pre>";print_r($data['apartmenttypelist']);die;
@@ -517,10 +515,8 @@ class Property extends BaseController
             }
             $data['floor'] =$count;
             $data['top_floor'] =$count;
-              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
-
-             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
-
+            $data['BHKType'] = array('RK1'=>'1 RK','BHK1'=>'1 BHK','BHK2'=>'2 BHK','BHK3'=>'3 BHK','BHK4'=>'4 BHK');    
+            $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
             $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
             $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
            // echo"<pre>";print_r($data['apartmenttypelist']);die;
@@ -544,10 +540,8 @@ class Property extends BaseController
             }
             $data['floor'] =$count;
             $data['top_floor'] =$count;
-              $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
-
-             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
-
+            $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
+            $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
             $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
             $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
            // echo"<pre>";print_r($data['apartmenttypelist']);die;
@@ -573,7 +567,7 @@ class Property extends BaseController
             $data['top_floor'] =$count;
               $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
 
-             $data['proage']=array('0'=>'Less than one year','1-3'=>'1 - 3 Years','3-5'=>'3-5 Years','5-10'=>'5-10 Years','10+'=>'More than 10 Years');
+             $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
 
             $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
             $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
