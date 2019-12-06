@@ -425,7 +425,7 @@ class Property extends BaseController
                 $this->session->set_flashdata('error', 'property creation failed');
             }
                  
-            redirect('ResidentialResaleList');
+            redirect('ResidentialRentList');
         }
     }
     
@@ -637,7 +637,7 @@ class Property extends BaseController
                     $this->session->set_flashdata('error', 'Property updation failed');
                 }
                 
-                redirect('ResidentialRentList');
+                redirect('ResidentialResaleList');
         }
     }
 
@@ -736,7 +736,7 @@ class Property extends BaseController
                     $this->session->set_flashdata('error', 'Property updation failed');
                 }
                 
-                redirect('CommercialSaleList');
+                redirect('CommercialRentList');
         }
     }
     

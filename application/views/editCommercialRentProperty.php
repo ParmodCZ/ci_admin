@@ -70,18 +70,10 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="floor_info">Apartment Name *</label>
-                                 <input type="text" class="form-control" id="floor_info" name="Property[floor_info]" required value="<?php echo $PropertyInfo->floor_info; ?>" >
-                              </div>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-4">
-                              <div class="form-group">
-                                 <label for="area">Area *</label>
-                                 <!-- <input type="text" class="form-control" id="area"value="<?php echo $PropertyInfo->area; ?>" name="Property[area]" required> -->
-                                 <select class="form-control" id="floor_info" name="Property[floor_info]" required>
-                                    <?php $fty = $PropertyInfo->area; ?>
+                                 <label for="floor_info">floor_info *</label>
+                                <!--  <input type="text" class="form-control" id="floor_info" name="Property[floor_info]" required value="<?php echo $PropertyInfo->floor_info; ?>" > -->
+                                <select class="form-control" id="floor_info" name="Property[floor_info]" required>
+                                    <?php $fty = $PropertyInfo->floor_info; ?>
                                     <option value="-2" <?php echo ($fty =='-2')?'selected':'' ?> >Lower Basement</option>
                                     <option value="-1"<?php echo ($fty =='-1')?'selected':'' ?> >Upper Basement</option>
                                     <option value="0" <?php echo ($fty =='0')?'selected':'' ?>>Ground</option>
@@ -94,6 +86,14 @@
                                        }
                                     ?>
                                  </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="form-group">
+                                 <label for="area">Area *</label>
+                                 <input type="text" class="form-control" id="area"value="<?php echo $PropertyInfo->area; ?>" name="Property[area]" required>
                               </div>
                            </div>
                            <div class="col-md-4">
@@ -128,7 +128,6 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
-                                 <!-- <input type="text" class="form-control" id="other_features"value="<?php echo $PropertyInfo->other_features; ?>" name="Property[other_features]" required> -->
                                  <?php 
                                     $ofr = $PropertyInfo->other_features;
                                     $ofrar = array('On_Main_Road' =>'On Main Road','On Main Road'=>'Corner Property');

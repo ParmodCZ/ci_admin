@@ -121,7 +121,6 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
-                              <!--    <input type="text" class="form-control" id="other_features" name="Property[other_features]" required> -->
                                  <div class="form-group">
                                     <div class="custom-control custom-checkbox">
                                         <label class="custom-control-label" for="On_Main_Road">On Main Road</label>
@@ -129,7 +128,7 @@
                                        <label class="custom-control-label" for="CORNER_PROPERTY">Corner Property</label>
                                        <input type="checkbox" class="custom-control-input" id="CORNER_PROPERTY" value="CORNER_PROPERTY" name="Property[other_features][]">
                                     </div>
-                              </div>
+                                 </div>
                               </div>
                            </div>
                         </div>

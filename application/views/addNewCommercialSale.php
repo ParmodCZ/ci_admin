@@ -55,9 +55,6 @@
                               <div class="form-group">
                                  <label for="property_type">Property Type *</label>
                                  <select class="form-control required" id="property_type" name="Property[property_type]" data-error="Please enter name field." required>
-                                    <!-- <option value="apartment">Apartment</option>
-                                    <option value="independent house/villa">Independent House/Villa</option>
-                                    <option value="gated community villa">Gated Community Villa</option> -->
                                     <option>Select</option>
                                     <option value="OFFICE">Office</option>
                                     <option value="COWORKING">Co-Working</option>
@@ -72,8 +69,20 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
-                                 <label for="floor_info">Apartment Name *</label>
-                                 <input type="text" class="form-control" id="floor_info" name="Property[floor_info]" required>
+                                 <label for="floor_info">Floor Info *</label>
+                                  <select class="form-control" id="floor_info" name="Property[floor_info]" required>
+                                    <option value="-2">Lower Basement</option>
+                                    <option value="-1">Upper Basement</option>
+                                    <option value="0">Ground</option>
+                                    <option value="100">Full Building</option>
+                                    <?php
+                                       if(!empty($top_floor)){
+                                         foreach ($top_floor as $value){ ?>
+                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php }
+                                       }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -88,13 +97,13 @@
                               <div class="form-group">
                                  <label for="age_of_property">Property Age *</label>
                                  <select class="form-control required" id="age_of_property" name="Property[age_of_property]" required>
-                                    <option>Select</option>
+                                     <option>Select</option>
                                     <option value="-1">Under Construction</option>
-                                    <option value="0">Less than one year</option>
-                                    <option value="1-3">1 - 3 Years</option>
-                                    <option value="3-5">3-5 Years</option>
-                                    <option value="5-10">5-10 Years</option>
-                                    <option value="10+">More than 10 Years</option>
+                                    <option value="0">Less than 1 year</option>
+                                    <option value="1">1-3 years</option>
+                                    <option value="3">3-5 years</option>
+                                    <option value="5">5-10 years</option>
+                                    <option value="10">More than 10 years</option>
                                  </select>
                               </div>
                            </div>
@@ -111,7 +120,14 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
-                                 <input type="text" class="form-control" id="other_features" name="Property[other_features]" required>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <label class="custom-control-label" for="On_Main_Road">On Main Road</label>
+                                       <input type="checkbox" class="custom-control-input" id="On_Main_Road" value="On_Main_Road" name="Property[other_features][]">
+                                       <label class="custom-control-label" for="CORNER_PROPERTY">Corner Property</label>
+                                       <input type="checkbox" class="custom-control-input" id="CORNER_PROPERTY" value="CORNER_PROPERTY" name="Property[other_features][]">
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -159,19 +175,20 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="negotiable">Negotiable *</label>
-                                 <input type="text" class="form-control" id="negotiable" name="Resale[negotiable]" required>
+                                 <input type="checkbox"  id="negotiable" name="Resale[negotiable]" required value="true">
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_form">available_from From *</label>
-                                 <input type="text" class="form-control" id="available_from" name="Resale[available_from]" required>
+                                 <input type="text" class="form-control datetimepicker" id="available_from" name="Resale[available_from]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="ownership_type">Ownership Type *</label>
                                  <select class="form-control" id="ownership_type" name="Resale[ownership_type]" required>
+                                    <option>select</option>
                                     <option value="LEASEHOLD">On Lease</option>
                                     <option value="FREEHOLD">Self Owned</option>
                                  </select>
