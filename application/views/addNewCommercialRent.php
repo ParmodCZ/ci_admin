@@ -197,7 +197,7 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
-                                 <label for="lockin_period">Lockin Period *</label>
+                                 <label for="lockin_period">Lockin Period(years)  *</label>
                                  <select class="form-control" id="lockin_period" name="Rent[lockin_period]" required>
                                      <option>select</option>
                                     <?php
@@ -298,8 +298,8 @@
                                  <select class="form-control" id="parking" name="Amenities[parking]" required>
                                     <option>select</option>
                                     <option value="NONE">None</option>
-                                    <option value="PUBoptionC_RESERVED">Puboptionc And Reserved</option>
-                                    <option value="PUBoptionC">Puboptionc</option>
+                                    <option value="PUBLIC_RESERVED">Public And Reserved</option>
+                                    <option value="PUBLIC">Public</option>
                                     <option value="RESERVED">Reserved</option>
                                  </select>
                               </div>

@@ -129,12 +129,23 @@
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
                                  <!-- <input type="text" class="form-control" id="other_features"value="<?php echo $PropertyInfo->other_features; ?>" name="Property[other_features]" required> -->
-                                 <?php $ofr = $PropertyInfo->other_features; ?>
+                                 <?php 
+                                    $ofr = $PropertyInfo->other_features;
+                                    $ofrar = array('On_Main_Road' =>'On Main Road','On Main Road'=>'Corner Property');
+                                  ?>
                                  <div class="custom-control custom-checkbox">
-                                     <label class="custom-control-label" for="On_Main_Road">On Main Road</label>
-                                    <input type="checkbox" class="custom-control-input" id="On_Main_Road" value="On_Main_Road" name="Property[other_features]"<?php ($ofr=='On_Main_Road')?'checked':'' ?> >
-                                    <label class="custom-control-label" for="CORNER_PROPERTY">Corner Property</label>
-                                    <input type="checkbox" class="custom-control-input" id="CORNER_PROPERTY" value="CORNER_PROPERTY" name="Property[other_features]" <?php ($ofr=='CORNER_PROPERTY')?'checked':'' ?> >
+                                    <?php 
+                                    $ofrep=explode(',', $ofr);
+                                    foreach ($ofrar as $key => $value) { 
+                                        $chk='';
+                                       if(in_array($key,$ofrep)){
+                                          $chk='checked';
+                                       }
+                                       ?>
+                                      <label class="custom-control-label" for="<?php echo $key ?>"><?php echo $value ?></label>
+                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key ?>" value="<?php echo $key ?>" name="Property[other_features]" <?php echo $chk; ?> >
+                                   <?php }
+                                    ?>
                                  </div>
                               </div>
                            </div>
@@ -189,7 +200,16 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="lease_duration">Lease Duration *</label>
-                                 <input type="text" class="form-control" id="lease_duration"value="<?php echo $PropertyInfo->lease_duration; ?>" name="Rent[lease_duration]" required>
+                                 <select class="form-control" id="lease_duration"value="<?php echo $PropertyInfo->lease_duration; ?>" name="Rent[lease_duration]" required>
+                                    <option>select</option>
+                                    <?php
+                                       if(!empty($top_floor)){
+                                         foreach ($top_floor as $value){ ?>
+                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php }
+                                       }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -201,19 +221,47 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="deposit">Deposit *</label>
-                                 <input type="text" class="form-control" id="deposit" name="Rent[deposit]"value="<?php echo $PropertyInfo->deposit; ?>" required>
+                                 <select class="form-control" id="deposit" name="Rent[deposit]"value="<?php echo $PropertyInfo->deposit; ?>" required>
+                                    <option>select</option>
+                                    <?php
+                                       if(!empty($top_floor)){
+                                         foreach ($top_floor as $value){ ?>
+                                         <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php }
+                                       }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="available_form">available_from From *</label>
-                                 <input type="text" class="form-control" id="available_from"value="<?php echo $PropertyInfo->available_from; ?>" name="Rent[available_from]" required>
+                                 <input type="text" class="form-control datetimepicker" id="available_from"value="<?php echo $PropertyInfo->available_from; ?>" name="Rent[available_from]" required>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="ideal_for">Ideal For *</label>
-                                 <input type="text" class="form-control" id="ideal_for"value="<?php echo $PropertyInfo->ideal_for; ?>" name="Rent[ideal_for]" required>
+                                 <div class="custom-control custom-checkbox">
+                                 <?php 
+                                 $ide =array(
+                                    'BANK'=>'Bank',
+                                    'SERVICE_CENTER'=>'Service Center',
+                                    'SHOWROOM'=>'Show Room',
+                                    'ATM'=>'ATM',
+                                    'RETAIL'=>'Retail',
+                                 );
+                                 $ida =$PropertyInfo->ideal_for;
+                                 $idarr =explode(',', $ida);
+                                 foreach ($ide as $key => $value) {
+                                    $chkk='';
+                                    if(in_array($key,$idarr)){
+                                       $chkk='checked';
+                                    }?>
+                                     <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
+                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Rent[ideal_for][]">
+                                <?php }?>
+                                </div>
                               </div>
                            </div>
                         </div>
@@ -233,12 +281,6 @@
                                  </div>
                               </div>
                            </div>
-                           <!-- <div class="col-md-6">
-                              <div class="form-group">
-                                  <label for="dob">Apartment Name *</label>
-                                  <input type="text" class="form-control" id="dob" name="dob" >
-                              </div>
-                              </div> -->
                         </div>
                      </div>
                      <!-- Amenities -->
@@ -247,13 +289,25 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="power_backup">Power Backup *</label>
-                                 <input type="text" class="form-control" id="power_backup"value="<?php echo $PropertyInfo->power_backup; ?>" name="Amenities[power_backup]" required>
+                                 <select class="form-control" id="power_backup"value="<?php echo $PropertyInfo->power_backup; ?>" name="Amenities[power_backup]" required>
+                                    <?php $pbv = $PropertyInfo->power_backup; ?>
+                                    <option>select</option>
+                                    <option value="FULL" <?php echo ($pbv=='FULL')?'selected':'' ?> >Full</option>
+                                    <option value="DG_BACKUP"<?php echo ($pbv=='DG_BACKUP')?'selected':'' ?>  >DG Backup</option>
+                                    <option value="NEED_TO_ARRANGE"<?php echo ($pbv=='NEED_TO_ARRANGE')?'selected':'' ?>  >Need to Arrange</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="lift">Lift *</label>
-                                 <input type="text" class="form-control" id="lift"value="<?php echo $PropertyInfo->lift; ?>" name="Amenities[lift]" required>
+                                 <select class="form-control" id="lift"value="<?php echo $PropertyInfo->lift; ?>" name="Amenities[lift]" required>
+                                    <?php $lif = $PropertyInfo->lift; ?>
+                                    <option>select</option>
+                                    <option value="NONE" <?php echo ($lif=='NONE')?'selected':'' ?> >None</option>
+                                    <option value="PERSONAL" <?php echo ($lif=='PERSONAL')?'selected':'' ?> >Personal</option>
+                                    <option value="COMMON" <?php echo ($lif=='COMMON')?'selected':'' ?> >Common</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -261,7 +315,14 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="parking">parking *</label>
-                                 <input type="text" class="form-control" id="parking"value="<?php echo $PropertyInfo->parking; ?>" name="Amenities[parking]" required>
+                                 <select class="form-control" id="parking"value="<?php echo $PropertyInfo->parking; ?>" name="Amenities[parking]" required>
+                                    <?php $pak = $PropertyInfo->parking; ?>
+                                    <option>select</option>
+                                    <option value="NONE"<?php echo ($pak=='NONE')?'selected':'' ?> >None</option>
+                                    <option value="PUBLIC_RESERVED" <?php echo ($pak=='PUBLIC_RESERVED')?'selected':'' ?> >Public And Reserved</option>
+                                    <option value="PUBLIC"<?php echo ($pak=='PUBLIC')?'selected':'' ?> >Public</option>
+                                    <option value="RESERVED"<?php echo ($pak=='RESERVED')?'selected':'' ?> >Reserved</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -284,7 +345,13 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="previous_occupancy">Previous Occupancy *</label>
-                                 <input type="text" class="form-control" id="previous_occupancy" value="<?php echo $PropertyInfo->previous_occupancy; ?>" name="Information[previous_occupancy]" required>
+                                 <select class="form-control" id="previous_occupancy" name="Information[previous_occupancy]" required>
+                                    <?php $prev= $PropertyInfo->previous_occupancy; ?>
+                                     <option value="">Select</option>
+                                    <option value="FIRST_TIME_RENTING"<?php echo ($prev =='FIRST_TIME_RENTING')?'selected':'' ?> >First Time Renting</option>
+                                    <option value="CURRENTLY_RENTED"<?php echo ($prev =='CURRENTLY_RENTED')?'selected':'' ?> >Currently Rented</option>
+                                    <option value="PREVIOUSLY_RENTED" <?php echo ($prev =='PREVIOUSLY_RENTED')?'selected':'' ?> >Previously Rented</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
@@ -292,13 +359,32 @@
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="locality_type">Locality Yype *</label>
-                                 <input type="text" class="form-control" id="locality_type"value="<?php echo $PropertyInfo->locality_type; ?>" name="Information[locality_type]" required>
+                                 <select class="form-control" id="locality_type" name="Information[locality_type]" required>
+                                    <?php $loy = $PropertyInfo->locality_type; ?>
+                                    <option value="">Select</option>
+                                    <option value="MARKET_COMPLEX" <?php echo ($loy =='MARKET_COMPLEX')?'selected':'' ?> >Market Complex</option>
+                                    <option value="SHOPPING_MALL" <?php echo ($loy =='SHOPPING_MALL')?'selected':'' ?>>Shopping Mall</option>
+                                    <option value="RESIDENTIAL_AREA" <?php echo ($loy =='RESIDENTIAL_AREA')?'selected':'' ?>>Residential Area</option>
+                                    <option value="STANDALONE_BUILDING" <?php echo ($loy =='STANDALONE_BUILDING')?'selected':'' ?> >Standalone Building</option>
+                                    <option value="INDUSTRIAL_AREA" <?php echo ($loy =='INDUSTRIAL_AREA')?'selected':'' ?> >Industrial Area</option>
+                                    <option value="TECH_PARK" <?php echo ($loy =='TECH_PARK')?'selected':'' ?> >Tech Park</option>
+                                    <option value="OFFICE_AREA" <?php echo ($loy =='OFFICE_AREA')?'selected':'' ?> >Office Area</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="who_will_show_the_house">Who Will Show The House *</label>
-                                 <input type="text" class="form-control"value="<?php echo $PropertyInfo->who_will_show_the_house; ?>" id="who_will_show_the_house" name="Information[who_will_show_the_house]" required>
+                                 <select class="form-control" id="who_will_show_the_house" name="Information[who_will_show_the_house]" required>
+                                    <option value="">Select</option>
+                                    <?php $shu = $PropertyInfo->who_will_show_the_house;?>
+                                    <option value="I_HAVE_KEYS" <?php echo ($shu =='I_HAVE_KEYS')?'selected':'' ?> >I will show</option>
+                                    <option value="NEED_HELP" <?php echo ($shu =='NEED_HELP')?'selected':'' ?>>Need Help</option>
+                                    <option value="NEIGHBOURS" <?php echo ($shu =='NEIGHBOURS')?'selected':'' ?>>Neighbours</option>
+                                    <option value="OTHERS" <?php echo ($shu =='OTHERS')?'selected':'' ?>>Others</option>
+                                    <option value="SECURITY" <?php echo ($shu =='SECURITY')?'selected':'' ?>>Security</option>
+                                    <option value="TENANTS" <?php echo ($shu =='TENANTS')?'selected':'' ?> >Tenants</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
