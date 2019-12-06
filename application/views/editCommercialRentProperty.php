@@ -56,10 +56,14 @@
                                  <label for="property_type">Property Type *</label>
                                  <select class="form-control required" id="property_type" name="Property[property_type]" data-error="Please enter name field." required>
                                     <option>Select</option>
-                                    <option value="apartment">Apartment</option>
-                                    <?php $Apartment =$PropertyInfo->property_type; ?>
-                                    <option value="independent house/villa" <?php if("independent house/villa" ==$Apartment) {echo "selected=selected";} ?> >Independent House/Villa</option>
-                                    <option value="gated community villa" <?php if("gated community villa" ==$Apartment) {echo "selected=selected";} ?> >Gated Community Villa</option>
+                                     <?php $Pty =$PropertyInfo->property_type; ?>
+                                    <option value="OFFICE" <?php echo ($Pty =='OFFICE')?'selected':'' ?> >Office</option>
+                                    <option value="COWORKING"<?php echo ($Pty =='COWORKING')?'selected':'' ?>>Co-Working</option>
+                                    <option value="SHOP" <?php echo ($Pty =='SHOP')?'selected':'' ?>>Shop</option>
+                                    <option value="SHOWROOM" <?php echo ($Pty =='SHOWROOM')?'selected':'' ?>>Showroom</option>
+                                    <option value="GODOWN_WAREHOUSE" <?php echo ($Pty =='GODOWN_WAREHOUSE')?'selected':'' ?>>Godown/Warehouse</option>
+                                    <option value="INDUSTRIAL_BUILDING"v <?php echo ($Pty =='INDUSTRIAL_BUILDING')?'selected':'' ?>>Industrial Building</option>
+                                    <option value="INDUSTRIAL_SHED" <?php echo ($Pty =='INDUSTRIAL_SHED')?'selected':'' ?> >Industrial Shed</option>
                                  </select>
                                  <div class="help-block with-errors"></div>
                               </div>
@@ -75,7 +79,21 @@
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="area">Area *</label>
-                                 <input type="text" class="form-control" id="area"value="<?php echo $PropertyInfo->area; ?>" name="Property[area]" required>
+                                 <!-- <input type="text" class="form-control" id="area"value="<?php echo $PropertyInfo->area; ?>" name="Property[area]" required> -->
+                                 <select class="form-control" id="floor_info" name="Property[floor_info]" required>
+                                    <?php $fty = $PropertyInfo->area; ?>
+                                    <option value="-2" <?php echo ($fty =='-2')?'selected':'' ?> >Lower Basement</option>
+                                    <option value="-1"<?php echo ($fty =='-1')?'selected':'' ?> >Upper Basement</option>
+                                    <option value="0" <?php echo ($fty =='0')?'selected':'' ?>>Ground</option>
+                                    <option value="100" <?php echo ($fty =='100')?'selected':'' ?>>Full Building</option>
+                                    <?php
+                                       if(!empty($top_floor)){
+                                         foreach ($top_floor as $value){ ?>
+                                         <option value="<?php echo $value; ?>"<?php echo ($value==$fty)?'selected':'' ?> ><?php echo $value; ?></option>
+                                        <?php }
+                                       }
+                                    ?>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
@@ -97,13 +115,27 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <input type="text" class="form-control" id="furnishing"value="<?php echo $PropertyInfo->furnishing; ?>" name="Property[furnishing]" required>
+                                 <!-- <input type="text" class="form-control" id="furnishing"value="<?php echo $PropertyInfo->furnishing; ?>" name="Property[furnishing]" required> -->
+                                 <select class="form-control" id="furnishing" name="Property[furnishing]" required>
+                                    <?php $fnr= $PropertyInfo->furnishing; ?>
+                                    <option>select</option>
+                                    <option value="FULLY_FURNISHED" <?php echo ($fnr =='FULLY_FURNISHED')?'selected':'' ?> >Fully furnished</option>
+                                    <option value="SEMI_FURNISHED" <?php echo ($fnr =='SEMI_FURNISHED')?'selected':'' ?> >Semi-furnished</option>
+                                    <option value="NOT_FURNISHED" <?php echo ($fnr =='NOT_FURNISHED')?'selected':'' ?> >Unfurnished</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
-                                 <input type="text" class="form-control" id="other_features"value="<?php echo $PropertyInfo->other_features; ?>" name="Property[other_features]" required>
+                                 <!-- <input type="text" class="form-control" id="other_features"value="<?php echo $PropertyInfo->other_features; ?>" name="Property[other_features]" required> -->
+                                 <?php $ofr = $PropertyInfo->other_features; ?>
+                                 <div class="custom-control custom-checkbox">
+                                     <label class="custom-control-label" for="On_Main_Road">On Main Road</label>
+                                    <input type="checkbox" class="custom-control-input" id="On_Main_Road" value="On_Main_Road" name="Property[other_features]"<?php ($ofr=='On_Main_Road')?'checked':'' ?> >
+                                    <label class="custom-control-label" for="CORNER_PROPERTY">Corner Property</label>
+                                    <input type="checkbox" class="custom-control-input" id="CORNER_PROPERTY" value="CORNER_PROPERTY" name="Property[other_features]" <?php ($ofr=='CORNER_PROPERTY')?'checked':'' ?> >
+                                 </div>
                               </div>
                            </div>
                         </div>

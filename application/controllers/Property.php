@@ -283,7 +283,7 @@ class Property extends BaseController
         }
         else{
             $count=[];
-            for($i=1;$i<=100;$i++){
+            for($i=1;$i<=99;$i++){
                 array_push($count, $i);
             }
             $data['floor'] =$count;
@@ -542,7 +542,9 @@ class Property extends BaseController
             $data['top_floor'] =$count;
             $data['BHKType'] = array('1'=>'1 RK','2'=>'2 RK','3'=>'3 RK','4'=>'4 RK');
             $data['proage']=array('-1'=>'Under Construction','0'=>'Less than one year','1'=>'1 - 3 Years','3'=>'3-5 Years','5'=>'5-10 Years','10'=>'More than 10 Years');
+
             $data['apartmenttypelist'] = array('apartment'=>'Apartment','independent'=>'Independent House/Villa','gated community villa'=>'Gated Community Villa');
+            
             $data['facing'] = array('north'=>'North','east'=>'East','west'=>'West','south'=>'South');
            // echo"<pre>";print_r($data['apartmenttypelist']);die;
            // $data['roles'] = $this->Property_model->getUserRoles();

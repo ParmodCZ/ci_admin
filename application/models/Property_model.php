@@ -605,27 +605,31 @@ class Property_model extends CI_Model
     }
 
     function CommercialRentAddProperty($addNewProperty,$authuser){
+        //echo"<pre>";print_r($addNewProperty);die;
         $propertyid =uniqid('CR'); 
         $lastpropertyid =$this->ExistLastPropertyID('commercial_rent_property_details');
         $propertyid = $this->generatePropertyID(7,"CR",$lastpropertyid);
         //give userID
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
-        $addNewProperty['Resale']['userID'] =$authuser;
+        $addNewProperty['Rent']['userID'] =$authuser;
         $addNewProperty['Gallery']['userID'] =$authuser;
         $addNewProperty['Amenities']['userID'] =$authuser;
         $addNewProperty['Information']['userID'] =$authuser;
         //give propertyid 
         $addNewProperty['Property']['propertyid'] =$propertyid; 
         $addNewProperty['Locality']['propertyid'] =$propertyid;  
-        $addNewProperty['Resale']['propertyid'] =$propertyid;  
+        $addNewProperty['Rent']['propertyid'] =$propertyid;  
         $addNewProperty['Gallery']['propertyid'] =$propertyid;  
         $addNewProperty['Amenities']['propertyid'] =$propertyid;   
         $addNewProperty['Information']['propertyid'] =$propertyid; 
 
+        $addNewProperty['Property']['other_features'] =implode(",",$addNewProperty['Property']['other_features'] ); 
+         $addNewProperty['Rent']['ideal_for'] =implode(",",$addNewProperty['Rent']['ideal_for'] );
+         
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
-        $resaleinfo =$addNewProperty['Resale'];
+        $Rentinfo =$addNewProperty['Rent'];
         $galleryinfo =$addNewProperty['Gallery'];
         $amenitiesinfo =$addNewProperty['Amenities'];
         $information =$addNewProperty['Information'];
@@ -633,7 +637,7 @@ class Property_model extends CI_Model
         $this->db->trans_start();
         $this->db->insert('commercial_rent_property_details', $propertyinfo);
         $this->db->insert('commercial_rent_locality_details', $localityinfo);
-        $this->db->insert('commercial_rent_rental_details', $resaleinfo);
+        $this->db->insert('commercial_rent_rental_details', $Rentinfo);
         $this->db->insert('commercial_rent_photo_details', $galleryinfo);
         $this->db->insert('commercial_rent_amenities_details', $amenitiesinfo);
         $this->db->insert('commercial_rent_additional_information_details', $information);
