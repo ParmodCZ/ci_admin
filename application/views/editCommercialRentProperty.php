@@ -115,7 +115,6 @@
                            <div class="col-md-4">
                               <div class="form-group" >
                                  <label for="furnishing">Furnishing *</label>
-                                 <!-- <input type="text" class="form-control" id="furnishing"value="<?php echo $PropertyInfo->furnishing; ?>" name="Property[furnishing]" required> -->
                                  <select class="form-control" id="furnishing" name="Property[furnishing]" required>
                                     <?php $fnr= $PropertyInfo->furnishing; ?>
                                     <option>select</option>
@@ -126,11 +125,12 @@
                               </div>
                            </div>
                            <div class="col-md-4">
+
                               <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
                                  <?php 
                                     $ofr = $PropertyInfo->other_features;
-                                    $ofrar = array('On_Main_Road' =>'On Main Road','On Main Road'=>'Corner Property');
+                                    $ofrar = array('On_Main_Road' =>'On Main Road','CORNER_PROPERTY'=>'Corner Property');
                                   ?>
                                  <div class="custom-control custom-checkbox">
                                     <?php 
@@ -258,7 +258,7 @@
                                        $chkk='checked';
                                     }?>
                                      <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
-                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Rent[ideal_for][]">
+                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Rent[ideal_for][]" <?php echo $chkk; ?>>
                                 <?php }?>
                                 </div>
                               </div>

@@ -109,7 +109,7 @@
                                     $property_age = $PropertyInfo->age_of_property;
                                     if(!empty($proage)){
                                       foreach ($proage as $value){ ?>
-                                      <option value="<?php echo $value; ?>" <?php if($key ==$property_age) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
+                                      <option value="<?php echo $value; ?>" <?php if($value ==$property_age) {echo "selected=selected";} ?> ><?php echo $value; ?></option>
                                      <?php }
                                     }
                                  ?>
@@ -131,13 +131,11 @@
                            </div>
                            <div class="col-md-4">
                               <div class="form-group" >
-                                 <label for="other_features">Other Features *</label>
-                                 <!-- <input type="text" class="form-control" id="other_features" name="Property[other_features]"value="<?php echo $PropertyInfo->other_features; ?>" required> -->
                                  <div class="form-group" >
                                  <label for="other_features">Other Features *</label>
                                  <?php 
                                     $ofr = $PropertyInfo->other_features;
-                                    $ofrar = array('On_Main_Road' =>'On Main Road','On Main Road'=>'Corner Property');
+                                    $ofrar = array('On_Main_Road' =>'On Main Road','CORNER_PROPERTY'=>'Corner Property');
                                   ?>
                                  <div class="custom-control custom-checkbox">
                                     <?php 
@@ -200,8 +198,10 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
+                                 <?php $neo = $PropertyInfo->negotiable; ?>
                                  <label for="negotiable">Negotiable *</label>
-                                 <input type="checkbox" id="negotiable"value="<?php echo $PropertyInfo->negotiable; ?>" name="Resale[negotiable]" required>
+                                 <input type="checkbox" id="negotiable"value="true" name="Resale[negotiable]"
+                                 <?php echo ($neo=='true')?'checked':'' ?> >
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -215,15 +215,15 @@
                                  <label for="ownership_type">Ownership Type *</label>
                                  <select class="form-control" id="ownership_type"value="<?php echo $PropertyInfo->ownership_type; ?>" name="Resale[ownership_type]" required>
                                     <?php $qwn= $PropertyInfo->ownership_type; ?>
-                                    <option value="LEASEHOLD" <?php echo ($qwn==)'LEASEHOLD'?'selected':'' ?> >On Lease</option>
-                                    <option value="FREEHOLD" <?php echo ($qwn==)'FREEHOLD'?'selected':'' ?> >Self Owned</option>
+                                    <option value="LEASEHOLD" <?php echo ($qwn=='LEASEHOLD')?'selected':'' ?> >On Lease</option>
+                                    <option value="FREEHOLD" <?php echo ($qwn=='FREEHOLD')?'selected':'' ?> >Self Owned</option>
                                  </select>
                               </div>
                            </div>
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="ideal_for">Ideal For *</label>
-                                 <!-- <input type="text" class="form-control" id="ideal_for"value="<?php echo $PropertyInfo->ideal_for; ?>" name="Resale[ideal_for]" required> -->
+                                 
                                  <div class="custom-control custom-checkbox">
                                  <?php 
                                  $ide =array(
@@ -241,7 +241,7 @@
                                        $chkk='checked';
                                     }?>
                                      <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
-                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Resale[ideal_for][]">
+                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Resale[ideal_for][]" <?php echo $chkk; ?>>
                                 <?php }?>
                                 </div>
                               </div>
@@ -327,7 +327,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description"value="<?php echo $PropertyInfo->description; ?>" name="Information[description]" required>
+                                 <textarea class="form-control" id="description" name="Information[description]"><?php echo $PropertyInfo->description; ?></textarea>
                               </div>
                            </div>
                            <div class="col-md-6">
@@ -357,6 +357,7 @@
                                     <option value="INDUSTRIAL_AREA" <?php echo ($loy =='INDUSTRIAL_AREA')?'selected':'' ?> >Industrial Area</option>
                                     <option value="TECH_PARK" <?php echo ($loy =='TECH_PARK')?'selected':'' ?> >Tech Park</option>
                                     <option value="OFFICE_AREA" <?php echo ($loy =='OFFICE_AREA')?'selected':'' ?> >Office Area</option>
+                                 </select>
                               </div>
                            </div>
                            <div class="col-md-4">

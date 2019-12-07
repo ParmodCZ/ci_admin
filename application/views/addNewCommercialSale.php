@@ -197,7 +197,23 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="ideal_for">Ideal For *</label>
-                                 <input type="text" class="form-control" id="ideal_for" name="Resale[ideal_for]" required>
+                                <!--  <input type="text" class="form-control" id="ideal_for" name="Resale[ideal_for]" required> -->
+
+                                <div class="custom-control custom-checkbox">
+                                 <?php 
+                                 $ide =array(
+                                    'BANK'=>'Bank',
+                                    'SERVICE_CENTER'=>'Service Center',
+                                    'SHOWROOM'=>'Show Room',
+                                    'ATM'=>'ATM',
+                                    'RETAIL'=>'Retail',
+                                 );
+                                 foreach ($ide as $key => $value) {
+                                    ?>
+                                     <label class="custom-control-label" for="<?php echo $key; ?>"><?php echo $value; ?></label>
+                                    <input type="checkbox" class="custom-control-input" id="<?php echo $key; ?>" value="<?php echo $key; ?>" name="Resale[ideal_for][]" >
+                                <?php }?>
+                                </div>
                               </div>
                            </div>
                         </div>
@@ -275,7 +291,7 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="description">Description *</label>
-                                 <input type="text" class="form-control" id="description" name="Information[description]" required>
+                                 <textarea class="form-control" id="description" name="Information[description]"></textarea>
                               </div>
                            </div>
                            <div class="col-md-6">

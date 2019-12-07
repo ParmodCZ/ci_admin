@@ -409,7 +409,7 @@ class Property extends BaseController
             redirect('ResidentialResaleList');
         }
     }
-
+ 
     function CommercialRentAddProperty(){
         
         if($this->isAdmin() == TRUE){
@@ -425,7 +425,7 @@ class Property extends BaseController
                 $this->session->set_flashdata('error', 'property creation failed');
             }
                  
-            redirect('ResidentialRentList');
+            redirect('CommercialRentList');
         }
     }
     

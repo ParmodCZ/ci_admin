@@ -461,8 +461,7 @@
                            <div class="col-md-4">
                               <div class="form-group">
                                  <label for="available_all_day">Available All Day *</label>
-                                 <!-- <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required> -->
-                                 <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" required>
+                                 <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]">
                               </div>
                            </div>
                         </div>
