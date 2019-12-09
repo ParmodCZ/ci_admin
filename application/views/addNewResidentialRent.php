@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+ <div class="content-wrapper">
 <?php
       $this->load->helper('form');
       $error = $this->session->flashdata('error');
@@ -28,7 +28,7 @@
       </h1>
    </section>
    <section class="content">
-      <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post">
+      <form data-toggle="validator" role="form" id="ResidentialRentAddProperty" action="<?php echo base_url() ?>ResidentialRentAddProperty" method="post" enctype='multipart/form-data'>
          <div class="row">
             <!-- left column -->
             <div  class="col-sm-12">

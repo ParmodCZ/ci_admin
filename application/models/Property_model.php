@@ -24,6 +24,30 @@ class Property_model extends CI_Model
       return $realstr;
     }
 
+    public function uploadFiles($FILES,$PropertyID,$txtGalleryName){
+        $error=array();
+        $extension=array("jpeg","jpg","png","gif");
+        foreach($FILES["Gallery"]["tmp_name"] as $key=>$tmp_name) {
+            $file_name=$FILES["Gallery"]["name"][$key];
+            $file_tmp=$FILES["Gallery"]["tmp_name"][$key];
+            $ext=pathinfo($file_name,PATHINFO_EXTENSION);
+
+            if(in_array($ext,$extension)) {
+                if(!file_exists("photo_gallery/".$txtGalleryName."/".$file_name)) {
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"photo_gallery/".$txtGalleryName."/".$file_name);
+                }
+                else {
+                    $filename=basename($file_name,$ext);
+                    $newFileName=$filename.time().".".$ext;
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"photo_gallery/".$txtGalleryName."/".$newFileName);
+                }
+            }
+            else {
+                array_push($error,"$file_name, ");
+            }
+        }
+    }
+
     function ExistLastPropertyID($table){
         $sql = "SELECT MAX(propertyid) AS propertyid FROM $table";
         $res = $this->db->query($sql);
@@ -430,6 +454,7 @@ class Property_model extends CI_Model
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
+        $this->uploadFiles($_FILES,$insert_id,'resident_rent_property');
         return $insert_id;
     }
     
