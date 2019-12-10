@@ -348,9 +348,7 @@
                     <div class="col-md-6">
                         <div class="form-group" >
                             <label for="description">Description *</label>
-                            <textarea class="form-control" id="description"name="Rental[description]" >
-                                <?php echo $ResidentialRentPropertyInfo->description; ?>
-                            </textarea>
+                            <textarea class="form-control" id="description"name="Rental[description]" ><?php echo $ResidentialRentPropertyInfo->description; ?></textarea>
                         </div>
                     </div>
                     <
@@ -547,13 +545,20 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="availability">Availability *</label>
-                           <input type="text" class="form-control" id="availability" value="" name="Schedule[availability]" required>
+                          <!--  <input type="text" class="form-control" id="availability" value="" name="Schedule[availability]" required> -->
+                          <select class="form-control" id="availability" name="Schedule[availability]" required>
+                              <option value="">Select</option>
+                              <?php $ave= $ResidentialRentPropertyInfo->availability; ?>
+                              <option value="EVERYDAY" <?php echo ($ave=='EVERYDAY')?'selected':'' ?> >Everyday (Monday - Sunday)</option>
+                              <option value="WEEKDAY" <?php echo ($ave=='WEEKDAY')?'selected':'' ?>>Weekdays (Monday - Friday)</option>
+                              <option value="WEEKEND" <?php echo ($ave=='WEEKEND')?'selected':'' ?>>Weekends (Saturday - Sunday)</option>
+                           </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="start_time">Start Time *</label>
-                            <input type="text" class="form-control" id="start_time" value="" name="Schedule[start_time]" >
+                            <input type="text" class="form-control" id="start_time" value="<?php echo $ResidentialRentPropertyInfo->start_time; ?>" name="Schedule[start_time]" >
                         </div>
                     </div>
                   </div>
@@ -561,13 +566,15 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="end_time">End Time *</label>
-                           <input type="text" class="form-control" id="end_time" value="" name="Schedule[end_time]" required>
+                           <input type="text" class="form-control" id="end_time" value="<?php echo $ResidentialRentPropertyInfo->end_time; ?>" name="Schedule[end_time]" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="available_all_day">Available All Day *</label>
-                            <input type="text" class="form-control" id="available_all_day" value="" name="Schedule[available_all_day]" >
+                            <!-- <input type="text" class="form-control" id="available_all_day"value="" name="Schedule[available_all_day]" > -->
+                            <?php $all_day = $ResidentialRentPropertyInfo->available_all_day; ?>
+                            <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" <?php echo ($all_day=='true')?'checked':'' ?> >
                         </div>
                     </div>
                   </div>

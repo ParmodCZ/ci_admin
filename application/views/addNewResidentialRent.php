@@ -281,8 +281,7 @@
                            <div class="col-md-6">
                               <div class="form-group" >
                                  <label for="description">Description </label>
-                                 <textarea class="form-control" id="description" name="Rental[description]">
-                                 </textarea>
+                                 <textarea class="form-control" id="description" name="Rental[description]"></textarea>
                               </div>
                            </div>
                         </div>
@@ -436,6 +435,7 @@
                               <div class="form-group">
                                  <label for="availability">Availability *</label>
                                  <select class="form-control" id="availability" name="Schedule[availability]" required>
+                                    <option value="">Select</option>
                                     <option value="EVERYDAY">Everyday (Monday - Sunday)</option>
                                     <option value="WEEKDAY">Weekdays (Monday - Friday)</option>
                                     <option value="WEEKEND">Weekends (Saturday - Sunday)</option>
@@ -460,7 +460,7 @@
                               <div class="form-group">
                                  <label for="available_all_day">Available All Day *</label>
                                  <div class="custom-control custom-checkbox">
-                                     <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" required>
+                                     <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]">
                                  </div>
                               </div>
                            </div>
