@@ -297,7 +297,7 @@
                                  </div>
                                  <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="upload_images"
-                                       aria-describedby="upload_images01" name="Gallery[]">
+                                       aria-describedby="upload_images01" name="Gallery[]" multiple>
                                     <label class="custom-file-label" for="upload_images">Choose file</label>
                                  </div>
                               </div>
