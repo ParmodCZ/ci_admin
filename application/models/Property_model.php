@@ -24,6 +24,30 @@ class Property_model extends CI_Model
       return $realstr;
     }
 
+    public function uploadFiles($FILES,$PropertyID,$txtGalleryName){
+        $error=array();
+        $extension=array("jpeg","jpg","png","gif");
+        foreach($FILES["Gallery"]["tmp_name"] as $key=>$tmp_name) {
+            $file_name=$FILES["Gallery"]["name"][$key];
+            $file_tmp=$FILES["Gallery"]["tmp_name"][$key];
+            $ext=pathinfo($file_name,PATHINFO_EXTENSION);
+
+            if(in_array($ext,$extension)) {
+                if(!file_exists(realpath(APPPATH . "assets/".$txtGalleryName."/".$file_name))) {
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$txtGalleryName."/".$file_name);
+                }
+                else {
+                    $filename=basename($file_name,$ext);
+                    $newFileName=$filename.time().".".$ext;
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$txtGalleryName."/".$newFileName);
+                }
+            }
+            else {
+                array_push($error,"$file_name, ");
+            }
+        }
+    }
+
     function ExistLastPropertyID($table){
         $sql = "SELECT MAX(propertyid) AS propertyid FROM $table";
         $res = $this->db->query($sql);
@@ -107,15 +131,15 @@ class Property_model extends CI_Model
     }
 
     function ResidentialFlatmateListCount($searchText = ''){
-       $this->db->select('property.*, amenities.*, locality.*, pg.*, gallery.*,schedule.*');
+       $this->db->select('property.*, amenities.*, locality.*, rental.*, gallery.*,schedule.*');
         $this->db->from('resident_flatmates_property_details as property');
         $this->db->join('resident_flatmates_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
-        $this->db->join('resident_flatmates_rental_details as pg', 'pg.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_flatmates_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('resident_flatmates_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
-            $likeCriteria = "(pg.description  LIKE '%".$searchText."%'
+            $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
             OR  locality.city  LIKE '%".$searchText."%'
             OR  locality.street_area  LIKE '%".$searchText."%'
             OR  property.property_size  LIKE '%".$searchText."%'
@@ -189,7 +213,7 @@ class Property_model extends CI_Model
         $this->db->join('resident_rent_amenities_details as amenities', 'amenities.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_locality_details as locality', 'locality.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_rental_details as rental', 'rental.propertyid = property.propertyid','INNER');
-        $this->db->join('resident_rent_gallery_details as gallery', 'rental.propertyid = property.propertyid','INNER');
+        $this->db->join('resident_rent_gallery_details as gallery', 'gallery.propertyid = property.propertyid','INNER');
         $this->db->join('resident_rent_schedule_details as schedule', 'schedule.propertyid = property.propertyid','INNER');
         if(!empty($searchText)) {
             $likeCriteria = "(rental.description  LIKE '%".$searchText."%'
@@ -225,9 +249,11 @@ class Property_model extends CI_Model
             OR  property.facing  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->limit($page, $segment);
         $query = $this->db->get();
         
-        $result = $query->result();        
+        $result = $query->result();  
+        //echo "<pre>";print_r($this->db->last_query());die;       
         return $result;
     }
 
@@ -249,8 +275,8 @@ class Property_model extends CI_Model
             OR  room.room_amenities  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->limit($page, $segment);
         $query = $this->db->get();
-        //echo $this->db->last_query();die;
         $result = $query->result();        
         return $result;
     }
@@ -273,6 +299,7 @@ class Property_model extends CI_Model
             OR  property.facing  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->limit($page, $segment);
         $query = $this->db->get();
         //echo $this->db->last_query();die;
         $result = $query->result();        
@@ -298,6 +325,7 @@ class Property_model extends CI_Model
             OR  property.floor_info  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->limit($page, $segment);
         $query = $this->db->get();
         //echo $this->db->last_query();die;
         $result = $query->result();        
@@ -348,6 +376,7 @@ class Property_model extends CI_Model
             OR  property.floor_info  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
         }
+        $this->db->limit($page, $segment);
         $query = $this->db->get();
         //echo $this->db->last_query();die;
         $result = $query->result();        
@@ -430,6 +459,7 @@ class Property_model extends CI_Model
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
+        $this->uploadFiles($_FILES,$insert_id,'resident_rent_property');
         return $insert_id;
     }
     

@@ -42,7 +42,7 @@
                     </tr>
                     <?php
                     if(!empty($ResidentialRentRecords))
-                    {
+                    {  // echo "<pre>";print_r($ResidentialRentRecords);die;
                         foreach($ResidentialRentRecords as $record)
                         {
                     ?>
