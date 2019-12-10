@@ -21,7 +21,6 @@ class Property extends BaseController
         $this->load->model('property_model');
         $this->isLoggedIn();   
     }
-    
     /** 
      * This function used to load the first screen of the user
      */
@@ -33,7 +32,10 @@ class Property extends BaseController
     // }
 
     function proidtest(){
-        echo"<pre>";print_r($this->property_model->ExistLastPropertyID('commercial_rent_rental_details'));
+        $this->loadViews('img');
+    }
+    function proidtestupload(){
+     $this->property_model->uploadFiles($_FILES,'1','images/property');
     }
     
     /**
@@ -41,11 +43,10 @@ class Property extends BaseController
      */
     function ResidentialRentList(){
     //  SELECT * FROM resident_rent_property_details AS property INNER JOIN resident_rent_amenities_details AS amenities ON amenities.propertyid = property.propertyid INNER JOIN resident_rent_locality_details AS locality ON locality.propertyid = property.propertyid INNER JOIN resident_rent_rental_details AS rental ON rental.propertyid = property.propertyid INNER JOIN resident_rent_gallery_details AS gallery ON gallery.propertyid=property.propertyid
-//echo"ffffffff";die;
+    //echo"ffffffff";die;
         if($this->isAdmin() == TRUE){
             $this->loadThis();
-        }
-        else{        
+        }else{        
             $searchText = $this->security->xss_clean($this->input->post('searchText'));
             $data['searchText'] = $searchText;
             

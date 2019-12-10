@@ -24,28 +24,33 @@ class Property_model extends CI_Model
       return $realstr;
     }
 
-    public function uploadFiles($FILES,$PropertyID,$txtGalleryName){
-        $error=array();
+    public function uploadFiles($FILES,$txtGalleryName){
+        $fileReturn=array();
         $extension=array("jpeg","jpg","png","gif");
-        foreach($FILES["Gallery"]["tmp_name"] as $key=>$tmp_name) {
-            $file_name=$FILES["Gallery"]["name"][$key];
-            $file_tmp=$FILES["Gallery"]["tmp_name"][$key];
+        foreach($FILES["files"]["tmp_name"] as $key=>$tmp_name) {
+            $file_name=$FILES["files"]["name"][$key];
+            $file_tmp=$FILES["files"]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION);
-
             if(in_array($ext,$extension)) {
-                if(!file_exists(realpath(APPPATH . "assets/".$txtGalleryName."/".$file_name))) {
-                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$txtGalleryName."/".$file_name);
+                $filename=basename($file_name,$ext);
+                $newFileName=$filename.time().".".$ext;
+                $uploadpath =$txtGalleryName."/".$newFileName;
+                if(!is_dir(realpath("assets/".$txtGalleryName))) {
+                    mkdir("assets/".$txtGalleryName, 0777, TRUE);
+                    move_uploaded_file($file_tmp=$FILES["files"]["tmp_name"][$key],"assets/".$uploadpath);
                 }
                 else {
-                    $filename=basename($file_name,$ext);
-                    $newFileName=$filename.time().".".$ext;
-                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$txtGalleryName."/".$newFileName);
+                    move_uploaded_file($file_tmp=$FILES["files"]["tmp_name"][$key],"assets/".$uploadpath);
                 }
+                array_push($fileReturn,"$uploadpath");
+
             }
             else {
-                array_push($error,"$file_name, ");
+                array_push($fileReturn,"$file_name, ");
             }
         }
+//echo "<pre>";print_r($fileReturn);  
+        return $fileReturn;
     }
 
     function ExistLastPropertyID($table){
@@ -459,7 +464,8 @@ class Property_model extends CI_Model
         $insert_id = $this->db->insert_id();
         
         $this->db->trans_complete();
-        $this->uploadFiles($_FILES,$insert_id,'resident_rent_property');
+        $fileuploadpath="images/property/ResidentRentProperty/$insert_id";
+        $this->uploadFiles($_FILES,$fileuploadpath);
         return $insert_id;
     }
     

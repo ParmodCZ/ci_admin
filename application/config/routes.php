@@ -49,7 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-
 $route['default_controller'] = "login";
 $route['404_override'] = 'error_404';
 $route['translate_uri_dashes'] = FALSE;
@@ -147,3 +146,4 @@ $route['deleteCommercialRentProperty'] = "Property/deleteCommercialRentProperty"
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
 $route['proidtest'] = "Property/proidtest";
+$route['proidtestupload'] = "Property/proidtestupload";
