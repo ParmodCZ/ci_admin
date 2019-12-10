@@ -595,7 +595,7 @@ class Property extends BaseController
         }
         else
         { 
-         
+          echo"<pre>";print_r($this->input->data());die('jh');
             $PropertyId = $this->input->post('PropertyId');          
                 
                 $data = $this->input->post(); 
