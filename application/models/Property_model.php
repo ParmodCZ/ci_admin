@@ -27,9 +27,9 @@ class Property_model extends CI_Model
     public function uploadFiles($FILES,$txtGalleryName){
         $fileReturn=array();
         $extension=array("jpeg","jpg","png","gif");
-        foreach($FILES["files"]["tmp_name"] as $key=>$tmp_name) {
-            $file_name=$FILES["files"]["name"][$key];
-            $file_tmp=$FILES["files"]["tmp_name"][$key];
+        foreach($FILES["Gallery"]["tmp_name"] as $key=>$tmp_name) {
+            $file_name=$FILES["Gallery"]["name"][$key];
+            $file_tmp=$FILES["Gallery"]["tmp_name"][$key];
             $ext=pathinfo($file_name,PATHINFO_EXTENSION);
             if(in_array($ext,$extension)) {
                 $filename=basename($file_name,$ext);
@@ -37,10 +37,10 @@ class Property_model extends CI_Model
                 $uploadpath =$txtGalleryName."/".$newFileName;
                 if(!is_dir(realpath("assets/".$txtGalleryName))) {
                     mkdir("assets/".$txtGalleryName, 0777, TRUE);
-                    move_uploaded_file($file_tmp=$FILES["files"]["tmp_name"][$key],"assets/".$uploadpath);
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$uploadpath);
                 }
                 else {
-                    move_uploaded_file($file_tmp=$FILES["files"]["tmp_name"][$key],"assets/".$uploadpath);
+                    move_uploaded_file($file_tmp=$FILES["Gallery"]["tmp_name"][$key],"assets/".$uploadpath);
                 }
                 array_push($fileReturn,"$uploadpath");
 
@@ -447,6 +447,11 @@ class Property_model extends CI_Model
         if(isset($addNewProperty['amenitiesarr'])){
            $addNewProperty['Amenities']['select_the_amenities_available']=implode(",",$addNewProperty['amenitiesarr']);
         }
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $rentalinfo =$addNewProperty['Rental'];
@@ -462,10 +467,9 @@ class Property_model extends CI_Model
         $this->db->insert('resident_rent_amenities_details', $amenitiesinfo);
         $this->db->insert('resident_rent_schedule_details', $scheduleinfo);
         $insert_id = $this->db->insert_id();
-        
         $this->db->trans_complete();
-        $fileuploadpath="images/property/ResidentRentProperty/$insert_id";
-        $this->uploadFiles($_FILES,$fileuploadpath);
+        
+        
         return $insert_id;
     }
     
@@ -493,6 +497,12 @@ class Property_model extends CI_Model
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         $addNewProperty['Information']['propertyid'] =$propertyid; 
 
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
+
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Resale'];
@@ -510,7 +520,6 @@ class Property_model extends CI_Model
         $this->db->insert('resident_resale_schedule_details', $scheduleinfo);
         $this->db->insert('resident_resale_additional_information_details', $information);
         $insert_id = $this->db->insert_id();
-        
         $this->db->trans_complete();
         return $insert_id;
     }
@@ -538,6 +547,13 @@ class Property_model extends CI_Model
         if(isset($addNewProperty['amenitiesarr'])){
             $addNewProperty['Amenities']['select_the_amenities_available'] =implode(",",$addNewProperty['amenitiesarr']);
         }
+
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
+
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Rental'];
@@ -590,6 +606,12 @@ class Property_model extends CI_Model
           $addNewProperty['Room']['room_amenities'] =implode(",",$addNewProperty['amenitiesroomarr']);
         }
 
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
+
         $propertyinfo =$addNewProperty['PG'];
         $localityinfo =$addNewProperty['Locality'];
         $rentalinfo =$addNewProperty['Rental'];
@@ -639,6 +661,12 @@ class Property_model extends CI_Model
             $addNewProperty['Resale']['ideal_for'] =implode(",",$addNewProperty['Resale']['ideal_for'] ); 
         }
         
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
+
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Resale'];
@@ -687,6 +715,11 @@ class Property_model extends CI_Model
           $addNewProperty['Rent']['ideal_for'] =implode(",",$addNewProperty['Rent']['ideal_for'] );  
         }
          
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
          
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
@@ -841,7 +874,7 @@ class Property_model extends CI_Model
         $description= $Rental['description'];
         $is_negotiable= $Rental['is_negotiable'];
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
 
         $bathrooms= $Amenities['bathrooms'];
         $water_supply= $Amenities['water_supply'];
@@ -854,7 +887,11 @@ class Property_model extends CI_Model
         if(isset($data['amenitiesarr'])){
             $select_the_amenities_available= implode(",",$data['amenitiesarr']);
         } 
-
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
         $availability= $Schedule['availability'];
         $start_time=$Schedule['start_time'];
         $end_time= $Schedule['end_time'];
@@ -981,7 +1018,12 @@ class Property_model extends CI_Model
         $description= $Resale['description'];
         $is_price_negotiable= $Resale['is_price_negotiable'];
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
 
         $bathroom= $Amenities['bathroom'];
         $water_supply= $Amenities['water_supply'];
@@ -1080,7 +1122,12 @@ class Property_model extends CI_Model
         $description       = $Rental['description'];
         $parking         = $Rental['parking'];
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
 
         $bathroom= $Amenities['bathroom'];
         $water_supply= $Amenities['water_supply'];
@@ -1174,7 +1221,12 @@ class Property_model extends CI_Model
         $ownership_type = $Rental['ownership_type'];
         $ideal_for      = $Rental['ideal_for'];
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
 
         $power_backup= $Amenities['power_backup'];
         $lift= $Amenities['lift'];
@@ -1261,7 +1313,12 @@ class Property_model extends CI_Model
         $available_from = $Rental['available_from'];
         $ideal_for      = $Rental['ideal_for'];
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
 
         $power_backup= $Amenities['power_backup'];
         $lift= $Amenities['lift'];
@@ -1346,7 +1403,12 @@ class Property_model extends CI_Model
             $room_amenities= implode(",",$addNewProperty['amenitiesroomarr']);
         }
 
-        $upload_images= $Gallery['upload_images'];
+        //$upload_images= $Gallery['upload_images'];
+        if(isset($_FILES['Gallery'])){
+            $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
+            $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
+            $upload_images =serialize($filearr);   
+        }
 
         $available_service_laundry= $Amenities['available_service_laundry'];
         $available_service_room_cleaning= $Amenities['available_service_room_cleaning'];
