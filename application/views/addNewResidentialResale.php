@@ -250,7 +250,7 @@
                               <div class="form-group">
                                 <label class="custom-control-label" for="is_currently_under_loan">Is Currently Under Loan *</label>
                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="is_currently_under_loan" value="Yes" name="Resale[is_currently_under_loan]" required>
+                                    <input type="checkbox" class="custom-control-input" id="is_currently_under_loan" value="Yes" name="Resale[is_currently_under_loan]">
                                  </div>
                               </div>
                            </div>
@@ -492,7 +492,7 @@
                                  <label for="available_all_day">Available All Day *</label>
                                  <!-- <input type="text" class="form-control" id="available_all_day" name="Schedule[available_all_day]" required> -->
                                  <div class="custom-control custom-checkbox">
-                                     <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" required>
+                                     <input type="checkbox" value="true" id="available_all_day" name="Schedule[available_all_day]" >
                                  </div>
                               </div>
                            </div>

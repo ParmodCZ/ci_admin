@@ -588,15 +588,10 @@ class Property extends BaseController
     /**
      * This function is used to edit the user information
      */
-    function editNewResidentialRentProperty()
-    {
-        if($this->isAdmin() == TRUE)
-        {
+    function editNewResidentialRentProperty(){
+        if($this->isAdmin() == TRUE){
             $this->loadThis();
-        }
-        else
-        { 
-          echo"<pre>";print_r($this->input->data());die('jh');
+        }else{ 
             $PropertyId = $this->input->post('PropertyId');          
                 
                 $data = $this->input->post(); 

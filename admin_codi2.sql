@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2019 at 04:00 PM
+-- Generation Time: Dec 11, 2019 at 03:43 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.2.24
 
@@ -39,13 +39,13 @@ CREATE TABLE `ci_sessions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_additional_information_details`
+-- Table structure for table `commercial_rent_additional_information_details`
 --
 
-CREATE TABLE `commericial_rent_additional_information_details` (
+CREATE TABLE `commercial_rent_additional_information_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `previous_occupancy` varchar(255) NOT NULL,
   `locality_type` varchar(255) NOT NULL,
@@ -53,32 +53,50 @@ CREATE TABLE `commericial_rent_additional_information_details` (
   `secondary_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_additional_information_details`
+--
+
+INSERT INTO `commercial_rent_additional_information_details` (`id`, `userID`, `propertyid`, `description`, `previous_occupancy`, `locality_type`, `who_will_show_the_house`, `secondary_number`) VALUES
+(1, 1, 'CR5dde354ed34f8', 'sdf', 'fds', 'sdfsfd', 'fds', 'sfd'),
+(2, 1, 'CR5de524f2d52e4', 'fdg', 'fdg', 'fdg', 'fdg', 'fgd'),
+(3, 1, 'CR0523703', 'asd', 'FIRST_TIME_RENTING', 'SHOPPING_MALL', 'NEED_HELP', '4543');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_amenities_details`
+-- Table structure for table `commercial_rent_amenities_details`
 --
 
-CREATE TABLE `commericial_rent_amenities_details` (
+CREATE TABLE `commercial_rent_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `power_backup` varchar(255) NOT NULL,
   `lift` varchar(255) NOT NULL,
   `parking` varchar(255) NOT NULL,
   `available_slots` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_amenities_details`
+--
+
+INSERT INTO `commercial_rent_amenities_details` (`id`, `userID`, `propertyid`, `power_backup`, `lift`, `parking`, `available_slots`) VALUES
+(1, 1, 'CR5dde354ed34f8', 'sdf', 'dsf', 'sd', 'sdf'),
+(2, 1, 'CR5de524f2d52e4', 'fdg', 'fdg', 'fgd', 'fgd'),
+(3, 1, 'CR0523703', 'DG_BACKUP', 'NONE', 'NONE', 'sadsa');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_locality_details`
+-- Table structure for table `commercial_rent_locality_details`
 --
 
-CREATE TABLE `commericial_rent_locality_details` (
+CREATE TABLE `commercial_rent_locality_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_area` varchar(255) NOT NULL,
@@ -87,29 +105,47 @@ CREATE TABLE `commericial_rent_locality_details` (
   `locality_long` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_locality_details`
+--
+
+INSERT INTO `commercial_rent_locality_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_area`, `landmark`, `locality_lat`, `locality_long`) VALUES
+(2, 1, 'CR5dde354ed34f8', 'dsf', 'sfd', 'fsd', 'dsf', '', ''),
+(3, 1, 'CR5de524f2d52e4', 'gf', 'gdf', 'dfg', 'fdg', '', ''),
+(4, 1, 'CR0523703', 'asdsa', 'asd', 'as', 'assd', '', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_photo_details`
+-- Table structure for table `commercial_rent_photo_details`
 --
 
-CREATE TABLE `commericial_rent_photo_details` (
+CREATE TABLE `commercial_rent_photo_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_photo_details`
+--
+
+INSERT INTO `commercial_rent_photo_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(1, 1, 'RZ5dde354ed34f8', ''),
+(2, 1, 'CZ5de524f2d52e4', ''),
+(3, 1, 'CR0523703', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_property_details`
+-- Table structure for table `commercial_rent_property_details`
 --
 
-CREATE TABLE `commericial_rent_property_details` (
+CREATE TABLE `commercial_rent_property_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `property_type` varchar(255) NOT NULL,
   `floor_info` varchar(255) NOT NULL,
   `area` varchar(255) NOT NULL,
@@ -118,16 +154,24 @@ CREATE TABLE `commericial_rent_property_details` (
   `other_features` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_property_details`
+--
+
+INSERT INTO `commercial_rent_property_details` (`id`, `userID`, `propertyid`, `property_type`, `floor_info`, `area`, `age_of_property`, `furnishing`, `other_features`) VALUES
+(4, 1, 'CR5de524f2d52e4', 'apartment', 'g', 'dgfd', '1-3', 'dfg', 'dfg'),
+(5, 1, 'CR0523703', 'OFFICE', '100', 'dsad', '0', 'SEMI_FURNISHED', 'On_Main_Road,CORNER_PROPERTY');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_rent_rental_details`
+-- Table structure for table `commercial_rent_rental_details`
 --
 
-CREATE TABLE `commericial_rent_rental_details` (
+CREATE TABLE `commercial_rent_rental_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `expected_rent` varchar(255) NOT NULL,
   `maintenance` varchar(255) NOT NULL,
   `deposit` varchar(255) NOT NULL,
@@ -137,16 +181,25 @@ CREATE TABLE `commericial_rent_rental_details` (
   `ideal_for` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_rent_rental_details`
+--
+
+INSERT INTO `commercial_rent_rental_details` (`id`, `userID`, `propertyid`, `expected_rent`, `maintenance`, `deposit`, `lease_duration`, `lockin_period`, `available_from`, `ideal_for`) VALUES
+(2, 1, 'CR5dde354ed34f8', '', '', '', '', '', '', ''),
+(3, 1, 'CR5de524f2d52e4', '', '', '', '', '', '', ''),
+(4, 1, 'CR0523703', 'asd', 'sad', 'asd', '9', '16', '12/18/2019', 'BANK,SERVICE_CENTER,SHOWROOM,ATM');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_additional_information_details`
+-- Table structure for table `commercial_sale_additional_information_details`
 --
 
-CREATE TABLE `commericial_sale_additional_information_details` (
+CREATE TABLE `commercial_sale_additional_information_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `previous_occupancy` varchar(255) NOT NULL,
   `locality_type` varchar(255) NOT NULL,
@@ -154,61 +207,89 @@ CREATE TABLE `commericial_sale_additional_information_details` (
   `secondary_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_sale_additional_information_details`
+--
+
+INSERT INTO `commercial_sale_additional_information_details` (`id`, `userID`, `propertyid`, `description`, `previous_occupancy`, `locality_type`, `who_will_show_the_house`, `secondary_number`) VALUES
+(4, 1, 'CS5dde55ed1aeb3', 'sfd', 'sfd', 'sfd', 'sdf', 'sfd');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_amenities_details`
+-- Table structure for table `commercial_sale_amenities_details`
 --
 
-CREATE TABLE `commericial_sale_amenities_details` (
+CREATE TABLE `commercial_sale_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `power_backup` varchar(255) NOT NULL,
   `lift` varchar(255) NOT NULL,
   `parking` varchar(255) NOT NULL,
   `available_slots` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_sale_amenities_details`
+--
+
+INSERT INTO `commercial_sale_amenities_details` (`id`, `userID`, `propertyid`, `power_backup`, `lift`, `parking`, `available_slots`) VALUES
+(4, 1, 'CS5dde55ed1aeb3', 'sdf', 'sdf', 'sdf', 'fds');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_location_details`
+-- Table structure for table `commercial_sale_location_details`
 --
 
-CREATE TABLE `commericial_sale_location_details` (
+CREATE TABLE `commercial_sale_location_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_area` varchar(255) NOT NULL,
   `landmark` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_sale_location_details`
+--
+
+INSERT INTO `commercial_sale_location_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_area`, `landmark`) VALUES
+(5, 1, 'CS5dde55ed1aeb3', 'sdf', 'sd', 'fds', 'sdf');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_photo_details`
+-- Table structure for table `commercial_sale_photo_details`
 --
 
-CREATE TABLE `commericial_sale_photo_details` (
+CREATE TABLE `commercial_sale_photo_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `commercial_sale_photo_details`
+--
+
+INSERT INTO `commercial_sale_photo_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(4, 1, 'CS5dde55ed1aeb3', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_properity_details`
+-- Table structure for table `commercial_sale_property_details`
 --
 
-CREATE TABLE `commericial_sale_properity_details` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `commercial_sale_property_details` (
+  `id` int(191) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `property_type` varchar(255) NOT NULL,
   `floor_info` varchar(255) NOT NULL,
   `area` varchar(255) NOT NULL,
@@ -220,19 +301,26 @@ CREATE TABLE `commericial_sale_properity_details` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commericial_sale_resale_details`
+-- Table structure for table `commercial_sale_resale_details`
 --
 
-CREATE TABLE `commericial_sale_resale_details` (
+CREATE TABLE `commercial_sale_resale_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `expected_price` varchar(255) NOT NULL,
   `negotiable` varchar(255) NOT NULL,
   `ownership_type` varchar(255) NOT NULL,
   `available_from` varchar(355) NOT NULL,
   `ideal_for` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `commercial_sale_resale_details`
+--
+
+INSERT INTO `commercial_sale_resale_details` (`id`, `userID`, `propertyid`, `expected_price`, `negotiable`, `ownership_type`, `available_from`, `ideal_for`) VALUES
+(4, 1, 'CS5dde55ed1aeb3', 'sdf', 'sdf', 'sfd', 'sdff', 'sdf');
 
 -- --------------------------------------------------------
 
@@ -269,7 +357,29 @@ INSERT INTO `last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userAgent
 (11, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-20 19:13:16'),
 (12, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 10:17:04'),
 (13, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 10:42:21'),
-(14, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 18:06:13');
+(14, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-21 18:06:13'),
+(15, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Windows 10', '2019-11-22 01:29:38'),
+(16, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-25 20:00:29'),
+(17, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-26 17:12:53'),
+(18, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.97', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36', 'Linux', '2019-11-26 18:40:29'),
+(19, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-11-27 13:08:26'),
+(20, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-11-28 20:11:39'),
+(21, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-02 18:53:39'),
+(22, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-03 12:16:38'),
+(23, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-03 17:56:03'),
+(24, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-04 17:20:34'),
+(25, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-04 17:55:27'),
+(26, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-05 07:53:17'),
+(27, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-05 12:20:54'),
+(28, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-05 15:57:33'),
+(29, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-05 18:33:25'),
+(30, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-06 16:07:54'),
+(31, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-06 19:27:37'),
+(32, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-09 18:59:45'),
+(33, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-10 14:28:06'),
+(34, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-10 16:59:00'),
+(35, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-10 20:02:48'),
+(36, 1, '{\"role\":\"1\",\"roleText\":\"System Administrator\",\"name\":\"System Administrator\"}', '::1', 'Chrome 78.0.3904.108', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36', 'Linux', '2019-12-11 18:21:06');
 
 -- --------------------------------------------------------
 
@@ -643,13 +753,13 @@ CREATE TABLE `reset_password` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_flatmates_ amenities_details`
+-- Table structure for table `resident_flatmates_amenities_details`
 --
 
-CREATE TABLE `resident_flatmates_ amenities_details` (
+CREATE TABLE `resident_flatmates_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `bathroom` int(11) NOT NULL,
   `balcony` int(11) NOT NULL,
   `water_supply` varchar(255) NOT NULL,
@@ -661,29 +771,45 @@ CREATE TABLE `resident_flatmates_ amenities_details` (
   `select_the_amenities_available` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_flatmates_amenities_details`
+--
+
+INSERT INTO `resident_flatmates_amenities_details` (`id`, `userID`, `propertyid`, `bathroom`, `balcony`, `water_supply`, `gym`, `non_veg_allowed`, `gated_security`, `who_will_show_the_house`, `secondary_number`, `select_the_amenities_available`) VALUES
+(3, 1, 'RF7308758', 0, 0, 'BOREWELL', 'true', 'true', 'true', 'NEED_HELP', 'sdf', 'LIFT,AC,INTERCOM,CPA'),
+(4, 1, 'RF7738879', 0, 0, 'BOREWELL', 'true', 'true', 'true', 'I_HAVE_KEYS', 'sdff', 'LIFT,AC,INTERCOM,CPA');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_flatmates_ gallery_details`
+-- Table structure for table `resident_flatmates_gallery_details`
 --
 
-CREATE TABLE `resident_flatmates_ gallery_details` (
+CREATE TABLE `resident_flatmates_gallery_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_flatmates_gallery_details`
+--
+
+INSERT INTO `resident_flatmates_gallery_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(3, 1, 'RF7308758', ''),
+(4, 1, 'RF7738879', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_flatmates_ locality_details`
+-- Table structure for table `resident_flatmates_locality_details`
 --
 
-CREATE TABLE `resident_flatmates_ locality_details` (
+CREATE TABLE `resident_flatmates_locality_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_area` varchar(255) NOT NULL,
@@ -691,16 +817,24 @@ CREATE TABLE `resident_flatmates_ locality_details` (
   `locality_long` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_flatmates_locality_details`
+--
+
+INSERT INTO `resident_flatmates_locality_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_area`, `locality_lat`, `locality_long`) VALUES
+(3, 1, 'RF7308758', 'dfsd', 'sdf', 'sdf', '', ''),
+(4, 1, 'RF7738879', 'fs', 'sdf', 'sdf', '', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_flatmates_ property_details`
+-- Table structure for table `resident_flatmates_property_details`
 --
 
-CREATE TABLE `resident_flatmates_ property_details` (
+CREATE TABLE `resident_flatmates_property_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `apartment_type` varchar(255) NOT NULL,
   `apartment_name` varchar(255) NOT NULL,
   `bhk_type` varchar(255) NOT NULL,
@@ -713,6 +847,14 @@ CREATE TABLE `resident_flatmates_ property_details` (
   `property_size` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_flatmates_property_details`
+--
+
+INSERT INTO `resident_flatmates_property_details` (`id`, `userID`, `propertyid`, `apartment_type`, `apartment_name`, `bhk_type`, `floor`, `total_floor`, `room_type`, `tenant_type`, `property_age`, `facing`, `property_size`) VALUES
+(3, 1, 'RF7308758', 'apartment', 'fd', 'BHK1', '15', '13', 'on', 'on', '1', 'W', 0),
+(4, 1, 'RF7738879', 'independent', 'fsdf', 'RK1', '14', '12', 'on', 'on', '0', 'W', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -722,7 +864,7 @@ CREATE TABLE `resident_flatmates_ property_details` (
 CREATE TABLE `resident_flatmates_rental_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `expected_rent` varchar(255) NOT NULL,
   `expected_deposit` varchar(255) NOT NULL,
   `negotiable` varchar(255) NOT NULL,
@@ -733,21 +875,37 @@ CREATE TABLE `resident_flatmates_rental_details` (
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_flatmates_rental_details`
+--
+
+INSERT INTO `resident_flatmates_rental_details` (`id`, `userID`, `propertyid`, `expected_rent`, `expected_deposit`, `negotiable`, `maintenance`, `available_form`, `furnishing`, `parking`, `description`) VALUES
+(3, 1, 'RF7308758', '', '', '', '', '', '', '', ''),
+(4, 1, 'RF7738879', '', '', '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_flatmates_ schedule_details`
+-- Table structure for table `resident_flatmates_schedule_details`
 --
 
-CREATE TABLE `resident_flatmates_ schedule_details` (
+CREATE TABLE `resident_flatmates_schedule_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `start_time` varchar(255) NOT NULL,
   `end_time` varchar(255) NOT NULL,
   `available_all_day` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_flatmates_schedule_details`
+--
+
+INSERT INTO `resident_flatmates_schedule_details` (`id`, `userID`, `propertyid`, `availability`, `start_time`, `end_time`, `available_all_day`) VALUES
+(3, 1, 'RF7308758', 'EVERYDAY', '9:00 PM', '9:00 PM', 'true'),
+(4, 1, 'RF7738879', 'EVERYDAY', '9:00 PM', '9:00 PM', 'true');
 
 -- --------------------------------------------------------
 
@@ -758,13 +916,22 @@ CREATE TABLE `resident_flatmates_ schedule_details` (
 CREATE TABLE `resident_pg_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `available_service_laundry` varchar(255) NOT NULL,
   `available_service_room_cleaning` varchar(255) NOT NULL,
   `available_service_warden_facility` varchar(255) NOT NULL,
   `available_amenities` varchar(255) NOT NULL,
   `parking` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_pg_amenities_details`
+--
+
+INSERT INTO `resident_pg_amenities_details` (`id`, `userID`, `propertyid`, `available_service_laundry`, `available_service_room_cleaning`, `available_service_warden_facility`, `available_amenities`, `parking`) VALUES
+(1, 1, 'PG5dde4722afa3c', 'rte', 'rte', 'ret', 'ret', 'ret'),
+(2, 1, 'PG5dde814d063d7', 'rte', 'rte', 'ret', 'ret', 'ret'),
+(3, 1, 'PG0595992', 'Yes', 'on', 'Yes', 'LIFT,AC,INTERCOM,CPA', 'TWO_WHEELER');
 
 -- --------------------------------------------------------
 
@@ -775,9 +942,18 @@ CREATE TABLE `resident_pg_amenities_details` (
 CREATE TABLE `resident_pg_gallery_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_pg_gallery_details`
+--
+
+INSERT INTO `resident_pg_gallery_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(1, 1, 'PG5dde4722afa3c', ''),
+(2, 1, 'PG5dde814d063d7', ''),
+(3, 1, 'PG0595992', '');
 
 -- --------------------------------------------------------
 
@@ -788,13 +964,22 @@ CREATE TABLE `resident_pg_gallery_details` (
 CREATE TABLE `resident_pg_locality_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_area` varchar(255) NOT NULL,
   `locality_lat` varchar(255) NOT NULL,
   `locality_long` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_pg_locality_details`
+--
+
+INSERT INTO `resident_pg_locality_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_area`, `locality_lat`, `locality_long`) VALUES
+(1, 1, 'PG5dde4722afa3c', 'ret', 'rte', 'ret', '', ''),
+(2, 1, 'PG5dde814d063d7', 'ret', 'rte', 'ret', '', ''),
+(3, 1, 'PG0595992', 'dgf', 'sdf', 'sfd', '', '');
 
 -- --------------------------------------------------------
 
@@ -805,7 +990,7 @@ CREATE TABLE `resident_pg_locality_details` (
 CREATE TABLE `resident_pg_pg_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `place_is_available_for` varchar(255) NOT NULL,
   `preferred_guests` varchar(255) NOT NULL,
   `available_from` varchar(255) NOT NULL,
@@ -815,37 +1000,62 @@ CREATE TABLE `resident_pg_pg_details` (
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_pg_pg_details`
+--
+
+INSERT INTO `resident_pg_pg_details` (`id`, `userID`, `propertyid`, `place_is_available_for`, `preferred_guests`, `available_from`, `food_included`, `pg_hostel_rules`, `gate_closing_time`, `description`) VALUES
+(1, 1, 'PG5dde4722afa3c', 'fsfre', 'ertr', 'rte', 'rett', 'ret', 'ret', 'rte'),
+(2, 1, 'PG5dde814d063d7', 'fsfre', 'ertr', 'rte', 'rett', 'ret', 'ret', 'rte'),
+(3, 1, 'PG0595992', 'male', 'STUDENT', '12/11/2019', 'Yes', 'LIFT,AC,INTERCOM', '7:00 PM', 'sdfsd');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_ pg_room_details`
+-- Table structure for table `resident_pg_room_details`
 --
 
-CREATE TABLE `resident_ pg_room_details` (
+CREATE TABLE `resident_pg_room_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `select_the_type_of_rooms` varchar(255) NOT NULL,
   `expected_rent_per_person` varchar(255) NOT NULL,
   `expected_deposit_per_person` varchar(255) NOT NULL,
   `room_amenities` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_pg_room_details`
+--
+
+INSERT INTO `resident_pg_room_details` (`id`, `userID`, `propertyid`, `select_the_type_of_rooms`, `expected_rent_per_person`, `expected_deposit_per_person`, `room_amenities`) VALUES
+(3, 1, 'PG0595992', 'double', 'sdfs', 'sd', 'AC,INTERCOM,CPA');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident_pg_ schedule_details`
+-- Table structure for table `resident_pg_schedule_details`
 --
 
-CREATE TABLE `resident_pg_ schedule_details` (
+CREATE TABLE `resident_pg_schedule_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `start_time` varchar(255) NOT NULL,
   `end_time` varchar(255) NOT NULL,
   `available_all_day` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_pg_schedule_details`
+--
+
+INSERT INTO `resident_pg_schedule_details` (`id`, `userID`, `propertyid`, `availability`, `start_time`, `end_time`, `available_all_day`) VALUES
+(1, 1, 'PG5dde4722afa3c', 'ret', 'rte', 'rte', 'ret'),
+(2, 1, 'PG5dde814d063d7', 'ret', 'rte', 'rte', 'ret'),
+(3, 1, 'PG0595992', 'sdf', 'sdf', 'sdf', 'sdf');
 
 -- --------------------------------------------------------
 
@@ -856,7 +1066,7 @@ CREATE TABLE `resident_pg_ schedule_details` (
 CREATE TABLE `resident_rent_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` varchar(20) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `bathrooms` varchar(55) NOT NULL,
   `balcony` varchar(255) NOT NULL,
   `water_supply` varchar(255) NOT NULL,
@@ -873,8 +1083,11 @@ CREATE TABLE `resident_rent_amenities_details` (
 --
 
 INSERT INTO `resident_rent_amenities_details` (`id`, `userID`, `propertyid`, `bathrooms`, `balcony`, `water_supply`, `gym`, `non_veg_allowed`, `gated_security`, `who_will_show_the_house`, `secondary_number`, `select_the_amenities_available`) VALUES
-(1, 11, '0', '10', '10', 'Corporation', '1', '1', '1', 'I will show', '22', 'a:5:{i:0;s:17:\"internet_services\";i:1;s:15:\"air_conditioner\";i:2;s:10:\"club_house\";i:3;s:8:\"intercom\";i:4;s:13:\"swimming_pool\";}'),
-(3, 1, 'RR5dd62202a9be2', '43', '', '43', '34', '43', '345', '43', '43', '43');
+(5, 1, 'RR5de5255043f5a', 'fdg', '', 'CORPORATION', 'true', 'true', 'true', 'NEED_HELP', 'dfgf', 'LIFT,AC'),
+(6, 1, 'RR9875745', 'fdg', '', 'CORPORATION', 'true', 'true', 'true', 'NEED_HELP', 'dfgf', 'LIFT,AC'),
+(7, 1, 'RR2232976', 'fdg', '', 'CORPORATION', 'true', 'true', 'true', 'NEED_HELP', 'dfgf', 'LIFT,AC'),
+(8, 1, 'RR8514347', 'fdg', '', 'CORPORATION', 'true', 'true', 'true', 'NEED_HELP', 'dfgf', 'LIFT,AC'),
+(9, 1, 'RR7677813', 'fdg', '', 'CORPORATION', 'true', 'true', 'true', 'NEED_HELP', 'dfgf', 'LIFT,AC');
 
 -- --------------------------------------------------------
 
@@ -885,7 +1098,7 @@ INSERT INTO `resident_rent_amenities_details` (`id`, `userID`, `propertyid`, `ba
 CREATE TABLE `resident_rent_gallery_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -894,7 +1107,11 @@ CREATE TABLE `resident_rent_gallery_details` (
 --
 
 INSERT INTO `resident_rent_gallery_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
-(2, 1, 0, '');
+(4, 1, 'RR5de5255043f5a', ''),
+(5, 1, 'RR9875745', ''),
+(6, 1, 'RR2232976', ''),
+(7, 1, 'RR8514347', ''),
+(8, 1, 'RR7677813', '');
 
 -- --------------------------------------------------------
 
@@ -905,7 +1122,7 @@ INSERT INTO `resident_rent_gallery_details` (`id`, `userID`, `propertyid`, `uplo
 CREATE TABLE `resident_rent_locality_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` varchar(20) NOT NULL,
+  `propertyid` varchar(22) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_addres` varchar(255) NOT NULL,
@@ -919,14 +1136,11 @@ CREATE TABLE `resident_rent_locality_details` (
 --
 
 INSERT INTO `resident_rent_locality_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_addres`, `locality_lat`, `locality_long`, `created_at`) VALUES
-(1, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:04:17'),
-(2, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:07:34'),
-(3, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:08:54'),
-(4, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:09:53'),
-(5, 11, '0', 'Chandigarh', '', 'HGT', '30.6942091', '76.86056499999995', '2019-11-11 21:10:57'),
-(6, 11, 'RR957033141', 'Delhi', '', 'hkj', '28.68627380000001', '77.22178310000004', '2019-11-11 21:58:48'),
-(7, 11, 'RR957033141', 'Select', '', 'd', '32.7766642', '-96.79698789999998', '2019-11-11 22:11:59'),
-(9, 1, 'RR5dd62202a9be2', '3', '435', '34', '', '', '2019-11-21 05:34:58');
+(11, 1, 'RR5de5255043f5a', 'sdfs', 'sfd', 'sdf', '', '', '2019-12-02 14:53:04'),
+(12, 1, 'RR9875745', 'sdfs', 'sfd', 'sdf', '', '', '2019-12-04 12:31:21'),
+(13, 1, 'RR2232976', 'sdfs', 'sfd', 'sdf', '', '', '2019-12-10 10:22:29'),
+(14, 1, 'RR8514347', 'sdfs', 'sfd', 'sdf', '', '', '2019-12-10 10:43:15'),
+(15, 1, 'RR7677813', 'sdfs', 'sfd', 'sdf', '', '', '2019-12-11 12:54:06');
 
 -- --------------------------------------------------------
 
@@ -937,7 +1151,7 @@ INSERT INTO `resident_rent_locality_details` (`id`, `userID`, `propertyid`, `cit
 CREATE TABLE `resident_rent_property_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` varchar(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `apartment_type` varchar(255) NOT NULL,
   `apartment_name` varchar(255) NOT NULL,
   `bhk_type` varchar(255) NOT NULL,
@@ -954,21 +1168,8 @@ CREATE TABLE `resident_rent_property_details` (
 --
 
 INSERT INTO `resident_rent_property_details` (`id`, `userID`, `propertyid`, `apartment_type`, `apartment_name`, `bhk_type`, `floor`, `top_floor`, `property_age`, `facing`, `property_size`, `created_at`) VALUES
-(1, 0, '0', 'residential', 'dhanana', '2', '6', '8', '0', 'west', '1230', '2019-11-11 19:28:36'),
-(2, 0, '0', 'residential', 'dhanana', '2', '6', '8', '5-10', 'west', '1230', '2019-11-11 19:29:21'),
-(3, 11, '0', 'residential', 'Dhananajy', '2', '3', '1', '-1', 'north', 'd', '2019-11-11 20:26:51'),
-(4, 11, 'PD591359086', 'residential', 'Dhananajy', '2', '3', '1', '-1', 'north', 'd', '2019-11-11 20:28:36'),
-(5, 11, 'RR833002635', 'residential', 'Dhananajy', '2', '3', '1', '-1', 'north', 'd', '2019-11-11 20:36:37'),
-(6, 11, 'RR110853135', 'residential', 'Dhananajy', '2', '3', '1', '-1', 'north', 'd', '2019-11-11 20:36:46'),
-(7, 11, 'RR374621901', 'residential', 'Dhananajy', '2', '3', '1', '-1', 'north', 'd', '2019-11-11 20:37:40'),
-(8, 11, 'RR957033141', 'residential', 'villa hai ek', '3', '6', '6', '5-10', 'west', '20', '2019-11-11 21:57:06'),
-(9, 11, 'RR978602077', 'residential', 'villa hai ek', '3', '6', '6', '5-10', 'west', '20', '2019-11-11 21:58:03'),
-(10, 11, 'RR554049203', 'residential', 'dss', 'Select', 'Select', 'Select', 'Select', 'Select', 'd', '2019-11-11 22:11:50'),
-(11, 11, 'RR966721616', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:04:23'),
-(12, 11, 'RR707696173', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:05:26'),
-(13, 11, 'RR814947341', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:07:46'),
-(14, 11, 'RR774148256', 'residential', 'dhananjay', 'value', 'value', 'value', 'value', 'value', '1201', '2019-11-12 21:08:29'),
-(16, 1, 'RR5dd62202a', '543', '34', '34', '34', '43', '43', '43', '43', '2019-11-21 05:34:58');
+(20, 1, 'RR2232976', 'independent', 'dfg', 'BHK1', '1', '3', '-1', 'N', '453', '2019-12-10 10:22:29'),
+(21, 1, 'RR8514347', 'apartment', 'ssdfs', 'BHK1', '12', '12', '0', 'E', '35435', '2019-12-10 10:43:15');
 
 -- --------------------------------------------------------
 
@@ -979,7 +1180,7 @@ INSERT INTO `resident_rent_property_details` (`id`, `userID`, `propertyid`, `apa
 CREATE TABLE `resident_rent_rental_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` varchar(20) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `is_available_for_lease` varchar(255) NOT NULL,
   `expected_lease_amount` varchar(255) NOT NULL,
   `expected_depost` varchar(50) NOT NULL,
@@ -997,10 +1198,11 @@ CREATE TABLE `resident_rent_rental_details` (
 --
 
 INSERT INTO `resident_rent_rental_details` (`id`, `userID`, `propertyid`, `is_available_for_lease`, `expected_lease_amount`, `expected_depost`, `is_negotiable`, `maintenance`, `availablle_from`, `preferred_tenants`, `furnishing`, `parking`, `description`) VALUES
-(1, 11, '0', 'yes', '20000', '1000', 'on', '0', '', 'FAMILY', '', 'Car', 'its a good house for the rent you can fuck any girl here'),
-(2, 11, 'RR957033141', 'yes', '2000', '10', 'on', '0', '', 'ANYONE', '', 'Bike', 'kn'),
-(3, 11, 'RR957033141', 'yes', 's', 'as', 'on', 'Select', '', 'Select', '', 'Select', 's'),
-(5, 1, 'RR5dd62202a9be2', '43', '43', '435', '345', '34', '43', '43', '43', '43', '43');
+(7, 1, 'RR5de5255043f5a', 'Yes', 'sdf', 'sdf', '', '', '12/24/2019', 'ANYONE', 'SEMI_FURNISHED', 'FOUR_WHEELER', 'fgfhry'),
+(8, 1, 'RR9875745', 'Yes', 'sdf', 'sdf', '', '', '12/24/2019', 'ANYONE', 'SEMI_FURNISHED', 'FOUR_WHEELER', 'fgfhry'),
+(9, 1, 'RR2232976', 'Yes', 'sdf', 'sdf', '', '', '12/24/2019', 'ANYONE', 'SEMI_FURNISHED', 'FOUR_WHEELER', 'fgfhry'),
+(10, 1, 'RR8514347', 'Yes', 'sdf', 'sdf', '', '', '12/24/2019', 'ANYONE', 'SEMI_FURNISHED', 'FOUR_WHEELER', 'fgfhry'),
+(11, 1, 'RR7677813', 'Yes', 'sdf', 'sdf', '', '', '12/24/2019', 'ANYONE', 'SEMI_FURNISHED', 'FOUR_WHEELER', 'fgfhry');
 
 -- --------------------------------------------------------
 
@@ -1011,11 +1213,11 @@ INSERT INTO `resident_rent_rental_details` (`id`, `userID`, `propertyid`, `is_av
 CREATE TABLE `resident_rent_ schedule_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `start_time` varchar(255) NOT NULL,
   `end_time` varchar(255) NOT NULL,
-  `available_all_day)` varchar(255) NOT NULL
+  `available_all_day` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1025,9 +1227,9 @@ CREATE TABLE `resident_rent_ schedule_details` (
 --
 
 CREATE TABLE `resident_rent_schedule_details` (
-  `id` int(191) NOT NULL,
+  `id` int(11) NOT NULL,
   `userID` varchar(255) NOT NULL,
-  `propertyid` varchar(255) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `start_time` varchar(255) NOT NULL,
   `end_time` varchar(255) NOT NULL,
@@ -1039,8 +1241,11 @@ CREATE TABLE `resident_rent_schedule_details` (
 --
 
 INSERT INTO `resident_rent_schedule_details` (`id`, `userID`, `propertyid`, `availability`, `start_time`, `end_time`, `available_all_day`) VALUES
-(0, '1', 'RR5dd62202a9be2', '435', '435', '435', '34'),
-(1, '22', '0', 'sfsdf', 'sdf', 'sdf', 'sfdsdf');
+(4, '1', 'RR5de5255043f5a', 'EVERYDAY', '4:15 PM', '4:15 PM', 'true'),
+(5, '1', 'RR9875745', 'EVERYDAY', '4:15 PM', '4:15 PM', 'true'),
+(6, '1', 'RR2232976', 'EVERYDAY', '4:15 PM', '4:15 PM', 'true'),
+(7, '1', 'RR8514347', 'EVERYDAY', '4:15 PM', '4:15 PM', 'true'),
+(8, '1', 'RR7677813', 'EVERYDAY', '4:15 PM', '4:15 PM', 'true');
 
 -- --------------------------------------------------------
 
@@ -1051,11 +1256,20 @@ INSERT INTO `resident_rent_schedule_details` (`id`, `userID`, `propertyid`, `ava
 CREATE TABLE `resident_resale_additional_information_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `do_you_have_sale_deed_certificate` varchar(255) NOT NULL,
   `select_have_you_paid_propery_tax` varchar(255) NOT NULL,
   `do_you_have_occupancy_certificate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_resale_additional_information_details`
+--
+
+INSERT INTO `resident_resale_additional_information_details` (`id`, `userID`, `propertyid`, `do_you_have_sale_deed_certificate`, `select_have_you_paid_propery_tax`, `do_you_have_occupancy_certificate`) VALUES
+(2, 1, 'RS5ddd1db3dcf86', 'No', 'YES', 'YES'),
+(3, 1, 'RS3285581', 'No', 'YES', 'YES'),
+(4, 1, 'RS7494606', 'No', 'YES', 'YES');
 
 -- --------------------------------------------------------
 
@@ -1066,7 +1280,7 @@ CREATE TABLE `resident_resale_additional_information_details` (
 CREATE TABLE `resident_resale_amenities_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `bathroom` int(11) NOT NULL,
   `balcony` int(11) NOT NULL,
   `water_supply` varchar(255) NOT NULL,
@@ -1078,6 +1292,14 @@ CREATE TABLE `resident_resale_amenities_details` (
   `select_the_amenities_available` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_resale_amenities_details`
+--
+
+INSERT INTO `resident_resale_amenities_details` (`id`, `userID`, `propertyid`, `bathroom`, `balcony`, `water_supply`, `gym`, `power_backup`, `gated_security`, `who_will_show_house`, `secondary_number`, `select_the_amenities_available`) VALUES
+(3, 1, 'RS3285581', 0, 0, 'BOREWELL', 'false', 'Partial', 'false', 'NEED_HELP', '54353', 'POOL,FS'),
+(4, 1, 'RS7494606', 0, 0, 'BOREWELL', 'false', 'Partial', 'false', 'NEED_HELP', '54353', 'POOL,FS');
+
 -- --------------------------------------------------------
 
 --
@@ -1087,9 +1309,18 @@ CREATE TABLE `resident_resale_amenities_details` (
 CREATE TABLE `resident_resale_gallery_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(222) NOT NULL,
   `upload_images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_resale_gallery_details`
+--
+
+INSERT INTO `resident_resale_gallery_details` (`id`, `userID`, `propertyid`, `upload_images`) VALUES
+(3, 1, 'RS5ddd1db3dcf86', ''),
+(4, 1, 'RS3285581', ''),
+(5, 1, 'RS7494606', '');
 
 -- --------------------------------------------------------
 
@@ -1100,13 +1331,22 @@ CREATE TABLE `resident_resale_gallery_details` (
 CREATE TABLE `resident_resale_locality_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `city` varchar(255) NOT NULL,
   `locality` varchar(255) NOT NULL,
   `street_addres` varchar(255) NOT NULL,
   `locality_lat` varchar(255) NOT NULL,
   `locality_long` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_resale_locality_details`
+--
+
+INSERT INTO `resident_resale_locality_details` (`id`, `userID`, `propertyid`, `city`, `locality`, `street_addres`, `locality_lat`, `locality_long`) VALUES
+(3, 1, 'RS5ddd1db3dcf86', 'fgdfd', 'dfgf', 'fdg', '', ''),
+(4, 1, 'RS3285581', 'fgdfd', 'dfgf', 'fdg', '', ''),
+(7, 1, 'RS7494606', 'fgdfd', 'dfgf', 'fdg', '', '');
 
 -- --------------------------------------------------------
 
@@ -1117,7 +1357,7 @@ CREATE TABLE `resident_resale_locality_details` (
 CREATE TABLE `resident_resale_property_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `apartment_type` varchar(255) NOT NULL,
   `apartment_name` varchar(255) NOT NULL,
   `bhk_type` varchar(255) NOT NULL,
@@ -1136,10 +1376,8 @@ CREATE TABLE `resident_resale_property_details` (
 --
 
 INSERT INTO `resident_resale_property_details` (`id`, `userID`, `propertyid`, `apartment_type`, `apartment_name`, `bhk_type`, `ownership_type`, `property_size`, `property_age`, `facing`, `floor`, `total_floor`, `floor_type`, `no_of_units`) VALUES
-(1, 11, 0, 'residential', 'lk', 'value', 'value', 20, 'value', 'value', 'value', 'value', '', '10'),
-(2, 11, 0, 'residential', 'lk', 'value', 'value', 20, 'value', 'value', 'value', 'value', '', '10'),
-(3, 11, 0, 'residential', 'hi', 'value', 'value', 0, 'value', 'value', 'value', 'value', '', '102'),
-(4, 11, 0, 'residential', 'mllk', 'value', 'value', 0, 'value', 'value', 'value', 'value', '', 'kl');
+(8, 1, 'RS3285581', 'independent', 'gdfg', 'BHK1', '', 345, '0', 'NE', '15', '14', 'value', '4363'),
+(11, 1, 'RS7494606', 'independent', 'gdfg', 'BHK1', 'Owned', 5465, '0', 'SE', '14', '14', 'MOSAIC', '4646');
 
 -- --------------------------------------------------------
 
@@ -1150,7 +1388,7 @@ INSERT INTO `resident_resale_property_details` (`id`, `userID`, `propertyid`, `a
 CREATE TABLE `resident_resale_resale_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `expected_cost` int(11) NOT NULL,
   `maintenance_cost` varchar(255) NOT NULL,
   `is_price_negotiable` varchar(255) NOT NULL,
@@ -1163,6 +1401,15 @@ CREATE TABLE `resident_resale_resale_details` (
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `resident_resale_resale_details`
+--
+
+INSERT INTO `resident_resale_resale_details` (`id`, `userID`, `propertyid`, `expected_cost`, `maintenance_cost`, `is_price_negotiable`, `is_currently_under_loan`, `no_of_lease_years`, `available_forms`, `furnishing`, `parking`, `kitchen_type`, `description`) VALUES
+(3, 1, 'RS5ddd1db3dcf86', 0, 'dfgfd', 'Yes', 'Yes', 'dfg', '12/11/2019', 'FULLY_FURNISHED', 'FOUR_WHEELER', '', 'dfgfd'),
+(4, 1, 'RS3285581', 0, 'dfgfd', 'Yes', 'Yes', 'dfg', '12/11/2019', 'FULLY_FURNISHED', 'FOUR_WHEELER', 'MODULAR', 'dfgfd'),
+(7, 1, 'RS7494606', 0, 'dfgfd', 'Yes', 'Yes', 'dfg', '12/11/2019', 'FULLY_FURNISHED', 'FOUR_WHEELER', 'COVERED_SHELVES', 'dfgfd');
+
 -- --------------------------------------------------------
 
 --
@@ -1172,12 +1419,21 @@ CREATE TABLE `resident_resale_resale_details` (
 CREATE TABLE `resident_resale_schedule_details` (
   `id` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `propertyid` int(11) NOT NULL,
+  `propertyid` varchar(100) NOT NULL,
   `availability` varchar(255) NOT NULL,
   `start_time` varchar(255) NOT NULL,
   `end_time` varchar(255) NOT NULL,
   `available_all_day` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resident_resale_schedule_details`
+--
+
+INSERT INTO `resident_resale_schedule_details` (`id`, `userID`, `propertyid`, `availability`, `start_time`, `end_time`, `available_all_day`) VALUES
+(2, 1, 'RS5ddd1db3dcf86', 'EVERYDAY', '6:30 PM', '6:30 PM', 'true'),
+(3, 1, 'RS3285581', 'EVERYDAY', '6:30 PM', '6:30 PM', 'true'),
+(4, 1, 'RS7494606', 'EVERYDAY', '6:30 PM', '6:30 PM', 'true');
 
 -- --------------------------------------------------------
 
@@ -1251,69 +1507,75 @@ ALTER TABLE `ci_sessions`
   ADD KEY `last_activity_idx` (`last_activity`);
 
 --
--- Indexes for table `commericial_rent_additional_information_details`
+-- Indexes for table `commercial_rent_additional_information_details`
 --
-ALTER TABLE `commericial_rent_additional_information_details`
+ALTER TABLE `commercial_rent_additional_information_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_rent_amenities_details`
+-- Indexes for table `commercial_rent_amenities_details`
 --
-ALTER TABLE `commericial_rent_amenities_details`
+ALTER TABLE `commercial_rent_amenities_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_rent_locality_details`
+-- Indexes for table `commercial_rent_locality_details`
 --
-ALTER TABLE `commericial_rent_locality_details`
+ALTER TABLE `commercial_rent_locality_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_rent_photo_details`
+-- Indexes for table `commercial_rent_photo_details`
 --
-ALTER TABLE `commericial_rent_photo_details`
+ALTER TABLE `commercial_rent_photo_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_rent_property_details`
+-- Indexes for table `commercial_rent_property_details`
 --
-ALTER TABLE `commericial_rent_property_details`
+ALTER TABLE `commercial_rent_property_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_rent_rental_details`
+-- Indexes for table `commercial_rent_rental_details`
 --
-ALTER TABLE `commericial_rent_rental_details`
+ALTER TABLE `commercial_rent_rental_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_sale_additional_information_details`
+-- Indexes for table `commercial_sale_additional_information_details`
 --
-ALTER TABLE `commericial_sale_additional_information_details`
+ALTER TABLE `commercial_sale_additional_information_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_sale_amenities_details`
+-- Indexes for table `commercial_sale_amenities_details`
 --
-ALTER TABLE `commericial_sale_amenities_details`
+ALTER TABLE `commercial_sale_amenities_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_sale_location_details`
+-- Indexes for table `commercial_sale_location_details`
 --
-ALTER TABLE `commericial_sale_location_details`
+ALTER TABLE `commercial_sale_location_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_sale_photo_details`
+-- Indexes for table `commercial_sale_photo_details`
 --
-ALTER TABLE `commericial_sale_photo_details`
+ALTER TABLE `commercial_sale_photo_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commericial_sale_resale_details`
+-- Indexes for table `commercial_sale_property_details`
 --
-ALTER TABLE `commericial_sale_resale_details`
+ALTER TABLE `commercial_sale_property_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `commercial_sale_resale_details`
+--
+ALTER TABLE `commercial_sale_resale_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userID` (`userID`),
   ADD KEY `propertyid` (`propertyid`);
@@ -1387,27 +1649,27 @@ ALTER TABLE `reset_password`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_flatmates_ amenities_details`
+-- Indexes for table `resident_flatmates_amenities_details`
 --
-ALTER TABLE `resident_flatmates_ amenities_details`
+ALTER TABLE `resident_flatmates_amenities_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_flatmates_ gallery_details`
+-- Indexes for table `resident_flatmates_gallery_details`
 --
-ALTER TABLE `resident_flatmates_ gallery_details`
+ALTER TABLE `resident_flatmates_gallery_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_flatmates_ locality_details`
+-- Indexes for table `resident_flatmates_locality_details`
 --
-ALTER TABLE `resident_flatmates_ locality_details`
+ALTER TABLE `resident_flatmates_locality_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_flatmates_ property_details`
+-- Indexes for table `resident_flatmates_property_details`
 --
-ALTER TABLE `resident_flatmates_ property_details`
+ALTER TABLE `resident_flatmates_property_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1417,9 +1679,9 @@ ALTER TABLE `resident_flatmates_rental_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_flatmates_ schedule_details`
+-- Indexes for table `resident_flatmates_schedule_details`
 --
-ALTER TABLE `resident_flatmates_ schedule_details`
+ALTER TABLE `resident_flatmates_schedule_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1447,16 +1709,16 @@ ALTER TABLE `resident_pg_pg_details`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident_ pg_room_details`
+-- Indexes for table `resident_pg_room_details`
 --
-ALTER TABLE `resident_ pg_room_details`
+ALTER TABLE `resident_pg_room_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userID` (`userID`);
 
 --
--- Indexes for table `resident_pg_ schedule_details`
+-- Indexes for table `resident_pg_schedule_details`
 --
-ALTER TABLE `resident_pg_ schedule_details`
+ALTER TABLE `resident_pg_schedule_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1495,6 +1757,12 @@ ALTER TABLE `resident_rent_rental_details`
 -- Indexes for table `resident_rent_ schedule_details`
 --
 ALTER TABLE `resident_rent_ schedule_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `resident_rent_schedule_details`
+--
+ALTER TABLE `resident_rent_schedule_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1556,76 +1824,82 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `commericial_rent_additional_information_details`
+-- AUTO_INCREMENT for table `commercial_rent_additional_information_details`
 --
-ALTER TABLE `commericial_rent_additional_information_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_additional_information_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `commericial_rent_amenities_details`
+-- AUTO_INCREMENT for table `commercial_rent_amenities_details`
 --
-ALTER TABLE `commericial_rent_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_amenities_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `commericial_rent_locality_details`
+-- AUTO_INCREMENT for table `commercial_rent_locality_details`
 --
-ALTER TABLE `commericial_rent_locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_locality_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `commericial_rent_photo_details`
+-- AUTO_INCREMENT for table `commercial_rent_photo_details`
 --
-ALTER TABLE `commericial_rent_photo_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_photo_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `commericial_rent_property_details`
+-- AUTO_INCREMENT for table `commercial_rent_property_details`
 --
-ALTER TABLE `commericial_rent_property_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_property_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `commericial_rent_rental_details`
+-- AUTO_INCREMENT for table `commercial_rent_rental_details`
 --
-ALTER TABLE `commericial_rent_rental_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_rent_rental_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `commericial_sale_additional_information_details`
+-- AUTO_INCREMENT for table `commercial_sale_additional_information_details`
 --
-ALTER TABLE `commericial_sale_additional_information_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_sale_additional_information_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `commericial_sale_amenities_details`
+-- AUTO_INCREMENT for table `commercial_sale_amenities_details`
 --
-ALTER TABLE `commericial_sale_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_sale_amenities_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `commericial_sale_location_details`
+-- AUTO_INCREMENT for table `commercial_sale_location_details`
 --
-ALTER TABLE `commericial_sale_location_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_sale_location_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `commericial_sale_photo_details`
+-- AUTO_INCREMENT for table `commercial_sale_photo_details`
 --
-ALTER TABLE `commericial_sale_photo_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_sale_photo_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `commericial_sale_resale_details`
+-- AUTO_INCREMENT for table `commercial_sale_property_details`
 --
-ALTER TABLE `commericial_sale_resale_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `commercial_sale_property_details`
+  MODIFY `id` int(191) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `commercial_sale_resale_details`
+--
+ALTER TABLE `commercial_sale_resale_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `last_login`
 --
 ALTER TABLE `last_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `mzb_otp_verify`
@@ -1652,106 +1926,106 @@ ALTER TABLE `reset_password`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `resident_flatmates_ amenities_details`
+-- AUTO_INCREMENT for table `resident_flatmates_amenities_details`
 --
-ALTER TABLE `resident_flatmates_ amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_flatmates_amenities_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `resident_flatmates_ gallery_details`
+-- AUTO_INCREMENT for table `resident_flatmates_gallery_details`
 --
-ALTER TABLE `resident_flatmates_ gallery_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_flatmates_gallery_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `resident_flatmates_ locality_details`
+-- AUTO_INCREMENT for table `resident_flatmates_locality_details`
 --
-ALTER TABLE `resident_flatmates_ locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_flatmates_locality_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `resident_flatmates_ property_details`
+-- AUTO_INCREMENT for table `resident_flatmates_property_details`
 --
-ALTER TABLE `resident_flatmates_ property_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_flatmates_property_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `resident_flatmates_rental_details`
 --
 ALTER TABLE `resident_flatmates_rental_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `resident_flatmates_ schedule_details`
+-- AUTO_INCREMENT for table `resident_flatmates_schedule_details`
 --
-ALTER TABLE `resident_flatmates_ schedule_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_flatmates_schedule_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `resident_pg_amenities_details`
 --
 ALTER TABLE `resident_pg_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `resident_pg_gallery_details`
 --
 ALTER TABLE `resident_pg_gallery_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `resident_pg_locality_details`
 --
 ALTER TABLE `resident_pg_locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `resident_pg_pg_details`
 --
 ALTER TABLE `resident_pg_pg_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `resident_ pg_room_details`
+-- AUTO_INCREMENT for table `resident_pg_room_details`
 --
-ALTER TABLE `resident_ pg_room_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_pg_room_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `resident_pg_ schedule_details`
+-- AUTO_INCREMENT for table `resident_pg_schedule_details`
 --
-ALTER TABLE `resident_pg_ schedule_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `resident_pg_schedule_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_amenities_details`
 --
 ALTER TABLE `resident_rent_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_gallery_details`
 --
 ALTER TABLE `resident_rent_gallery_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_locality_details`
 --
 ALTER TABLE `resident_rent_locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_property_details`
 --
 ALTER TABLE `resident_rent_property_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_rental_details`
 --
 ALTER TABLE `resident_rent_rental_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `resident_rent_ schedule_details`
@@ -1760,46 +2034,52 @@ ALTER TABLE `resident_rent_ schedule_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `resident_rent_schedule_details`
+--
+ALTER TABLE `resident_rent_schedule_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `resident_resale_additional_information_details`
 --
 ALTER TABLE `resident_resale_additional_information_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_amenities_details`
 --
 ALTER TABLE `resident_resale_amenities_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_gallery_details`
 --
 ALTER TABLE `resident_resale_gallery_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_locality_details`
 --
 ALTER TABLE `resident_resale_locality_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_property_details`
 --
 ALTER TABLE `resident_resale_property_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_resale_details`
 --
 ALTER TABLE `resident_resale_resale_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `resident_resale_schedule_details`
 --
 ALTER TABLE `resident_resale_schedule_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`

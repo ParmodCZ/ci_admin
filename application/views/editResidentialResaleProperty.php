@@ -76,6 +76,7 @@
                            </div>
                            <div class="col-md-6">
                               <div class="form-group">
+                                <input type="hidden" id="PropertyId" name="PropertyId" value="<?php echo $PropertyInfo->propertyid; ?>">
                                  <label for="apartment_name">Apartment Name *</label>
                                  <input type="text" class="form-control" id="apartment_name" name="Property[apartment_name]" value="<?php echo $PropertyInfo->apartment_name; ?>" required>
                               </div>
@@ -120,7 +121,7 @@
                                     $floors = $PropertyInfo->floor;
                                       if(!empty($floor)){
                                         foreach ($floor as $value){ ?>
-                                        <option value="<?php echo $value; ?>" <?php if($key ==$floors) {echo "selected=selected";} ?>><?php echo $value; ?></option>
+                                        <option value="<?php echo $value; ?>" <?php if($value ==$floors) {echo "selected=selected";} ?>><?php echo $value; ?></option>
                                        <?php }
                                       }
                                   ?>
@@ -136,7 +137,7 @@
                               $total_floor = $PropertyInfo->total_floor;
                                  if(!empty($top_floor)){
                                    foreach ($top_floor as $value){ ?>
-                                   <option value="<?php echo $value; ?>"  <?php if($key ==$total_floor) {echo "selected=selected";} ?>><?php echo $value; ?></option>
+                                   <option value="<?php echo $value; ?>"  <?php if($value ==$total_floor) {echo "selected=selected";} ?>><?php echo $value; ?></option>
                                   <?php }
                                  }
                               ?>
@@ -254,19 +255,20 @@
                                  <input type="text" class="form-control" id="no_of_lease_years" name="Resale[no_of_lease_years]" required value="<?php echo $PropertyInfo->no_of_lease_years; ?>" >
                               </div>
                            </div>
-                        </div>
-                        <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="expected_cost">Expected Cost *</label>
                                  <input type="text" class="form-control" id="expected_cost" name="Resale[expected_cost]" required value="<?php echo $PropertyInfo->expected_cost; ?>">
                               </div>
                            </div>
+                        </div>
+                        <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
                                 <label class="custom-control-label" for="is_currently_under_loan">Is Currently Under Loan *</label>
                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="is_currently_under_loan" value="Yes" name="Resale[is_currently_under_loan]"<?php echo ($PropertyInfo->is_currently_under_loan =='Yes')?'selected':'' ?> required>
+                                  <?php $loan = $PropertyInfo->is_currently_under_loan;?>
+                                    <input type="checkbox" class="custom-control-input" id="is_currently_under_loan" value="Yes" name="Resale[is_currently_under_loan]" <?php echo ($loan =='Yes')?'checked':'' ?> >
                                  </div>
                               </div>
                            </div>
@@ -274,7 +276,8 @@
                               <div class="form-group">
                                 <label class="custom-control-label" for="is_negotiable">Is Negotiable *</label>
                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="is_negotiable" value="Yes" name="Resale[is_price_negotiable]"<?php echo ($PropertyInfo->is_price_negotiable =='Yes')?'selected':'' ?> >
+                                  <?php $pd = $PropertyInfo->is_price_negotiable; ?>
+                                    <input type="checkbox" class="custom-control-input" id="is_negotiable" value="Yes" name="Resale[is_price_negotiable]"<?php echo ($pd =='Yes')?'checked':'' ?> >
                                  </div>
                               </div>
                            </div>
@@ -388,8 +391,8 @@
                                  </select>
                               </div>
                            </div>
-                        </div>
-                        <div class="row">
+                        <!-- </div>
+                        <div class="row"> -->
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="balcony">Balcony *</label>
@@ -424,7 +427,7 @@
                                  <label for="who_will_show_house">Who Will Show The House *</label>
                                  <select class="form-control" id="who_will_show_house" name="Amenities[who_will_show_house]" required>
                                     <option value="">Select</option>
-                                    <?php $shu = $PropertyInfo->gym;?>
+                                    <?php $shu = $PropertyInfo->who_will_show_house;?>
                                     <option value="I_HAVE_KEYS" <?php echo ($shu =='I_HAVE_KEYS')?'selected':'' ?> >I will show</option>
                                     <option value="NEED_HELP" <?php echo ($shu =='NEED_HELP')?'selected':'' ?>>Need Help</option>
                                     <option value="NEIGHBOURS" <?php echo ($shu =='NEIGHBOURS')?'selected':'' ?>>Neighbours</option>
@@ -530,8 +533,8 @@
                            <div class="form-group">
                               <label for="do_you_have_sale_deed_certificate">Do You Have Sale Deed Certificate *</label>
                               <select  class="form-control required" id="do_you_have_sale_deed_certificate" name="Information[do_you_have_sale_deed_certificate]" required>
-                                 <option datat-value="">Select</option>
-                                 <?php $yha = $PropertyInfo->gym;?>
+                                  <option value="">Select</option>
+                                 <?php $yha = $PropertyInfo->do_you_have_sale_deed_certificate;?>
                                   <option value="YES" <?php echo ($yha =='YES')?'selected':'' ?> >Yes</option>
                                   <option value="No" <?php echo ($yha =='No')?'selected':'' ?> >No</option>
                                  <option value="DK"<?php echo ($yha =='DK')?'selected':'' ?> >Don't Know</option>
@@ -542,8 +545,8 @@
                            <div class="form-group">
                               <label for="select_have_you_paid_propery_tax">Select Have You Paid Propery Tax *</label>
                               <select  class="form-control required" id="select_have_you_paid_propery_tax" name="Information[select_have_you_paid_propery_tax]" required>
-                                 <option datat-value="">Select</option>
-                                 <?php $sha = $PropertyInfo->gym;?>
+                                  <option value="">Select</option>
+                                 <?php $sha = $PropertyInfo->select_have_you_paid_propery_tax;?>
                                   <option value="YES" <?php echo ($sha =='YES')?'selected':'' ?> >Yes</option>
                                   <option value="No" <?php echo ($sha =='No')?'selected':'' ?> >No</option>
                                  <option value="DK"<?php echo ($sha =='DK')?'selected':'' ?> >Don't Know</option>
@@ -554,8 +557,8 @@
                            <div class="form-group">
                               <label for="do_you_have_occupancy_certificate">Do You Have Occupancy Certificate *</label>
                               <select  class="form-control required" id="do_you_have_occupancy_certificate" name="Information[do_you_have_occupancy_certificate]" required>
-                                 <option datat-value="">Select</option>
-                                 <?php $dha = $PropertyInfo->gym;?>
+                                 <option value="">Select</option>
+                                 <?php $dha = $PropertyInfo->do_you_have_occupancy_certificate;?>
                                   <option value="YES" <?php echo ($dha =='YES')?'selected':'' ?> >Yes</option>
                                   <option value="No" <?php echo ($dha =='No')?'selected':'' ?> >No</option>
                                  <option value="DK"<?php echo ($dha =='DK')?'selected':'' ?> >Don't Know</option>

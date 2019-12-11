@@ -484,33 +484,33 @@ class Property_model extends CI_Model
         $addNewProperty['Property']['userID'] =$authuser;
         $addNewProperty['Locality']['userID'] =$authuser;
         $addNewProperty['Resale']['userID'] =$authuser;
-        $addNewProperty['Gallery']['userID'] =$authuser;
         $addNewProperty['Amenities']['userID'] =$authuser;
         $addNewProperty['Schedule']['userID'] =$authuser;
         $addNewProperty['Information']['userID'] =$authuser;
+        $galleryProperty['Gallery']['userID'] =$authuser;
         //give propertyid 
         $addNewProperty['Property']['propertyid'] =$propertyid; 
         $addNewProperty['Locality']['propertyid'] =$propertyid;  
-        $addNewProperty['Resale']['propertyid'] =$propertyid;  
-        $addNewProperty['Gallery']['propertyid'] =$propertyid;  
+        $addNewProperty['Resale']['propertyid'] =$propertyid;    
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
-        $addNewProperty['Information']['propertyid'] =$propertyid; 
+        $addNewProperty['Information']['propertyid'] =$propertyid;
+        $galleryProperty['Gallery']['propertyid'] =$propertyid; 
 
         if(isset($_FILES['Gallery'])){
             $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
             $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
-            $addNewProperty['Gallery']['upload_images'] =serialize($filearr);   
+            $galleryProperty['Gallery']['upload_images'] =serialize($filearr);   
         }
 
         $propertyinfo =$addNewProperty['Property'];
         $localityinfo =$addNewProperty['Locality'];
         $resaleinfo =$addNewProperty['Resale'];
-        $galleryinfo =$addNewProperty['Gallery'];
+        $galleryinfo =$galleryProperty['Gallery'];
         $amenitiesinfo =$addNewProperty['Amenities'];
         $scheduleinfo =$addNewProperty['Schedule'];
         $information =$addNewProperty['Information'];
-        //echo"<pre>";print_r($amenitiesinfo);die();
+       // echo"<pre>";print_r($galleryinfo);die();
         $this->db->trans_start();
         $this->db->insert('resident_resale_property_details', $propertyinfo);
         $this->db->insert('resident_resale_locality_details', $localityinfo);
@@ -986,6 +986,7 @@ class Property_model extends CI_Model
     }
     
     function EditResidentialResalePropertyPost($data,$PropertyId){ 
+       // echo"<pre>"; print_r($PropertyId);die;
         $Property = $data['Property'];
         $Locality = $data['Locality'];
         $Resale   = $data['Resale'];
@@ -1018,11 +1019,17 @@ class Property_model extends CI_Model
         $description= $Resale['description'];
         $is_price_negotiable= $Resale['is_price_negotiable'];
 
-        //$upload_images= $Gallery['upload_images'];
+        $upload_images= '';
         if(isset($_FILES['Gallery'])){
             $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
             $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
             $upload_images =serialize($filearr);   
+        }
+
+        $available_amenities='';
+        if(isset($data['amenitiesarr'])){
+            $available_amenities= implode(",",$data['amenitiesarr']);
+            //$Amenities['select_the_amenities_available'];
         }
 
         $bathroom= $Amenities['bathroom'];
@@ -1032,7 +1039,7 @@ class Property_model extends CI_Model
         $gated_security=$Amenities['gated_security'];
         $who_will_show_house= $Amenities['who_will_show_house'];
         $secondary_number= $Amenities['secondary_number'];
-        $select_the_amenities_available= $Amenities['select_the_amenities_available'];
+        $select_the_amenities_available= $available_amenities;
 
         $availability= $Schedule['availability'];
         $start_time=$Schedule['start_time'];
@@ -1059,7 +1066,7 @@ class Property_model extends CI_Model
             `Resale`.`no_of_lease_years` = '$no_of_lease_years', 
           
             `Resale`.`expected_cost` ='$expected_cost', 
-            `Resale`.`maintenance_cost` = '$maintenance_cost',
+            `Resale`.`maintenance_cost` = '$maintenance',
             `Resale`.`available_forms` = '$available_forms', 
            
             `Resale`.`furnishing` = '$furnishing', 
@@ -1078,9 +1085,9 @@ class Property_model extends CI_Model
             `Schedule`.`availability` = '$availability', 
             `Schedule`.`start_time` = '$start_time', 
             `Schedule`.`end_time` = '$end_time', 
-            `Schedule`.`available_all_day` = '$available_all_day'
-            `Information`.`do_you_have_sale_deed_certificate` = '$do_you_have_sale_deed_certificate'
-            `Information`.`select_have_you_paid_propery_tax` = '$select_have_you_paid_propery_tax'
+            `Schedule`.`available_all_day` = '$available_all_day',
+            `Information`.`do_you_have_sale_deed_certificate` = '$do_you_have_sale_deed_certificate',
+            `Information`.`select_have_you_paid_propery_tax` = '$select_have_you_paid_propery_tax',
             `Information`.`do_you_have_occupancy_certificate` = '$do_you_have_occupancy_certificate'
              WHERE `Property`.`propertyid` = ?";
 
