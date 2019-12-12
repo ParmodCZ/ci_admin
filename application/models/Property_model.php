@@ -551,7 +551,7 @@ class Property_model extends CI_Model
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         // $addNewProperty['Information']['propertyid'] =$propertyid; 
         if(isset($addNewProperty['amenitiesarr'])){
-            $addNewProperty['Amenities']['select_the_amenities_available'] =implode(",",$addNewProperty['amenitiesarr']);
+            $addNewProperty['Amenities']['select_the_amenities_available'] =serialize($addNewProperty['amenitiesarr']);
         }
 
         if(isset($_FILES['Gallery'])){
@@ -603,13 +603,13 @@ class Property_model extends CI_Model
         $addNewProperty['Room']['propertyid'] =$propertyid; 
 
         if(isset($addNewProperty['hostelrulesarr'])){
-           $addNewProperty['PG']['pg_hostel_rules']= implode(",",$addNewProperty['hostelrulesarr']); 
+           $addNewProperty['PG']['pg_hostel_rules']= serialize($addNewProperty['hostelrulesarr']); 
         }
         if(isset($addNewProperty['amenitiesarr'])){
-           $addNewProperty['Amenities']['available_amenities'] =implode(",",$addNewProperty['amenitiesarr']);
+           $addNewProperty['Amenities']['available_amenities'] =serialize($addNewProperty['amenitiesarr']);
         }
         if(isset($addNewProperty['amenitiesroomarr'])){
-          $addNewProperty['Room']['room_amenities'] =implode(",",$addNewProperty['amenitiesroomarr']);
+          $addNewProperty['Room']['room_amenities'] =serialize($addNewProperty['amenitiesroomarr']);
         }
 
         if(isset($_FILES['Gallery'])){
@@ -660,11 +660,11 @@ class Property_model extends CI_Model
         $addNewProperty['Information']['propertyid'] =$propertyid; 
 
         if(isset($addNewProperty['Property']['other_features'])){
-            $addNewProperty['Property']['other_features'] =implode(",",$addNewProperty['Property']['other_features'] ); 
+            $addNewProperty['Property']['other_features'] =serialize($addNewProperty['Property']['other_features'] ); 
         }
 
         if(isset($addNewProperty['Resale']['ideal_for'])){
-            $addNewProperty['Resale']['ideal_for'] =implode(",",$addNewProperty['Resale']['ideal_for'] ); 
+            $addNewProperty['Resale']['ideal_for'] =serialize($addNewProperty['Resale']['ideal_for'] ); 
         }
         
         if(isset($_FILES['Gallery'])){
@@ -714,11 +714,11 @@ class Property_model extends CI_Model
         $addNewProperty['Information']['propertyid'] =$propertyid; 
 
         if(isset($addNewProperty['Property']['other_features'])){
-            $addNewProperty['Property']['other_features'] =implode(",",$addNewProperty['Property']['other_features'] ); 
+            $addNewProperty['Property']['other_features'] =serialize($addNewProperty['Property']['other_features'] ); 
         }
 
         if(isset($addNewProperty['Rent']['ideal_for'])){
-          $addNewProperty['Rent']['ideal_for'] =implode(",",$addNewProperty['Rent']['ideal_for'] );  
+          $addNewProperty['Rent']['ideal_for'] =serialize($addNewProperty['Rent']['ideal_for'] );  
         }
          
         if(isset($_FILES['Gallery'])){
@@ -891,7 +891,7 @@ class Property_model extends CI_Model
         $secondary_number= $Amenities['secondary_number'];
 
         if(isset($data['amenitiesarr'])){
-            $select_the_amenities_available= implode(",",$data['amenitiesarr']);
+            $select_the_amenities_available= serialize($data['amenitiesarr']);
         } 
         if(isset($_FILES['Gallery'])){
             $fileuploadpath="images/property/ResidentRentProperty/$PropertyId";
@@ -1034,7 +1034,7 @@ class Property_model extends CI_Model
 
         $available_amenities='';
         if(isset($data['amenitiesarr'])){
-            $available_amenities= implode(",",$data['amenitiesarr']);
+            $available_amenities= serialize($data['amenitiesarr']);
             //$Amenities['select_the_amenities_available'];
         }
 
@@ -1401,7 +1401,7 @@ class Property_model extends CI_Model
         $gate_closing_time= $Property['gate_closing_time'];
         $food_included= $Property['food_included'];
         if(isset($addNewProperty['hostelrulesarr'])){
-            $pg_hostel_rules= implode(",",$addNewProperty['hostelrulesarr']);
+            $pg_hostel_rules= serialize($addNewProperty['hostelrulesarr']);
         } 
         $description= $Property['description'];
 
@@ -1413,7 +1413,7 @@ class Property_model extends CI_Model
         $expected_rent_per_person= $Room['expected_rent_per_person'];
         $expected_deposit_per_person=$Room['expected_deposit_per_person'];
         if(isset($addNewProperty['amenitiesroomarr'])){
-            $room_amenities= implode(",",$addNewProperty['amenitiesroomarr']);
+            $room_amenities= serialize($addNewProperty['amenitiesroomarr']);
         }
 
         //$upload_images= $Gallery['upload_images'];
@@ -1427,7 +1427,7 @@ class Property_model extends CI_Model
         $available_service_room_cleaning= $Amenities['available_service_room_cleaning'];
         $available_service_warden_facility=$Amenities['available_service_warden_facility'];
         if(isset($addNewProperty['amenitiesarr'])){
-            $available_amenities= implode(",",$addNewProperty['amenitiesarr']);
+            $available_amenities= serialize($addNewProperty['amenitiesarr']);
         }
         $parking=$Amenities['parking'];
   

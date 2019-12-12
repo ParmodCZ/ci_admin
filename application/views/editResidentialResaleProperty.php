@@ -467,8 +467,9 @@
                                     'VP' => array('Visitor Parking','fa-product-hunt')
                                 );
                               $selectaa = array();
-                              if(!empty($ResidentialRentPropertyInfo->select_the_amenities_available)){
-                                $selectaa = unserialize($ResidentialRentPropertyInfo->select_the_amenities_available);
+                              if(!empty($PropertyInfo->select_the_amenities_available)){
+                                $selectaa = unserialize($PropertyInfo->select_the_amenities_available);
+                               // echo"<pre>";print_r($selectaa);die('sssss');
                               }
                              foreach($checkarr as $key=>$check){
                               $checkaaa = (in_array($key, $selectaa))?"checked":'';
