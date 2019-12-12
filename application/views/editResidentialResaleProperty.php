@@ -468,7 +468,7 @@
                                 );
                               $selectaa = array();
                               if(!empty($ResidentialRentPropertyInfo->select_the_amenities_available)){
-                                $selectaa = explode(',',$ResidentialRentPropertyInfo->select_the_amenities_available);
+                                $selectaa = unserialize($ResidentialRentPropertyInfo->select_the_amenities_available);
                               }
                              foreach($checkarr as $key=>$check){
                               $checkaaa = (in_array($key, $selectaa))?"checked":'';

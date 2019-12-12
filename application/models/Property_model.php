@@ -428,6 +428,7 @@ class Property_model extends CI_Model
      * @return number $insert_id : This is last inserted id
      */
     function addNewResidentialRentProperty($addNewProperty,$authuser){
+        //echo "<pre>";print_r($addNewProperty);die;
         $lastpropertyid =$this->ExistLastPropertyID('resident_rent_property_details');
         $propertyid = $this->generatePropertyID(7,"RR",$lastpropertyid);
         //give userID
@@ -445,7 +446,7 @@ class Property_model extends CI_Model
         $addNewProperty['Amenities']['propertyid'] =$propertyid;  
         $addNewProperty['Schedule']['propertyid'] =$propertyid; 
         if(isset($addNewProperty['amenitiesarr'])){
-           $addNewProperty['Amenities']['select_the_amenities_available']=implode(",",$addNewProperty['amenitiesarr']);
+           $addNewProperty['Amenities']['select_the_amenities_available']=serialize($addNewProperty['amenitiesarr']);
         }
         if(isset($_FILES['Gallery'])){
             $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
@@ -478,6 +479,7 @@ class Property_model extends CI_Model
      * @return number $insert_id : This is last inserted id
      */
     function addNewResidentialResaleProperty($addNewProperty,$authuser){
+        //echo "<pre>";print_r($addNewProperty);die;
         $lastpropertyid =$this->ExistLastPropertyID('resident_resale_property_details');
         $propertyid = $this->generatePropertyID(7,"RS",$lastpropertyid);
         //give userID
@@ -501,6 +503,10 @@ class Property_model extends CI_Model
             $fileuploadpath="images/property/ResidentRentProperty/$propertyid";
             $filearr=$this->uploadFiles($_FILES,$fileuploadpath);
             $galleryProperty['Gallery']['upload_images'] =serialize($filearr);   
+        }
+
+        if(isset($addNewProperty['amenitiesarr'])){
+           $addNewProperty['Amenities']['select_the_amenities_available']=serialize($addNewProperty['amenitiesarr']);
         }
 
         $propertyinfo =$addNewProperty['Property'];
